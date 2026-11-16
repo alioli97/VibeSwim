@@ -2,7 +2,7 @@
     <!-- Required in release builds to reach Supabase (debug/profile manifests add it automatically). -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:label="swimvibe"
+        android:label="SwimVibe"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

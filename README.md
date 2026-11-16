@@ -1,17 +1,17 @@
-# swimvibe
+# SwimVibe
 
-A new Flutter project.
+Swim workout generator: choose a target distance or the time you have in the pool and SwimVibe picks a workout for you (warm-up, main set and cool down), in English, Spanish or Catalan.
 
-## Getting Started
+- Workouts are read from Supabase.
+- Your completed workouts, weekly goal and stats are stored on the device.
+- Share a workout as text, or ask for another one with the same criteria.
 
-This project is a starting point for a Flutter application.
+## Running
 
-A few resources to get you started if this is your first Flutter project:
+```bash
+flutter pub get
+flutter run            # -d chrome, -d linux or an Android device
+flutter test
+```
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+See `CLAUDE.md` for architecture and development notes.
