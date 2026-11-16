@@ -82,63 +82,92 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Future<void> _showCustomDistanceDialog() async {
-    final TextEditingController controller = TextEditingController();
-    
-    return showDialog(
+  /// Dialog to type a positive whole number. Returns null if cancelled or
+  /// the input is invalid.
+  Future<int?> _askNumber({
+    required String title,
+    required String hint,
+    required String suffix,
+    int? initialValue,
+  }) {
+    final controller = TextEditingController(text: initialValue?.toString() ?? '');
+    // Not disposing `controller`: the dialog still uses it during its closing
+    // animation after showDialog returns.
+    return showDialog<int>(
       context: context,
       builder: (context) {
+        void save() {
+          final parsed = int.tryParse(controller.text.trim());
+          Navigator.pop(context, parsed != null && parsed > 0 ? parsed : null);
+        }
+
         return AlertDialog(
           backgroundColor: Colors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          title: Text(widget.appState.tDistance, style: TextStyle(color: AppTheme.primary)),
+          title: Text(title, style: const TextStyle(color: AppTheme.primary)),
           content: TextField(
             controller: controller,
             keyboardType: TextInputType.number,
             autofocus: true,
-            decoration: const InputDecoration(
-              hintText: 'e.g. 1800',
-              suffixText: 'meters',
-              border: OutlineInputBorder(),
-              focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppTheme.primaryContainer, width: 2))
+            onSubmitted: (_) => save(),
+            decoration: InputDecoration(
+              hintText: hint,
+              suffixText: suffix,
+              border: const OutlineInputBorder(),
+              focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: AppTheme.primaryContainer, width: 2)),
             ),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text('Cancel', style: TextStyle(color: Colors.grey)),
+              child: Text(widget.appState.tCancel,
+                  style: const TextStyle(color: Colors.grey)),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppTheme.primaryContainer,
                 foregroundColor: Colors.white,
               ),
-              onPressed: () {
-                if (controller.text.isNotEmpty) {
-                  final parsed = int.tryParse(controller.text);
-                  if (parsed != null && parsed > 0) {
-                    setState(() {
-                      _selectedDistance = parsed;
-                      _searchMode = SearchMode.distance;
-                    });
-                    int newIndex = ((parsed - 100) / 100).floor();
-                    if (newIndex >= 0 && newIndex < 100) {
-                      _distancePageController.animateToPage(
-                        newIndex,
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeInOut,
-                      );
-                    }
-                  }
-                }
-                Navigator.pop(context);
-              },
-              child: const Text('Save'),
-            )
+              onPressed: save,
+              child: Text(widget.appState.tSave),
+            ),
           ],
         );
-      }
+      },
     );
+  }
+
+  /// True while the distance ruler scrolls to a typed custom distance, so
+  /// the intermediate pages don't overwrite it (e.g. 1850 → 1800).
+  bool _scrollingToCustomDistance = false;
+
+  Future<void> _showCustomDistanceDialog() async {
+    final distance = await _askNumber(
+      title: widget.appState.tDistance,
+      hint: '1800',
+      suffix: 'm',
+      initialValue: _selectedDistance % 100 == 0 ? null : _selectedDistance,
+    );
+    if (distance == null || !mounted) return;
+
+    setState(() {
+      _selectedDistance = distance;
+      _searchMode = SearchMode.distance;
+    });
+
+    // Move the ruler to the closest mark without changing the typed value.
+    final index = ((distance - 100) / 100).round().clamp(0, 99);
+    _scrollingToCustomDistance = true;
+    try {
+      await _distancePageController.animateToPage(
+        index,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    } finally {
+      _scrollingToCustomDistance = false;
+    }
   }
 
   Widget _buildLangOption(String code, String name, String emoji) {
@@ -410,6 +439,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: PageView.builder(
               controller: _distancePageController,
               onPageChanged: (index) {
+                if (_scrollingToCustomDistance) return;
                 setState(() {
                   _selectedDistance = (index + 1) * 100;
                   _searchMode = SearchMode.distance;
@@ -537,57 +567,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _showCustomTimeDialog() async {
-    final controller = TextEditingController(
-      text: _presetTimes.contains(_selectedTime) ? '' : '$_selectedTime',
+    final minutes = await _askNumber(
+      title: widget.appState.tAvailableTime,
+      hint: '60',
+      suffix: 'min',
+      initialValue: _presetTimes.contains(_selectedTime) ? null : _selectedTime,
     );
-
-    final minutes = await showDialog<int>(
-      context: context,
-      builder: (context) {
-        void save() {
-          final parsed = int.tryParse(controller.text.trim());
-          Navigator.pop(context, parsed != null && parsed > 0 ? parsed : null);
-        }
-
-        return AlertDialog(
-          backgroundColor: Colors.white,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          title: Text(widget.appState.tAvailableTime,
-              style: const TextStyle(color: AppTheme.primary)),
-          content: TextField(
-            controller: controller,
-            keyboardType: TextInputType.number,
-            autofocus: true,
-            onSubmitted: (_) => save(),
-            decoration: const InputDecoration(
-              hintText: '60',
-              suffixText: 'min',
-              border: OutlineInputBorder(),
-              focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: AppTheme.primaryContainer, width: 2)),
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text(widget.appState.tCancel,
-                  style: const TextStyle(color: Colors.grey)),
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppTheme.primaryContainer,
-                foregroundColor: Colors.white,
-              ),
-              onPressed: save,
-              child: Text(widget.appState.tSave),
-            ),
-          ],
-        );
-      },
-    );
-    // Not disposing `controller`: the dialog still uses it during its closing
-    // animation after showDialog returns.
-
     if (minutes != null && mounted) {
       setState(() {
         _selectedTime = minutes;

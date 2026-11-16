@@ -56,10 +56,27 @@ void main() {
 
     expect(find.text('60'), findsOneWidget);
 
+    // Custom distance keeps the exact typed value (no rounding to 1800).
+    await tester.ensureVisible(find.text('SET CUSTOM'));
+    await tester.tap(find.text('SET CUSTOM'));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextField), '1850');
+    await tester.tap(find.text('Save'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('1850'), findsOneWidget);
+    expect(cardOpacity('Target total meters').opacity, 1);
+
     appState.setLanguage('es');
     await tester.pump();
 
     expect(find.text('¿LISTO PARA ENTRENAR?'), findsOneWidget);
     expect(find.text('Generar Entreno'), findsOneWidget);
+
+    // Dialog buttons are translated.
+    await tester.tap(find.text('PERSONALIZAR'));
+    await tester.pumpAndSettle();
+    expect(find.text('Cancelar'), findsOneWidget);
+    expect(find.text('Guardar'), findsOneWidget);
   });
 }
