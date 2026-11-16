@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:swimvibe/core/app_state.dart';
+import 'package:swimvibe/core/workout_picker.dart';
 import 'package:swimvibe/main.dart';
 
 void main() {
@@ -81,5 +82,20 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Cancelar'), findsOneWidget);
     expect(find.text('Guardar'), findsOneWidget);
+  });
+
+  testWidgets('difficulty chips select and persist the filter', (tester) async {
+    SharedPreferences.setMockInitialValues({});
+    final appState = AppState(await SharedPreferences.getInstance());
+    await tester.pumpWidget(SwimVibeApp(appState: appState));
+    await tester.pump();
+
+    expect(appState.difficulty, DifficultyFilter.any);
+    await tester.ensureVisible(find.text('Intermediate'));
+    await tester.tap(find.text('Intermediate'));
+    await tester.pump();
+
+    expect(appState.difficulty, DifficultyFilter.intermediate);
+    expect(AppState(appState.prefs).difficulty, DifficultyFilter.intermediate); // persisted
   });
 }

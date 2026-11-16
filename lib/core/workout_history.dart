@@ -95,6 +95,19 @@ class WorkoutHistory extends ChangeNotifier {
     return true;
   }
 
+  /// Ids of the workouts logged within [within] before [now] (used to avoid
+  /// suggesting them again).
+  Set<Object?> recentWorkoutIds({
+    Duration within = const Duration(days: 14),
+    DateTime? now,
+  }) {
+    final since = (now ?? DateTime.now()).subtract(within);
+    return {
+      for (final e in _entries)
+        if (e.completedAt.isAfter(since) && e.workout['id'] != null) e.workout['id'],
+    };
+  }
+
   /// Marks a file as a SwimVibe backup (checked by [importJson]).
   static const String backupFormat = 'swimvibe-history';
 

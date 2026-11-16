@@ -76,3 +76,21 @@ Map<String, dynamic>? _pickClosest(
   final matches = candidates.where((w) => w[field] == best).toList();
   return matches[(random ?? Random()).nextInt(matches.length)];
 }
+
+/// Difficulty chosen on the home screen before generating.
+enum DifficultyFilter { any, beginner, intermediate, advanced }
+
+/// Whether [workout] fits [filter], based on `difficulty_level_en` (free
+/// text such as "Beginner / Intermediate"): a combo matches each of its
+/// levels, and "Expert" counts as advanced. Workouts without a difficulty
+/// only match [DifficultyFilter.any].
+bool matchesDifficulty(Map<String, dynamic> workout, DifficultyFilter filter) {
+  if (filter == DifficultyFilter.any) return true;
+  final level = '${workout['difficulty_level_en'] ?? ''}'.toLowerCase();
+  return switch (filter) {
+    DifficultyFilter.any => true,
+    DifficultyFilter.beginner => level.contains('beginner'),
+    DifficultyFilter.intermediate => level.contains('intermediate'),
+    DifficultyFilter.advanced => level.contains('advanced') || level.contains('expert'),
+  };
+}
