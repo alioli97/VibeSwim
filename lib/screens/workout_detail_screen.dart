@@ -25,6 +25,10 @@ class WorkoutDetailScreen extends StatefulWidget {
 class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
   late Future<Map<String, dynamic>?> _futureWorkout;
 
+  /// The workout on screen once loaded (used by "Finish & Log").
+  Map<String, dynamic>? _workout;
+  bool _logged = false;
+
   @override
   void initState() {
     super.initState();
@@ -35,15 +39,26 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
   /// (see `lib/core/workout_picker.dart`).
   Future<Map<String, dynamic>?> _loadWorkout() async {
     final query = Supabase.instance.client.from('workouts').select();
-    switch (widget.mode) {
-      case SearchMode.distance:
-        return pickByDistance(await query, targetDistance: widget.value);
-      case SearchMode.time:
-        return pickByTime(
+    final workout = switch (widget.mode) {
+      SearchMode.distance => pickByDistance(await query, targetDistance: widget.value),
+      SearchMode.time => pickByTime(
           await query.lte('duration_minutes', widget.value),
           availableMinutes: widget.value,
-        );
-    }
+        ),
+    };
+    if (mounted) setState(() => _workout = workout);
+    return workout;
+  }
+
+  Future<void> _finishAndLog() async {
+    final workout = _workout;
+    if (workout == null || _logged) return;
+    setState(() => _logged = true);
+    await widget.appState.history.add(workout);
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(widget.appState.tSavedToHistory)),
+    );
   }
 
   @override
@@ -550,15 +565,17 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
                   backgroundColor: Colors.transparent,
                   shadowColor: Colors.transparent,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                  disabledBackgroundColor: Colors.transparent,
                 ),
-                onPressed: () {},
+                // Disabled until a workout is shown, and after it's logged once.
+                onPressed: _workout == null || _logged ? null : _finishAndLog,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(Icons.check_circle, color: Colors.white),
+                    Icon(_logged ? Icons.done_all : Icons.check_circle, color: Colors.white),
                     const SizedBox(width: 8),
                     Text(
-                      widget.appState.tFinishAndLog,
+                      _logged ? widget.appState.tLogged : widget.appState.tFinishAndLog,
                       style: Theme.of(context)
                           .textTheme
                           .titleLarge

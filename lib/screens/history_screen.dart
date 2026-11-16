@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import '../theme/app_theme.dart';
 import '../core/app_state.dart';
+import '../core/workout_history.dart';
 import 'package:intl/intl.dart';
 
 class HistoryScreen extends StatefulWidget {
@@ -13,13 +13,22 @@ class HistoryScreen extends StatefulWidget {
 }
 
 class _HistoryScreenState extends State<HistoryScreen> {
-  final _futureWorkouts = Supabase.instance.client
-      .from('workouts')
-      .select()
-      .order('created_at', ascending: false);
+  WorkoutHistory get _history => widget.appState.history;
+
+  /// Meters with the language's thousands separator (12,450 / 12.450).
+  String _meters(int meters) =>
+      '${NumberFormat.decimalPattern(widget.appState.currentLanguage).format(meters)}m';
 
   @override
   Widget build(BuildContext context) {
+    return ListenableBuilder(
+      listenable: _history,
+      builder: (context, _) => _buildScreen(context),
+    );
+  }
+
+  Widget _buildScreen(BuildContext context) {
+    final entries = _history.entries;
     return Scaffold(
       backgroundColor: AppTheme.background,
       body: CustomScrollView(
@@ -46,64 +55,38 @@ class _HistoryScreenState extends State<HistoryScreen> {
               ),
             ),
           ),
-          FutureBuilder<List<Map<String, dynamic>>>(
-            future: _futureWorkouts,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const SliverFillRemaining(
-                  child: Center(child: CircularProgressIndicator(color: AppTheme.primaryContainer)),
-                );
-              }
-              if (snapshot.hasError) {
-                return SliverToBoxAdapter(
-                  child: Center(
-                    child: Text(widget.appState.tErrorLoadingWorkouts(snapshot.error!)),
-                  ),
-                );
-              }
-
-              final workouts = snapshot.data ?? [];
-              if (workouts.isEmpty) {
-                return SliverFillRemaining(
-                  child: Center(
-                    child: Text(
-                      widget.appState.tNoWorkoutsYet,
-                      style: const TextStyle(color: AppTheme.secondary),
-                    ),
-                  ),
-                );
-              }
-
-              return SliverPadding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0).copyWith(bottom: 120),
-                sliver: SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                      final item = workouts[index];
-                      final dateStr = item['created_at'] as String?;
-                      final parsedDate = dateStr != null ? DateTime.tryParse(dateStr) : DateTime.now();
-                      final lang = widget.appState.currentLanguage;
-                      final localDate = parsedDate?.toLocal();
-                      final formattedDate = localDate != null
-                          ? '${DateFormat.yMMMd(lang).format(localDate)} • ${DateFormat.jm(lang).format(localDate)}'
-                          : widget.appState.tUnknownDate;
-                      
-                      // Using the localized helper based on AppState
-                      final localizedTitle = widget.appState.localizedDbField(item, 'title');
-                          
-                      return _buildHistoryItem(
-                        context: context,
-                        title: localizedTitle.isNotEmpty ? localizedTitle : widget.appState.tWorkout,
-                        date: formattedDate,
-                        distance: '${item['distance_meters'] ?? 0}m',
-                      );
-                    },
-                    childCount: workouts.length,
-                  ),
+          if (entries.isEmpty)
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Center(
+                child: Text(
+                  widget.appState.tNoWorkoutsYet,
+                  style: const TextStyle(color: AppTheme.secondary),
                 ),
-              );
-            },
-          ),
+              ),
+            )
+          else
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0).copyWith(bottom: 120),
+              sliver: SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    final entry = entries[index];
+                    final lang = widget.appState.currentLanguage;
+                    final date = entry.completedAt;
+                    final title = widget.appState.localizedDbField(entry.workout, 'title');
+
+                    return _buildHistoryItem(
+                      context: context,
+                      title: title.isNotEmpty ? title : widget.appState.tWorkout,
+                      date: '${DateFormat.yMMMd(lang).format(date)} • ${DateFormat.jm(lang).format(date)}',
+                      distance: _meters(entry.distanceMeters),
+                    );
+                  },
+                  childCount: entries.length,
+                ),
+              ),
+            ),
         ],
       ),
       bottomNavigationBar: _buildBottomNavBar(context),
@@ -132,6 +115,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
   }
 
   Widget _buildProgressSection(BuildContext context) {
+    final weekMeters = _history.distanceThisWeek();
+    final weekProgress = (weekMeters / WorkoutHistory.weeklyGoalMeters).clamp(0.0, 1.0);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -171,7 +156,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       Text(widget.appState.tTotalDistance,
                           style: Theme.of(context).textTheme.labelSmall?.copyWith(
                               color: AppTheme.secondary, letterSpacing: 1.5)),
-                      Text('12,450m',
+                      Text(_meters(_history.totalDistance),
                           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                               color: AppTheme.primaryContainer, fontWeight: FontWeight.bold)),
                     ],
@@ -179,10 +164,10 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(widget.appState.tAvgPace,
+                      Text(widget.appState.tWorkoutsDone,
                           style: Theme.of(context).textTheme.labelSmall?.copyWith(
                               color: AppTheme.secondary, letterSpacing: 1.5)),
-                      Text('1:42/100m',
+                      Text('${_history.entries.length}',
                           style: Theme.of(context).textTheme.titleLarge?.copyWith(
                               color: AppTheme.primaryContainer, fontWeight: FontWeight.bold)),
                     ],
@@ -196,7 +181,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   Text(widget.appState.tWeeklyGoal,
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
                           color: AppTheme.secondary, letterSpacing: 1.5)),
-                  Text('85%',
+                  Text('${(weekProgress * 100).round()}%',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           color: AppTheme.primary, fontWeight: FontWeight.bold)),
                 ],
@@ -205,7 +190,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: LinearProgressIndicator(
-                  value: 0.85,
+                  value: weekProgress,
                   minHeight: 8,
                   backgroundColor: AppTheme.surfaceContainerLow,
                   valueColor: const AlwaysStoppedAnimation<Color>(AppTheme.primary),
@@ -213,7 +198,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
               ),
               const SizedBox(height: 8),
               Center(
-                child: Text(widget.appState.tCompletedOf('4,250m', '5,000m'),
+                child: Text(widget.appState.tCompletedOf(
+                    _meters(weekMeters), _meters(WorkoutHistory.weeklyGoalMeters)),
                     style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppTheme.secondary)),
               ),
             ],

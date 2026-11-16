@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'workout_history.dart';
+
 class AppState extends ChangeNotifier {
   static const String keyLanguage = 'language_code';
 
@@ -9,7 +11,10 @@ class AppState extends ChangeNotifier {
 
   final SharedPreferences prefs;
 
-  AppState(this.prefs) {
+  /// Workouts the user has finished, stored on the device.
+  final WorkoutHistory history;
+
+  AppState(this.prefs) : history = WorkoutHistory(prefs) {
     _currentLanguage = prefs.getString(keyLanguage) ?? 'en';
   }
 
@@ -81,20 +86,16 @@ class AppState extends ChangeNotifier {
   String get tCoolDownHint => _tr('Recovery and stretch', 'Recuperación y estiramientos', 'Recuperació i estiraments');
   String get tVeryRelaxed => _tr('Very relaxed', 'Muy suave', 'Molt suau');
   String get tFinishAndLog => _tr('Finish & Log', 'Terminar y guardar', 'Acabar i desar');
+  String get tLogged => _tr('Logged', 'Guardado', 'Desat');
+  String get tSavedToHistory => _tr('Saved to your history', 'Guardado en tu historial', "Desat al teu historial");
 
   // History
   String get tWorkoutHistory => _tr('Workout History', 'Historial de entrenos', "Historial d'entrenaments");
-  String tErrorLoadingWorkouts(Object error) => _tr(
-        'Error loading workouts:\n$error',
-        'Error al cargar los entrenos:\n$error',
-        'Error en carregar els entrenaments:\n$error',
-      );
   String get tNoWorkoutsYet => _tr('No workouts yet. Go swim!', 'Aún no hay entrenos. ¡A nadar!', 'Encara no hi ha entrenaments. A nedar!');
-  String get tUnknownDate => _tr('Unknown Date', 'Fecha desconocida', 'Data desconeguda');
   String get tWorkout => _tr('Workout', 'Entreno', 'Entrenament');
   String get tProgress => _tr('Progress', 'Progreso', 'Progrés');
   String get tTotalDistance => _tr('Total Distance', 'Distancia total', 'Distància total');
-  String get tAvgPace => _tr('Avg. Pace', 'Ritmo medio', 'Ritme mitjà');
+  String get tWorkoutsDone => _tr('Workouts', 'Entrenos', 'Entrenaments');
   String get tWeeklyGoal => _tr('Weekly Goal', 'Objetivo semanal', 'Objectiu setmanal');
   String tCompletedOf(String done, String goal) => _tr(
         '$done of $goal completed',
