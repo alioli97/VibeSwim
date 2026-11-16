@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import '../theme/app_theme.dart';
 import '../core/app_state.dart';
 import '../core/workout_picker.dart';
+import '../core/workout_repository.dart';
 
 class WorkoutDetailScreen extends StatefulWidget {
   final AppState appState;
@@ -11,12 +11,16 @@ class WorkoutDetailScreen extends StatefulWidget {
   /// Target meters when [mode] is distance, available minutes when it is time.
   final int value;
 
+  /// Source of workouts; Supabase unless a test passes a fake.
+  final WorkoutRepository repository;
+
   const WorkoutDetailScreen({
-    Key? key,
+    super.key,
     required this.appState,
     required this.mode,
     required this.value,
-  }) : super(key: key);
+    this.repository = const SupabaseWorkoutRepository(),
+  });
 
   @override
   State<WorkoutDetailScreen> createState() => _WorkoutDetailScreenState();
@@ -38,11 +42,12 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
   /// Fetches candidate workouts and picks one by distance or by time
   /// (see `lib/core/workout_picker.dart`).
   Future<Map<String, dynamic>?> _loadWorkout() async {
-    final query = Supabase.instance.client.from('workouts').select();
+    final repo = widget.repository;
     final workout = switch (widget.mode) {
-      SearchMode.distance => pickByDistance(await query, targetDistance: widget.value),
+      SearchMode.distance =>
+        pickByDistance(await repo.fetchWorkouts(), targetDistance: widget.value),
       SearchMode.time => pickByTime(
-          await query.lte('duration_minutes', widget.value),
+          await repo.fetchWorkouts(maxMinutes: widget.value),
           availableMinutes: widget.value,
         ),
     };
@@ -142,7 +147,7 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
 
   Widget _buildAppBar(BuildContext context) {
     return SliverAppBar(
-      backgroundColor: Colors.white.withOpacity(0.8),
+      backgroundColor: Colors.white.withValues(alpha: 0.8),
       pinned: true,
       elevation: 0,
       leading: IconButton(
@@ -186,7 +191,7 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: AppTheme.primaryContainer.withOpacity(0.3),
+            color: AppTheme.primaryContainer.withValues(alpha: 0.3),
             blurRadius: 20,
             offset: const Offset(0, 10),
           )
@@ -198,7 +203,7 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
           Text(
             title.isNotEmpty ? title : widget.appState.tWorkoutTarget,
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  color: Colors.white.withOpacity(0.8),
+                  color: Colors.white.withValues(alpha: 0.8),
                   letterSpacing: 2.0,
                   fontWeight: FontWeight.bold,
                 ),
@@ -221,7 +226,7 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
                   Text(
                     widget.appState.tSwimSession,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: Colors.white.withOpacity(0.9),
+                          color: Colors.white.withValues(alpha: 0.9),
                         ),
                   ),
                 ],
@@ -377,10 +382,10 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
         borderRadius: BorderRadius.circular(24),
         border: hasLeftBorder
             ? const Border(left: BorderSide(color: AppTheme.primary, width: 4))
-            : Border.all(color: Colors.grey.withOpacity(0.1)),
+            : Border.all(color: Colors.grey.withValues(alpha: 0.1)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.02),
+            color: Colors.black.withValues(alpha: 0.02),
             blurRadius: 10,
             offset: const Offset(0, 4),
           )
@@ -438,7 +443,7 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: highlight ? AppTheme.surfaceContainerLow.withOpacity(0.5) : AppTheme.surfaceContainerLow,
+        color: highlight ? AppTheme.surfaceContainerLow.withValues(alpha: 0.5) : AppTheme.surfaceContainerLow,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Row(
@@ -497,7 +502,7 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
+                  color: Colors.black.withValues(alpha: 0.1),
                   blurRadius: 20,
                   offset: const Offset(0, 8),
                 )
@@ -518,7 +523,7 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
-                    color: AppTheme.primary.withOpacity(0.3),
+                    color: AppTheme.primary.withValues(alpha: 0.3),
                     blurRadius: 20,
                     offset: const Offset(0, 8),
                   )

@@ -1,12 +1,12 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'theme/app_theme.dart';
 import 'screens/home_screen.dart';
 import 'core/app_state.dart';
+import 'core/supabase_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,11 +14,7 @@ void main() async {
   // Date formats for en/es/ca (used by DateFormat in the history screen).
   await initializeDateFormatting();
 
-  await Supabase.initialize(
-    url: 'https://ryjxewdvrcpumnbivvrb.supabase.co',
-    anonKey:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ5anhld2R2cmNwdW1uYml2dnJiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUyNDExODMsImV4cCI6MjA5MDgxNzE4M30.hPv0-dv3UlUGWEVZgpUgULPn3omGDHHA3ExsrBTpuRQ',
-  );
+  await initSupabase();
 
   final prefs = await SharedPreferences.getInstance();
   final appState = AppState(prefs);
@@ -29,7 +25,7 @@ void main() async {
 class SwimVibeApp extends StatelessWidget {
   final AppState appState;
 
-  const SwimVibeApp({Key? key, required this.appState}) : super(key: key);
+  const SwimVibeApp({super.key, required this.appState});
 
   @override
   Widget build(BuildContext context) {
