@@ -186,6 +186,8 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Image.network(
                 'https://lh3.googleusercontent.com/aida-public/AB6AXuCKlCGq72IZf7upBXD3GTraHOd7Qj7kAq-fW_nzDyqWd-9SS7hnnCYh1x2nXxzjrPFBWKsikKcN87fw_E2WUGgFuXrb6WhroUtFQDhlu5T_Yos0oBj0l1SIqN1l1T2S43b7JwBS8pBM4FJen-TDeuEJx6j9_Q3kdLhOrSYVpow2bSiBEOchQG601TtTqclzdMhDGsxleZpiCDLLLY0yD_C8S8xH23BlICcRNG5ecxEz52iPZU6x0thAZ-HnHsuVaWA8cKUdlS5NCSPY',
                 fit: BoxFit.cover,
+                // Decorative background: show nothing if it can't load (offline, tests).
+                errorBuilder: (context, error, stackTrace) => const SizedBox.shrink(),
               ),
             ),
           ),
