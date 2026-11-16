@@ -493,26 +493,107 @@ class _HomeScreenState extends State<HomeScreen> {
               _buildTimeOption(15),
               _buildTimeOption(30),
               _buildTimeOption(45),
-              Container(
-                decoration: BoxDecoration(
-                  color: AppTheme.surfaceContainerLow,
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.more_horiz, color: AppTheme.primary),
-                    Text(widget.appState.tCustom,
-                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                            color: AppTheme.primary, fontWeight: FontWeight.bold)),
-                  ],
-                ),
-              )
+              _buildCustomTimeOption(),
             ],
           )
         ],
       ),
     );
+  }
+
+  static const List<int> _presetTimes = [15, 30, 45];
+
+  /// "CUSTOM" cell: opens a dialog to type the minutes. When a custom time
+  /// is selected it shows that value highlighted; tapping it again edits it.
+  Widget _buildCustomTimeOption() {
+    final isSelected = !_presetTimes.contains(_selectedTime);
+    final color = isSelected ? Colors.white : AppTheme.primary;
+    return GestureDetector(
+      onTap: _showCustomTimeDialog,
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: isSelected
+              ? const LinearGradient(colors: [AppTheme.primary, AppTheme.primaryContainer])
+              : null,
+          color: isSelected ? null : AppTheme.surfaceContainerLow,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (isSelected)
+              Text('$_selectedTime',
+                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                      color: color, fontWeight: FontWeight.bold))
+            else
+              Icon(Icons.more_horiz, color: color),
+            Text(widget.appState.tCustom,
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    color: color, fontWeight: FontWeight.bold)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _showCustomTimeDialog() async {
+    final controller = TextEditingController(
+      text: _presetTimes.contains(_selectedTime) ? '' : '$_selectedTime',
+    );
+
+    final minutes = await showDialog<int>(
+      context: context,
+      builder: (context) {
+        void save() {
+          final parsed = int.tryParse(controller.text.trim());
+          Navigator.pop(context, parsed != null && parsed > 0 ? parsed : null);
+        }
+
+        return AlertDialog(
+          backgroundColor: Colors.white,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          title: Text(widget.appState.tAvailableTime,
+              style: const TextStyle(color: AppTheme.primary)),
+          content: TextField(
+            controller: controller,
+            keyboardType: TextInputType.number,
+            autofocus: true,
+            onSubmitted: (_) => save(),
+            decoration: const InputDecoration(
+              hintText: '60',
+              suffixText: 'min',
+              border: OutlineInputBorder(),
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppTheme.primaryContainer, width: 2)),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(widget.appState.tCancel,
+                  style: const TextStyle(color: Colors.grey)),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppTheme.primaryContainer,
+                foregroundColor: Colors.white,
+              ),
+              onPressed: save,
+              child: Text(widget.appState.tSave),
+            ),
+          ],
+        );
+      },
+    );
+    // Not disposing `controller`: the dialog still uses it during its closing
+    // animation after showDialog returns.
+
+    if (minutes != null && mounted) {
+      setState(() {
+        _selectedTime = minutes;
+        _searchMode = SearchMode.time;
+      });
+    }
   }
 
   Widget _buildTimeOption(int time) {

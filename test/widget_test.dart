@@ -36,6 +36,26 @@ void main() {
     expect(cardOpacity('Target total meters').opacity, 0.4);
     expect(cardOpacity('Available Time').opacity, 1);
 
+    // CUSTOM time: type 60 minutes and it shows up selected.
+    await tester.ensureVisible(find.text('CUSTOM'));
+    await tester.tap(find.text('CUSTOM'));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextField), '60');
+    await tester.tap(find.text('Save'));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(AlertDialog), findsNothing);
+    expect(find.text('60'), findsOneWidget);
+
+    // Invalid input keeps the previous value.
+    await tester.tap(find.text('CUSTOM'));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextField), '0');
+    await tester.tap(find.text('Save'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('60'), findsOneWidget);
+
     appState.setLanguage('es');
     await tester.pump();
 

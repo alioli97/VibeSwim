@@ -126,6 +126,22 @@ class AppState extends ChangeNotifier {
     }
   }
 
+  String get tCancel {
+    switch (_currentLanguage) {
+      case 'es': return 'Cancelar';
+      case 'ca': return 'Cancel·lar';
+      default: return 'Cancel';
+    }
+  }
+
+  String get tSave {
+    switch (_currentLanguage) {
+      case 'es': return 'Guardar';
+      case 'ca': return 'Desar';
+      default: return 'Save';
+    }
+  }
+
   String get tGoBack {
     switch (_currentLanguage) {
       case 'es': return 'Volver';
