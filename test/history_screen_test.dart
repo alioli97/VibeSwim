@@ -24,6 +24,8 @@ void main() {
     await pumpHistory(tester);
 
     expect(find.text('No workouts yet. Go swim!'), findsOneWidget);
+    expect(find.text('History'), findsOneWidget); // app bar title
+    expect(find.text('History & Progress'), findsNothing);
     expect(find.text('0m'), findsOneWidget); // total distance
     expect(find.text('0%'), findsOneWidget); // weekly goal
   });

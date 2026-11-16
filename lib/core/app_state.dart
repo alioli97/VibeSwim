@@ -49,7 +49,7 @@ class AppState extends ChangeNotifier {
   String get tLaneBooked => _tr('How long is your lane booked?', '¿Cuánto tiempo tienes?', 'Quant de temps tens?');
   String get tMinutes => _tr('MINUTES', 'MINUTOS', 'MINUTS');
   String get tGenerateWorkout => _tr('Generate Workout', 'Generar Entreno', 'Generar Entrenament');
-  String get tHistoryProgress => _tr('History & Progress', 'Historial y Progreso', 'Historial i Progrés');
+  String get tHistory => _tr('History', 'Historial', 'Historial');
   String get tSetCustom => _tr('SET CUSTOM', 'PERSONALIZAR', 'PERSONALITZAR');
   String get tCustom => _tr('CUSTOM', 'OTRO', 'ALTRE');
   String get tLanguage => _tr('Language', 'Idioma', 'Idioma');

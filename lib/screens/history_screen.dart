@@ -130,7 +130,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
           colors: [AppTheme.primary, AppTheme.primaryContainer],
         ).createShader(bounds),
         child: Text(
-          widget.appState.tHistoryProgress,
+          widget.appState.tHistory,
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
             color: Colors.white,
             fontWeight: FontWeight.w900,
