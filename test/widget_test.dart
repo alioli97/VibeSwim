@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,6 +22,19 @@ void main() {
     expect(find.text('SwimVibe'), findsOneWidget);
     expect(find.text('READY FOR A SET?'), findsOneWidget);
     expect(find.text('Generate Workout'), findsOneWidget);
+
+    // Distance mode is active by default; picking a time switches to time mode.
+    AnimatedOpacity cardOpacity(String title) => tester.widget<AnimatedOpacity>(
+        find.ancestor(of: find.text(title), matching: find.byType(AnimatedOpacity)));
+    expect(cardOpacity('Target total meters').opacity, 1);
+    expect(cardOpacity('Available Time').opacity, 0.4);
+
+    await tester.ensureVisible(find.text('45'));
+    await tester.tap(find.text('45'));
+    await tester.pumpAndSettle();
+
+    expect(cardOpacity('Target total meters').opacity, 0.4);
+    expect(cardOpacity('Available Time').opacity, 1);
 
     appState.setLanguage('es');
     await tester.pump();

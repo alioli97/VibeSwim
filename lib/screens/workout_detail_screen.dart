@@ -6,14 +6,16 @@ import '../core/workout_picker.dart';
 
 class WorkoutDetailScreen extends StatefulWidget {
   final AppState appState;
-  final int targetDistance;
-  final int availableMinutes;
+  final SearchMode mode;
+
+  /// Target meters when [mode] is distance, available minutes when it is time.
+  final int value;
 
   const WorkoutDetailScreen({
     Key? key,
     required this.appState,
-    required this.targetDistance,
-    required this.availableMinutes,
+    required this.mode,
+    required this.value,
   }) : super(key: key);
 
   @override
@@ -29,18 +31,19 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
     _futureWorkout = _loadWorkout();
   }
 
-  /// Fetches the workouts that fit in the available time and picks the one
-  /// closest to the target distance (see [pickWorkout]).
+  /// Fetches candidate workouts and picks one by distance or by time
+  /// (see `lib/core/workout_picker.dart`).
   Future<Map<String, dynamic>?> _loadWorkout() async {
-    final rows = await Supabase.instance.client
-        .from('workouts')
-        .select()
-        .lte('duration_minutes', widget.availableMinutes);
-    return pickWorkout(
-      rows,
-      targetDistance: widget.targetDistance,
-      availableMinutes: widget.availableMinutes,
-    );
+    final query = Supabase.instance.client.from('workouts').select();
+    switch (widget.mode) {
+      case SearchMode.distance:
+        return pickByDistance(await query, targetDistance: widget.value);
+      case SearchMode.time:
+        return pickByTime(
+          await query.lte('duration_minutes', widget.value),
+          availableMinutes: widget.value,
+        );
+    }
   }
 
   @override
@@ -76,7 +79,9 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 32),
                         child: Text(
-                          widget.appState.tNoWorkoutFits(widget.availableMinutes),
+                          widget.mode == SearchMode.time
+                              ? widget.appState.tNoWorkoutFits(widget.value)
+                              : widget.appState.tNoWorkouts,
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.titleLarge?.copyWith(
                                 color: AppTheme.primary,
@@ -153,7 +158,8 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
 
   Widget _buildHeroCard(BuildContext context, Map<String, dynamic> workout) {
     final title = widget.appState.localizedDbField(workout, 'title').toUpperCase();
-    final distance = workout['distance_meters'] ?? widget.targetDistance;
+    final distance = workout['distance_meters'] ??
+        (widget.mode == SearchMode.distance ? widget.value : 0);
     final duration = workout['duration_minutes'] ?? 45;
 
     return Container(

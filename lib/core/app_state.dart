@@ -110,6 +110,22 @@ class AppState extends ChangeNotifier {
     }
   }
 
+  String get tNoWorkouts {
+    switch (_currentLanguage) {
+      case 'es': return 'No hay entrenos disponibles';
+      case 'ca': return 'No hi ha entrenaments disponibles';
+      default: return 'No workouts available';
+    }
+  }
+
+  String get tTime {
+    switch (_currentLanguage) {
+      case 'es': return 'Tiempo';
+      case 'ca': return 'Temps';
+      default: return 'Time';
+    }
+  }
+
   String get tGoBack {
     switch (_currentLanguage) {
       case 'es': return 'Volver';

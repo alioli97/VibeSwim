@@ -36,8 +36,8 @@ flutter build web
 - **Localization is hand-rolled**, not `intl`/ARB: UI strings are `t*` getters on `AppState` with a `switch` per language. Add new UI text there, in all three languages.
 - **DB content localization**: `AppState.localizedDbField(row, prefix)` reads column `<prefix>_<lang>` and falls back to `<prefix>_en`, then `<prefix>_es`.
 - `lib/screens/`:
-  - `home_screen.dart` — distance and time pickers (incl. custom-value dialogs), language selector, bottom nav. "Generate" pushes `WorkoutDetailScreen` with `targetDistance` and `availableMinutes`. The 2500 m default is intentional (the owner keeps adding longer workouts), so matching must not require an exact distance.
-  - `workout_detail_screen.dart` — fetches `workouts` with `duration_minutes <= availableMinutes`, then `pickWorkout` (`lib/core/workout_picker.dart`, pure + unit-tested) chooses the closest `distance_meters` to the target (above or below; ties → longer distance), random among rows with that distance. `share_plus` for sharing.
+  - `home_screen.dart` — distance and time pickers (incl. custom-value dialogs), language selector, bottom nav. A "Distance | Time" selector sets `SearchMode` (the inactive card is faded; using a card also activates its mode). Workouts are searched by distance **or** by time, never both. "Generate" pushes `WorkoutDetailScreen(mode, value)`. The 2500 m default is intentional (the owner keeps adding longer workouts), so matching must not require an exact distance.
+  - `workout_detail_screen.dart` — fetches `workouts` and picks one with the pure, unit-tested functions in `lib/core/workout_picker.dart`: `pickByDistance` (closest `distance_meters`, above or below, ties → longer) or `pickByTime` (longest `duration_minutes` that doesn't exceed the time). Random among rows sharing the chosen value. `share_plus` for sharing.
   - `history_screen.dart` — lists all rows of `workouts` ordered by `created_at` desc (it is the workout catalog, not a per-user history).
 
 ### Supabase `workouts` table (columns used by the code)

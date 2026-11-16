@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
 import '../core/app_state.dart';
+import '../core/workout_picker.dart';
 import 'workout_detail_screen.dart';
 import 'history_screen.dart';
 
@@ -15,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedDistance = 2500;
   int _selectedTime = 30;
+  SearchMode _searchMode = SearchMode.distance;
   late PageController _distancePageController;
 
   @override
@@ -117,6 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (parsed != null && parsed > 0) {
                     setState(() {
                       _selectedDistance = parsed;
+                      _searchMode = SearchMode.distance;
                     });
                     int newIndex = ((parsed - 100) / 100).floor();
                     if (newIndex >= 0 && newIndex < 100) {
@@ -204,9 +207,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(height: 32),
                     _buildWelcomeSection(),
                     const SizedBox(height: 24),
-                    _buildDistanceCard(),
+                    _buildModeSelector(),
                     const SizedBox(height: 24),
-                    _buildTimeCard(),
+                    _dimUnlessActive(SearchMode.distance, _buildDistanceCard()),
+                    const SizedBox(height: 24),
+                    _dimUnlessActive(SearchMode.time, _buildTimeCard()),
                     const SizedBox(height: 32),
                     _buildGenerateAction(context),
                   ],
@@ -271,6 +276,63 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
         ),
       ],
+    );
+  }
+
+  /// "Distance | Time" switch: workouts are searched by one or the other.
+  Widget _buildModeSelector() {
+    return Container(
+      padding: const EdgeInsets.all(4),
+      decoration: BoxDecoration(
+        color: AppTheme.surfaceContainerLow,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Row(
+        children: [
+          _buildModeOption(SearchMode.distance, Icons.straighten, widget.appState.tDistance),
+          _buildModeOption(SearchMode.time, Icons.timer_outlined, widget.appState.tTime),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildModeOption(SearchMode mode, IconData icon, String label) {
+    final isActive = _searchMode == mode;
+    final color = isActive ? Colors.white : AppTheme.primary;
+    return Expanded(
+      child: GestureDetector(
+        onTap: () => setState(() => _searchMode = mode),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          decoration: BoxDecoration(
+            gradient: isActive
+                ? const LinearGradient(colors: [AppTheme.primary, AppTheme.primaryContainer])
+                : null,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, size: 20, color: color),
+              const SizedBox(width: 8),
+              Text(label,
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      color: color, fontWeight: FontWeight.bold)),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// Fades the card of the inactive search mode. It stays interactive:
+  /// using it switches the search mode to it.
+  Widget _dimUnlessActive(SearchMode mode, Widget card) {
+    return AnimatedOpacity(
+      duration: const Duration(milliseconds: 200),
+      opacity: _searchMode == mode ? 1 : 0.4,
+      child: card,
     );
   }
 
@@ -348,7 +410,10 @@ class _HomeScreenState extends State<HomeScreen> {
             child: PageView.builder(
               controller: _distancePageController,
               onPageChanged: (index) {
-                setState(() => _selectedDistance = (index + 1) * 100);
+                setState(() {
+                  _selectedDistance = (index + 1) * 100;
+                  _searchMode = SearchMode.distance;
+                });
               },
               scrollDirection: Axis.horizontal,
               itemCount: 100,
@@ -454,7 +519,10 @@ class _HomeScreenState extends State<HomeScreen> {
     bool isSelected = time == _selectedTime;
     return GestureDetector(
       onTap: () {
-        setState(() => _selectedTime = time);
+        setState(() {
+          _selectedTime = time;
+          _searchMode = SearchMode.time;
+        });
       },
       child: Container(
         decoration: BoxDecoration(
@@ -503,8 +571,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 MaterialPageRoute(
                   builder: (context) => WorkoutDetailScreen(
                     appState: widget.appState,
-                    targetDistance: _selectedDistance,
-                    availableMinutes: _selectedTime,
+                    mode: _searchMode,
+                    value: _searchMode == SearchMode.distance
+                        ? _selectedDistance
+                        : _selectedTime,
                   ),
                 ),
               );
