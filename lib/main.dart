@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -9,6 +10,9 @@ import 'core/app_state.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Date formats for en/es/ca (used by DateFormat in the history screen).
+  await initializeDateFormatting();
 
   await Supabase.initialize(
     url: 'https://ryjxewdvrcpumnbivvrb.supabase.co',

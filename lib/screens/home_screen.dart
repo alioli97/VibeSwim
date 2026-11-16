@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Language',
+                  Text(widget.appState.tLanguage,
                       style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                           color: AppTheme.primary, fontWeight: FontWeight.bold)),
                   IconButton(
@@ -605,7 +605,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                     color: isSelected ? Colors.white : AppTheme.primary,
                     fontWeight: FontWeight.bold)),
-            Text('MINUTES',
+            Text(widget.appState.tMinutes,
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
                     color: isSelected
                         ? Colors.white.withOpacity(0.9)
@@ -698,28 +698,26 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            _buildNavItem(Icons.pool, 'Workouts', true),
-            _buildNavItem(Icons.history, 'History', false),
-            _buildNavItem(Icons.insights, 'Progress', false),
+            _buildNavItem(Icons.pool, widget.appState.tNavWorkouts, true),
+            _buildNavItem(Icons.history, widget.appState.tNavHistory, false, onTap: () {
+              Navigator.push(
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (_, __, ___) => HistoryScreen(appState: widget.appState),
+                  transitionDuration: Duration.zero,
+                ),
+              );
+            }),
+            _buildNavItem(Icons.insights, widget.appState.tNavProgress, false),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildNavItem(IconData icon, String label, bool isActive) {
+  Widget _buildNavItem(IconData icon, String label, bool isActive, {VoidCallback? onTap}) {
     return GestureDetector(
-      onTap: () {
-        if (!isActive && label == 'History') {
-          Navigator.push(
-            context,
-            PageRouteBuilder(
-              pageBuilder: (_, __, ___) => HistoryScreen(appState: widget.appState),
-              transitionDuration: Duration.zero,
-            ),
-          );
-        }
-      },
+      onTap: onTap,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

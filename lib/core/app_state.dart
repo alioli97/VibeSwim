@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AppState extends ChangeNotifier {
   static const String keyLanguage = 'language_code';
-  
+
   String _currentLanguage = 'en'; // 'en', 'es', 'ca'
   String get currentLanguage => _currentLanguage;
 
@@ -21,134 +21,86 @@ class AppState extends ChangeNotifier {
     }
   }
 
-  // Very basic localization
-  String get tReadyForASet {
+  // ---------------------------------------------------------------------------
+  // UI translations. Every user-visible text goes here in all three languages.
+  // ---------------------------------------------------------------------------
+
+  String _tr(String en, String es, String ca) {
     switch (_currentLanguage) {
-      case 'es': return '¿LISTO PARA ENTRENAR?';
-      case 'ca': return 'LLEST PER ENTRENAR?';
-      default: return 'READY FOR A SET?';
+      case 'es': return es;
+      case 'ca': return ca;
+      default: return en;
     }
   }
 
-  String get tDefineSession {
-    switch (_currentLanguage) {
-      case 'es': return 'Define Tu\nSesión';
-      case 'ca': return 'Defineix La\nTeva Sessió';
-      default: return 'Define Your\nSession';
-    }
-  }
+  // Home
+  String get tReadyForASet => _tr('READY FOR A SET?', '¿LISTO PARA ENTRENAR?', 'LLEST PER ENTRENAR?');
+  String get tDefineSession => _tr('Define Your\nSession', 'Define Tu\nSesión', 'Defineix La\nTeva Sessió');
+  String get tDistance => _tr('Distance', 'Distancia', 'Distància');
+  String get tTargetMeters => _tr('Target total meters', 'Metros totales objetivo', 'Metres totals objectiu');
+  String get tAvailableTime => _tr('Available Time', 'Tiempo Disponible', 'Temps Disponible');
+  String get tTime => _tr('Time', 'Tiempo', 'Temps');
+  String get tLaneBooked => _tr('How long is your lane booked?', '¿Cuánto tiempo tienes?', 'Quant de temps tens?');
+  String get tMinutes => _tr('MINUTES', 'MINUTOS', 'MINUTS');
+  String get tGenerateWorkout => _tr('Generate Workout', 'Generar Entreno', 'Generar Entrenament');
+  String get tHistoryProgress => _tr('History & Progress', 'Historial y Progreso', 'Historial i Progrés');
+  String get tSetCustom => _tr('SET CUSTOM', 'PERSONALIZAR', 'PERSONALITZAR');
+  String get tCustom => _tr('CUSTOM', 'OTRO', 'ALTRE');
+  String get tLanguage => _tr('Language', 'Idioma', 'Idioma');
 
-  String get tDistance {
-    switch (_currentLanguage) {
-      case 'es': return 'Distancia';
-      case 'ca': return 'Distància';
-      default: return 'Distance';
-    }
-  }
-  
-  String get tTargetMeters {
-    switch (_currentLanguage) {
-      case 'es': return 'Metros totales objetivo';
-      case 'ca': return 'Metres totals objectiu';
-      default: return 'Target total meters';
-    }
-  }
-  
-  String get tAvailableTime {
-    switch (_currentLanguage) {
-      case 'es': return 'Tiempo Disponible';
-      case 'ca': return 'Temps Disponible';
-      default: return 'Available Time';
-    }
-  }
+  // Dialogs and common
+  String get tCancel => _tr('Cancel', 'Cancelar', 'Cancel·lar');
+  String get tSave => _tr('Save', 'Guardar', 'Desar');
+  String get tGoBack => _tr('Go Back', 'Volver', 'Tornar');
+  String tError(Object error) => _tr('Error: $error', 'Error: $error', 'Error: $error');
 
-  String get tLaneBooked {
-    switch (_currentLanguage) {
-      case 'es': return '¿Cuánto tiempo tienes?';
-      case 'ca': return 'Quant de temps tens?';
-      default: return 'How long is your lane booked?';
-    }
-  }
+  // Bottom navigation
+  String get tNavWorkouts => _tr('Workouts', 'Entrenos', 'Entrenaments');
+  String get tNavHistory => _tr('History', 'Historial', 'Historial');
+  String get tNavProgress => _tr('Progress', 'Progreso', 'Progrés');
 
-  String get tGenerateWorkout {
-    switch (_currentLanguage) {
-      case 'es': return 'Generar Entreno';
-      case 'ca': return 'Generar Entrenament';
-      default: return 'Generate Workout';
-    }
-  }
+  // Workout detail
+  String tNoWorkoutFits(int minutes) => _tr(
+        'No workout fits in $minutes min',
+        'No hay ningún entreno de $minutes min o menos',
+        'No hi ha cap entrenament de $minutes min o menys',
+      );
+  String get tNoWorkouts => _tr('No workouts available', 'No hay entrenos disponibles', 'No hi ha entrenaments disponibles');
+  String get tWorkoutTarget => _tr('WORKOUT TARGET', 'OBJETIVO DEL ENTRENO', "OBJECTIU DE L'ENTRENAMENT");
+  String get tSwimSession => _tr('Swim Session', 'Sesión de natación', 'Sessió de natació');
+  String get tEstPace => _tr('EST. PACE', 'RITMO EST.', 'RITME EST.');
+  String get tIntensity => _tr('INTENSITY', 'INTENSIDAD', 'INTENSITAT');
+  String get tModerate => _tr('Moderate', 'Moderada', 'Moderada');
+  String get tThePlan => _tr('The Plan', 'El plan', 'El pla');
+  String get tWarmUp => _tr('Warm-up', 'Calentamiento', 'Escalfament');
+  String get tWarmUpHint => _tr('Get the blood flowing', 'Entra en calor', 'Entra en calor');
+  String get tMainSet => _tr('Main Set', 'Serie principal', 'Sèrie principal');
+  String get tMainSetHint => _tr('Focus on quality', 'Céntrate en la técnica', "Centra't en la tècnica");
+  String get tPushYourPace => _tr('Push your pace', 'Aprieta el ritmo', 'Apreta el ritme');
+  String get tCoolDown => _tr('Cool down', 'Vuelta a la calma', 'Tornada a la calma');
+  String get tCoolDownHint => _tr('Recovery and stretch', 'Recuperación y estiramientos', 'Recuperació i estiraments');
+  String get tVeryRelaxed => _tr('Very relaxed', 'Muy suave', 'Molt suau');
+  String get tFinishAndLog => _tr('Finish & Log', 'Terminar y guardar', 'Acabar i desar');
 
-  String get tHistoryProgress {
-    switch (_currentLanguage) {
-      case 'es': return 'Historial y Progreso';
-      case 'ca': return 'Historial i Progrés';
-      default: return 'History & Progress';
-    }
-  }
-
-  String get tSetCustom {
-    switch (_currentLanguage) {
-      case 'es': return 'PERSONALIZAR';
-      case 'ca': return 'PERSONALITZAR';
-      default: return 'SET CUSTOM';
-    }
-  }
-
-  String get tCustom {
-    switch (_currentLanguage) {
-      case 'es': return 'OTRO';
-      case 'ca': return 'ALTRE';
-      default: return 'CUSTOM';
-    }
-  }
-
-  String tNoWorkoutFits(int minutes) {
-    switch (_currentLanguage) {
-      case 'es': return 'No hay ningún entreno de $minutes min o menos';
-      case 'ca': return 'No hi ha cap entrenament de $minutes min o menys';
-      default: return 'No workout fits in $minutes min';
-    }
-  }
-
-  String get tNoWorkouts {
-    switch (_currentLanguage) {
-      case 'es': return 'No hay entrenos disponibles';
-      case 'ca': return 'No hi ha entrenaments disponibles';
-      default: return 'No workouts available';
-    }
-  }
-
-  String get tTime {
-    switch (_currentLanguage) {
-      case 'es': return 'Tiempo';
-      case 'ca': return 'Temps';
-      default: return 'Time';
-    }
-  }
-
-  String get tCancel {
-    switch (_currentLanguage) {
-      case 'es': return 'Cancelar';
-      case 'ca': return 'Cancel·lar';
-      default: return 'Cancel';
-    }
-  }
-
-  String get tSave {
-    switch (_currentLanguage) {
-      case 'es': return 'Guardar';
-      case 'ca': return 'Desar';
-      default: return 'Save';
-    }
-  }
-
-  String get tGoBack {
-    switch (_currentLanguage) {
-      case 'es': return 'Volver';
-      case 'ca': return 'Tornar';
-      default: return 'Go Back';
-    }
-  }
+  // History
+  String get tWorkoutHistory => _tr('Workout History', 'Historial de entrenos', "Historial d'entrenaments");
+  String tErrorLoadingWorkouts(Object error) => _tr(
+        'Error loading workouts:\n$error',
+        'Error al cargar los entrenos:\n$error',
+        'Error en carregar els entrenaments:\n$error',
+      );
+  String get tNoWorkoutsYet => _tr('No workouts yet. Go swim!', 'Aún no hay entrenos. ¡A nadar!', 'Encara no hi ha entrenaments. A nedar!');
+  String get tUnknownDate => _tr('Unknown Date', 'Fecha desconocida', 'Data desconeguda');
+  String get tWorkout => _tr('Workout', 'Entreno', 'Entrenament');
+  String get tProgress => _tr('Progress', 'Progreso', 'Progrés');
+  String get tTotalDistance => _tr('Total Distance', 'Distancia total', 'Distància total');
+  String get tAvgPace => _tr('Avg. Pace', 'Ritmo medio', 'Ritme mitjà');
+  String get tWeeklyGoal => _tr('Weekly Goal', 'Objetivo semanal', 'Objectiu setmanal');
+  String tCompletedOf(String done, String goal) => _tr(
+        '$done of $goal completed',
+        '$done de $goal completados',
+        '$done de $goal completats',
+      );
 
   // Translation getter for Supabase map
   String localizedDbField(Map<String, dynamic> row, String prefix) {
