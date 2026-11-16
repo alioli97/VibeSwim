@@ -72,6 +72,9 @@ void main() {
 
     expect(find.text('¿LISTO PARA ENTRENAR?'), findsOneWidget);
     expect(find.text('Generar Entreno'), findsOneWidget);
+    expect(find.text('MINUTOS'), findsNWidgets(3));
+    expect(find.text('ENTRENOS'), findsOneWidget); // bottom nav (uppercased)
+    expect(find.text('HISTORIAL'), findsOneWidget);
 
     // Dialog buttons are translated.
     await tester.tap(find.text('PERSONALIZAR'));

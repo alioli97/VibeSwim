@@ -33,7 +33,8 @@ flutter build web
 
 - `lib/main.dart` — initializes Supabase (URL + anon key hardcoded here), loads `SharedPreferences`, creates `AppState`, and wraps `MaterialApp` in a `ListenableBuilder` so the whole app rebuilds when `AppState` notifies. No router: navigation is `Navigator.push/pop` with `MaterialPageRoute`.
 - `lib/core/app_state.dart` — `AppState extends ChangeNotifier`, passed explicitly through constructors to every screen (no Provider/Riverpod). Holds the current language (`en` default, `es`, `ca`; persisted under `language_code` in SharedPreferences).
-- **Localization is hand-rolled**, not `intl`/ARB: UI strings are `t*` getters on `AppState` with a `switch` per language. Add new UI text there, in all three languages.
+- **Localization is hand-rolled**, not `intl`/ARB: UI strings are `t*` getters on `AppState`, one line each via `_tr(en, es, ca)` (methods like `tNoWorkoutFits(minutes)` for interpolated text). Never hardcode user-visible text in screens; only the brand name, the language names (native) and units (`m`, `min`) are literals. Don't branch logic on displayed labels (e.g. the bottom nav takes an `onTap` callback).
+- Dates use `intl` `DateFormat` with `appState.currentLanguage` as locale; `main()` calls `initializeDateFormatting()` first.
 - **DB content localization**: `AppState.localizedDbField(row, prefix)` reads column `<prefix>_<lang>` and falls back to `<prefix>_en`, then `<prefix>_es`.
 - `lib/screens/`:
   - `home_screen.dart` — distance and time pickers (incl. custom-value dialogs), language selector, bottom nav. A "Distance | Time" selector sets `SearchMode` (the inactive card is faded; using a card also activates its mode). Workouts are searched by distance **or** by time, never both. "Generate" pushes `WorkoutDetailScreen(mode, value)`. The 2500 m default is intentional (the owner keeps adding longer workouts), so matching must not require an exact distance.

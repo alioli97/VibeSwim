@@ -63,7 +63,7 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
               if (snapshot.hasError) {
                 return Center(
                   child: Text(
-                    'Error: ${snapshot.error}',
+                    widget.appState.tError(snapshot.error!),
                     style: const TextStyle(color: Colors.red),
                   ),
                 );
@@ -181,7 +181,7 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            title.isNotEmpty ? title : 'WORKOUT TARGET',
+            title.isNotEmpty ? title : widget.appState.tWorkoutTarget,
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: Colors.white.withOpacity(0.8),
                   letterSpacing: 2.0,
@@ -204,7 +204,7 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
                         ),
                   ),
                   Text(
-                    'Swim Session',
+                    widget.appState.tSwimSession,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           color: Colors.white.withOpacity(0.9),
                         ),
@@ -258,7 +258,7 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('EST. PACE',
+                    Text(widget.appState.tEstPace,
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
                             color: AppTheme.secondary, letterSpacing: 1.5)),
                     Text('1:48/100m',
@@ -295,10 +295,10 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('INTENSITY',
+                      Text(widget.appState.tIntensity,
                           style: Theme.of(context).textTheme.labelSmall?.copyWith(
                               color: AppTheme.secondary, letterSpacing: 1.5)),
-                      Text(difficulty.isNotEmpty ? difficulty : 'Moderate',
+                      Text(difficulty.isNotEmpty ? difficulty : widget.appState.tModerate,
                           style: Theme.of(context)
                               .textTheme
                               .titleMedium
@@ -328,7 +328,7 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
             children: [
               const Icon(Icons.assignment, color: AppTheme.primary, size: 28),
               const SizedBox(width: 8),
-              Text('The Plan',
+              Text(widget.appState.tThePlan,
                   style: Theme.of(context)
                       .textTheme
                       .headlineSmall
@@ -339,8 +339,8 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
           if (warmUpText.isNotEmpty) ...[
             _buildPlanBlock(
               context,
-              'Warm-up',
-              'Get the blood flowing',
+              widget.appState.tWarmUp,
+              widget.appState.tWarmUpHint,
               '', // Could parse from string if wanted
               const Color(0xFFD0E7EA),
               AppTheme.secondary,
@@ -355,14 +355,14 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
           if (mainSetText.isNotEmpty) ...[
             _buildPlanBlock(
                 context,
-                'Main Set',
-                'Focus on quality',
+                widget.appState.tMainSet,
+                widget.appState.tMainSetHint,
                 '',
                 AppTheme.primaryContainer,
                 Colors.white,
                 [
                   _buildSetRow(context, '•', mainSetText,
-                      'Push your pace', AppTheme.primaryContainer, Colors.white,
+                      widget.appState.tPushYourPace, AppTheme.primaryContainer, Colors.white,
                       highlight: true),
                 ],
                 hasLeftBorder: true),
@@ -372,14 +372,14 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
           if (coolDownText.isNotEmpty) ...[
             _buildPlanBlock(
               context,
-              'Cool down',
-              'Recovery and stretch',
+              widget.appState.tCoolDown,
+              widget.appState.tCoolDownHint,
               '',
               const Color(0xFFD0E7EA),
               AppTheme.secondary,
               [
                 _buildSetRow(context, '•', coolDownText,
-                    'Very relaxed', Colors.white, AppTheme.primary)
+                    widget.appState.tVeryRelaxed, Colors.white, AppTheme.primary)
               ]
             ),
           ],
@@ -558,7 +558,7 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
                     const Icon(Icons.check_circle, color: Colors.white),
                     const SizedBox(width: 8),
                     Text(
-                      'Finish & Log',
+                      widget.appState.tFinishAndLog,
                       style: Theme.of(context)
                           .textTheme
                           .titleLarge
