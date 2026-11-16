@@ -3,6 +3,7 @@ import '../theme/app_theme.dart';
 import '../core/app_state.dart';
 import '../core/workout_picker.dart';
 import '../core/workout_repository.dart';
+import '../core/workout_share.dart';
 
 class WorkoutDetailScreen extends StatefulWidget {
   final AppState appState;
@@ -14,12 +15,16 @@ class WorkoutDetailScreen extends StatefulWidget {
   /// Source of workouts; Supabase unless a test passes a fake.
   final WorkoutRepository repository;
 
+  /// Opens the share sheet; tests pass a fake.
+  final ShareTextFn share;
+
   const WorkoutDetailScreen({
     super.key,
     required this.appState,
     required this.mode,
     required this.value,
     this.repository = const SupabaseWorkoutRepository(),
+    this.share = shareWithSystem,
   });
 
   @override
@@ -64,6 +69,24 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text(widget.appState.tSavedToHistory)),
     );
+  }
+
+  Future<void> _share() async {
+    final workout = _workout;
+    if (workout == null) return;
+    final appState = widget.appState;
+    final title = appState.localizedDbField(workout, 'title');
+    try {
+      await widget.share(
+        workoutShareText(appState, workout),
+        title.isNotEmpty ? title : appState.tWorkout,
+      );
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(appState.tShareFailed)),
+      );
+    }
   }
 
   @override
@@ -510,7 +533,9 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
             ),
             child: IconButton(
               icon: const Icon(Icons.share, color: AppTheme.primary),
-              onPressed: () {},
+              tooltip: widget.appState.tShare,
+              // Disabled until a workout is shown.
+              onPressed: _workout == null ? null : _share,
             ),
           ),
           const SizedBox(width: 16),

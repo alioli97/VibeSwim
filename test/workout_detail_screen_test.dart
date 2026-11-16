@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swimvibe/core/app_state.dart';
 import 'package:swimvibe/core/workout_picker.dart';
 import 'package:swimvibe/core/workout_repository.dart';
+import 'package:swimvibe/core/workout_share.dart';
 import 'package:swimvibe/screens/workout_detail_screen.dart';
 
 /// In-memory stand-in for Supabase, applying the same duration filter.
@@ -45,6 +46,7 @@ void main() {
     required SearchMode mode,
     required int value,
     required WorkoutRepository repository,
+    ShareTextFn? share,
   }) async {
     SharedPreferences.setMockInitialValues({});
     final appState = AppState(await SharedPreferences.getInstance());
@@ -54,6 +56,7 @@ void main() {
         mode: mode,
         value: value,
         repository: repository,
+        share: share ?? (_, _) async {},
       ),
     ));
     await tester.pumpAndSettle();
@@ -107,6 +110,44 @@ void main() {
 
     final button = tester.widget<ElevatedButton>(
         find.ancestor(of: find.text('Logged'), matching: find.byType(ElevatedButton)));
+    expect(button.onPressed, isNull);
+  });
+
+  testWidgets('share button shares the shown workout', (tester) async {
+    final shared = <(String, String)>[];
+    await pumpDetail(tester,
+        mode: SearchMode.distance,
+        value: 2500,
+        repository: FakeWorkoutRepository(rows),
+        share: (text, subject) async => shared.add((text, subject)));
+
+    await tester.tap(find.byTooltip('Share'));
+    await tester.pump();
+
+    expect(shared, hasLength(1));
+    expect(shared.single.$2, 'Medium');
+    expect(shared.single.$1, startsWith('🏊 Medium\n\n2400 m · 45 min'));
+  });
+
+  testWidgets('share failure shows a message', (tester) async {
+    await pumpDetail(tester,
+        mode: SearchMode.distance,
+        value: 2500,
+        repository: FakeWorkoutRepository(rows),
+        share: (_, _) async => throw Exception('no share sheet'));
+
+    await tester.tap(find.byTooltip('Share'));
+    await tester.pump();
+
+    expect(find.text('Could not share the workout'), findsOneWidget);
+  });
+
+  testWidgets('share button is disabled when no workout fits', (tester) async {
+    await pumpDetail(tester,
+        mode: SearchMode.time, value: 20, repository: FakeWorkoutRepository(rows));
+
+    final button = tester.widget<IconButton>(
+        find.ancestor(of: find.byIcon(Icons.share), matching: find.byType(IconButton)));
     expect(button.onPressed, isNull);
   });
 }
