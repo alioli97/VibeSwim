@@ -19,6 +19,7 @@ flutter test test/widget_test.dart          # single file
 flutter test --plain-name "<test name>"     # single test by name
 flutter build apk --debug
 flutter build web
+dart run flutter_launcher_icons   # regenerate app icons from assets/icon/ (config in pubspec.yaml)
 ```
 
 `flutter run -d linux` needs host packages not bundled with the Flutter snap (`clang cmake ninja-build g++ pkg-config libgtk-3-dev`); use `-d chrome` or an Android device otherwise.
@@ -28,7 +29,8 @@ flutter build web
 - Tests must not touch Supabase: pump `SwimVibeApp(appState: ...)` or a screen directly (never `main()`, which calls `initSupabase()`). `WorkoutDetailScreen` defaults to `SupabaseWorkoutRepository`, so tests pass `repository:` a fake (see `test/workout_detail_screen_test.dart`) and don't navigate to it from `HomeScreen`.
 - `HistoryScreen` / `ProgressScreen` tests need `initializeDateFormatting()`; write to `WorkoutHistory` inside `tester.runAsync` (SharedPreferences I/O).
 - Build `AppState` from `SharedPreferences.setMockInitialValues({})`.
-- Test HTTP always returns 400: `test/widget_test.dart` sets `GoogleFonts.config.allowRuntimeFetching = false`, and any `Image.network` must have an `errorBuilder` or the test fails.
+- Test HTTP always returns 400: tests set `GoogleFonts.config.allowRuntimeFetching = false`, and any `Image.network` must have an `errorBuilder` or the test fails (the app currently has none).
+- CI: `.github/workflows/ci.yml` runs `flutter analyze` and `flutter test` (Flutter 3.41.6) on pushes and PRs to `master`; keep both green.
 
 ## Architecture
 

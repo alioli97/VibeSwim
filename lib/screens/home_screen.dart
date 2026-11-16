@@ -90,14 +90,23 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: AppTheme.background,
       body: Stack(
         children: [
+          // Subtle wash of the brand blue behind the content.
           Positioned.fill(
-            child: Opacity(
-              opacity: 0.05,
-              child: Image.network(
-                'https://lh3.googleusercontent.com/aida-public/AB6AXuCKlCGq72IZf7upBXD3GTraHOd7Qj7kAq-fW_nzDyqWd-9SS7hnnCYh1x2nXxzjrPFBWKsikKcN87fw_E2WUGgFuXrb6WhroUtFQDhlu5T_Yos0oBj0l1SIqN1l1T2S43b7JwBS8pBM4FJen-TDeuEJx6j9_Q3kdLhOrSYVpow2bSiBEOchQG601TtTqclzdMhDGsxleZpiCDLLLY0yD_C8S8xH23BlICcRNG5ecxEz52iPZU6x0thAZ-HnHsuVaWA8cKUdlS5NCSPY',
-                fit: BoxFit.cover,
-                // Decorative background: show nothing if it can't load (offline, tests).
-                errorBuilder: (context, error, stackTrace) => const SizedBox.shrink(),
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  // Both opaque: lerping from a transparent blue would pass
+                  // through a much stronger blue halfway.
+                  colors: [
+                    Color.alphaBlend(
+                      AppTheme.primaryContainer.withValues(alpha: 0.05),
+                      AppTheme.background,
+                    ),
+                    AppTheme.background,
+                  ],
+                ),
               ),
             ),
           ),
