@@ -102,6 +102,22 @@ class AppState extends ChangeNotifier {
     }
   }
 
+  String tNoWorkoutFits(int minutes) {
+    switch (_currentLanguage) {
+      case 'es': return 'No hay ningún entreno de $minutes min o menos';
+      case 'ca': return 'No hi ha cap entrenament de $minutes min o menys';
+      default: return 'No workout fits in $minutes min';
+    }
+  }
+
+  String get tGoBack {
+    switch (_currentLanguage) {
+      case 'es': return 'Volver';
+      case 'ca': return 'Tornar';
+      default: return 'Go Back';
+    }
+  }
+
   // Translation getter for Supabase map
   String localizedDbField(Map<String, dynamic> row, String prefix) {
     // try exact match

@@ -504,6 +504,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   builder: (context) => WorkoutDetailScreen(
                     appState: widget.appState,
                     targetDistance: _selectedDistance,
+                    availableMinutes: _selectedTime,
                   ),
                 ),
               );

@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../theme/app_theme.dart';
 import '../core/app_state.dart';
+import '../core/workout_picker.dart';
 
 class WorkoutDetailScreen extends StatefulWidget {
   final AppState appState;
   final int targetDistance;
+  final int availableMinutes;
 
   const WorkoutDetailScreen({
     Key? key,
     required this.appState,
     required this.targetDistance,
+    required this.availableMinutes,
   }) : super(key: key);
 
   @override
@@ -23,13 +26,21 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
   @override
   void initState() {
     super.initState();
-    // Query supabase for a workout matching the requested distance
-    _futureWorkout = Supabase.instance.client
+    _futureWorkout = _loadWorkout();
+  }
+
+  /// Fetches the workouts that fit in the available time and picks the one
+  /// closest to the target distance (see [pickWorkout]).
+  Future<Map<String, dynamic>?> _loadWorkout() async {
+    final rows = await Supabase.instance.client
         .from('workouts')
         .select()
-        .eq('distance_meters', widget.targetDistance)
-        .limit(1)
-        .maybeSingle();
+        .lte('duration_minutes', widget.availableMinutes);
+    return pickWorkout(
+      rows,
+      targetDistance: widget.targetDistance,
+      availableMinutes: widget.availableMinutes,
+    );
   }
 
   @override
@@ -62,16 +73,20 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
                     children: [
                       const Icon(Icons.search_off, size: 64, color: AppTheme.secondary),
                       const SizedBox(height: 16),
-                      Text(
-                        'No workout found for ${widget.targetDistance}m',
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              color: AppTheme.primary,
-                            ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 32),
+                        child: Text(
+                          widget.appState.tNoWorkoutFits(widget.availableMinutes),
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                                color: AppTheme.primary,
+                              ),
+                        ),
                       ),
                       const SizedBox(height: 24),
                       ElevatedButton(
                         onPressed: () => Navigator.pop(context),
-                        child: const Text('Go Back'),
+                        child: Text(widget.appState.tGoBack),
                       )
                     ],
                   ),

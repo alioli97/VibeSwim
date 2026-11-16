@@ -36,8 +36,8 @@ flutter build web
 - **Localization is hand-rolled**, not `intl`/ARB: UI strings are `t*` getters on `AppState` with a `switch` per language. Add new UI text there, in all three languages.
 - **DB content localization**: `AppState.localizedDbField(row, prefix)` reads column `<prefix>_<lang>` and falls back to `<prefix>_en`, then `<prefix>_es`.
 - `lib/screens/`:
-  - `home_screen.dart` — distance and time pickers (incl. custom-value dialogs), language selector, bottom nav. "Generate" pushes `WorkoutDetailScreen` with `targetDistance` only — the selected time is not currently used in the query. The default distance is 2500 m, which has no matching row in the DB (as of Nov 2026 distances range 400–2200 m), so the default "Generate" finds nothing.
-  - `workout_detail_screen.dart` — queries `workouts` with `.eq('distance_meters', targetDistance).limit(1).maybeSingle()` (exact match, always the first row, not random); `share_plus` for sharing.
+  - `home_screen.dart` — distance and time pickers (incl. custom-value dialogs), language selector, bottom nav. "Generate" pushes `WorkoutDetailScreen` with `targetDistance` and `availableMinutes`. The 2500 m default is intentional (the owner keeps adding longer workouts), so matching must not require an exact distance.
+  - `workout_detail_screen.dart` — fetches `workouts` with `duration_minutes <= availableMinutes`, then `pickWorkout` (`lib/core/workout_picker.dart`, pure + unit-tested) chooses the closest `distance_meters` to the target (above or below; ties → longer distance), random among rows with that distance. `share_plus` for sharing.
   - `history_screen.dart` — lists all rows of `workouts` ordered by `created_at` desc (it is the workout catalog, not a per-user history).
 
 ### Supabase `workouts` table (columns used by the code)
