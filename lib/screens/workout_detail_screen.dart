@@ -267,42 +267,6 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
                     color: const Color(0xFFD0E7EA),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const Icon(Icons.speed, color: AppTheme.primary),
-                ),
-                const SizedBox(width: 12),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(widget.appState.tEstPace,
-                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                            color: AppTheme.secondary, letterSpacing: 1.5)),
-                    Text('1:48/100m',
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium
-                            ?.copyWith(fontWeight: FontWeight.bold)),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-        const SizedBox(width: 16),
-        Expanded(
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: AppTheme.surfaceContainerLow,
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFD0E7EA),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
                   child: const Icon(Icons.waves, color: AppTheme.primary),
                 ),
                 const SizedBox(width: 12),

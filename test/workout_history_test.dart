@@ -64,6 +64,44 @@ void main() {
     expect(history.distanceThisWeek(now), 1200);
   });
 
+  test('remove deletes only that entry, persists, and restore undoes it', () async {
+    final history = WorkoutHistory(prefs);
+    // Two identical workouts logged on different days.
+    await history.add(workout('a', 800), completedAt: DateTime(2026, 11, 10, 9));
+    await history.add(workout('a', 800), completedAt: DateTime(2026, 11, 12, 9));
+    await history.add(workout('b', 400), completedAt: DateTime(2026, 11, 11, 9));
+    final mistake = history.entries.first; // a on the 12th
+
+    expect(await history.remove(mistake), isTrue);
+    expect(history.entries.map((e) => e.completedAt.day), [11, 10]);
+    expect(history.totalDistance, 1200);
+    expect(WorkoutHistory(prefs).entries, hasLength(2)); // persisted
+
+    expect(await history.remove(mistake), isFalse); // already gone
+
+    await history.restore(mistake);
+    expect(history.entries.map((e) => e.completedAt.day), [12, 11, 10]);
+    expect(WorkoutHistory(prefs).totalDistance, 2000);
+  });
+
+  test('weekly goal defaults to 5000 and can be changed and persisted', () async {
+    final history = WorkoutHistory(prefs);
+    var notifications = 0;
+    history.addListener(() => notifications++);
+
+    expect(history.weeklyGoalMeters, WorkoutHistory.defaultWeeklyGoalMeters);
+    expect(history.weeklyGoalMeters, 5000);
+
+    await history.setWeeklyGoal(8000);
+    expect(history.weeklyGoalMeters, 8000);
+    expect(WorkoutHistory(prefs).weeklyGoalMeters, 8000);
+
+    await history.setWeeklyGoal(0); // invalid: ignored
+    await history.setWeeklyGoal(8000); // unchanged: no notification
+    expect(history.weeklyGoalMeters, 8000);
+    expect(notifications, 1);
+  });
+
   test('ignores corrupt stored data', () async {
     SharedPreferences.setMockInitialValues({WorkoutHistory.keyHistory: 'not json'});
     expect(WorkoutHistory(await SharedPreferences.getInstance()).entries, isEmpty);

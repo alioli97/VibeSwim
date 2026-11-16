@@ -73,7 +73,6 @@ class AppState extends ChangeNotifier {
   String get tNoWorkouts => _tr('No workouts available', 'No hay entrenos disponibles', 'No hi ha entrenaments disponibles');
   String get tWorkoutTarget => _tr('WORKOUT TARGET', 'OBJETIVO DEL ENTRENO', "OBJECTIU DE L'ENTRENAMENT");
   String get tSwimSession => _tr('Swim Session', 'Sesión de natación', 'Sessió de natació');
-  String get tEstPace => _tr('EST. PACE', 'RITMO EST.', 'RITME EST.');
   String get tIntensity => _tr('INTENSITY', 'INTENSIDAD', 'INTENSITAT');
   String get tModerate => _tr('Moderate', 'Moderada', 'Moderada');
   String get tThePlan => _tr('The Plan', 'El plan', 'El pla');
@@ -97,6 +96,10 @@ class AppState extends ChangeNotifier {
   String get tTotalDistance => _tr('Total Distance', 'Distancia total', 'Distància total');
   String get tWorkoutsDone => _tr('Workouts', 'Entrenos', 'Entrenaments');
   String get tWeeklyGoal => _tr('Weekly Goal', 'Objetivo semanal', 'Objectiu setmanal');
+  String get tEditWeeklyGoal => _tr('Change weekly goal', 'Cambiar objetivo semanal', "Canviar l'objectiu setmanal");
+  String get tDelete => _tr('Delete', 'Borrar', 'Esborrar');
+  String get tUndo => _tr('Undo', 'Deshacer', 'Desfer');
+  String get tWorkoutDeleted => _tr('Workout deleted', 'Entreno borrado', 'Entrenament esborrat');
   String tCompletedOf(String done, String goal) => _tr(
         '$done of $goal completed',
         '$done de $goal completados',

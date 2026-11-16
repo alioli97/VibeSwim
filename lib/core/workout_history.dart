@@ -34,17 +34,29 @@ class LoggedWorkout {
 /// The user's completed workouts, stored on the device in SharedPreferences.
 class WorkoutHistory extends ChangeNotifier {
   static const String keyHistory = 'workout_history';
-
-  /// Meters per week the "Weekly goal" progress bar aims for.
-  static const int weeklyGoalMeters = 5000;
+  static const String keyWeeklyGoal = 'weekly_goal_meters';
+  static const int defaultWeeklyGoalMeters = 5000;
 
   final SharedPreferences prefs;
   final List<LoggedWorkout> _entries;
+  int _weeklyGoalMeters;
 
-  WorkoutHistory(this.prefs) : _entries = _load(prefs);
+  WorkoutHistory(this.prefs)
+      : _entries = _load(prefs),
+        _weeklyGoalMeters = _loadWeeklyGoal(prefs);
 
   /// Newest first.
   List<LoggedWorkout> get entries => List.unmodifiable(_entries);
+
+  /// Meters per week the "Weekly goal" progress bar aims for (user-set).
+  int get weeklyGoalMeters => _weeklyGoalMeters;
+
+  Future<void> setWeeklyGoal(int meters) async {
+    if (meters <= 0 || meters == _weeklyGoalMeters) return;
+    _weeklyGoalMeters = meters;
+    notifyListeners();
+    await prefs.setInt(keyWeeklyGoal, meters);
+  }
 
   int get totalDistance => _entries.fold(0, (sum, e) => sum + e.distanceMeters);
 
@@ -57,17 +69,38 @@ class WorkoutHistory extends ChangeNotifier {
         .fold(0, (sum, e) => sum + e.distanceMeters);
   }
 
-  Future<void> add(Map<String, dynamic> workout, {DateTime? completedAt}) async {
-    _entries.insert(
-      0,
+  Future<void> add(Map<String, dynamic> workout, {DateTime? completedAt}) {
+    return restore(
       LoggedWorkout(workout: Map.of(workout), completedAt: completedAt ?? DateTime.now()),
     );
+  }
+
+  /// Adds [entry] back, e.g. to undo a [remove].
+  Future<void> restore(LoggedWorkout entry) async {
+    _entries.add(entry);
     _entries.sort((a, b) => b.completedAt.compareTo(a.completedAt));
     notifyListeners();
-    await prefs.setString(
-      keyHistory,
-      jsonEncode(_entries.map((e) => e.toJson()).toList()),
-    );
+    await _save();
+  }
+
+  /// Removes that exact entry (one logged by mistake). Returns false if it
+  /// wasn't in the history.
+  Future<bool> remove(LoggedWorkout entry) async {
+    final removed = _entries.remove(entry);
+    if (!removed) return false;
+    notifyListeners();
+    await _save();
+    return true;
+  }
+
+  Future<void> _save() => prefs.setString(
+        keyHistory,
+        jsonEncode(_entries.map((e) => e.toJson()).toList()),
+      );
+
+  static int _loadWeeklyGoal(SharedPreferences prefs) {
+    final goal = prefs.getInt(keyWeeklyGoal);
+    return goal != null && goal > 0 ? goal : defaultWeeklyGoalMeters;
   }
 
   static List<LoggedWorkout> _load(SharedPreferences prefs) {
