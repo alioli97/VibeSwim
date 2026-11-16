@@ -2,15 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../theme/app_theme.dart';
 import '../core/app_state.dart';
+import '../core/workout_picker.dart';
 
 class WorkoutDetailScreen extends StatefulWidget {
   final AppState appState;
-  final int targetDistance;
+  final SearchMode mode;
+
+  /// Target meters when [mode] is distance, available minutes when it is time.
+  final int value;
 
   const WorkoutDetailScreen({
     Key? key,
     required this.appState,
-    required this.targetDistance,
+    required this.mode,
+    required this.value,
   }) : super(key: key);
 
   @override
@@ -23,13 +28,22 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
   @override
   void initState() {
     super.initState();
-    // Query supabase for a workout matching the requested distance
-    _futureWorkout = Supabase.instance.client
-        .from('workouts')
-        .select()
-        .eq('distance_meters', widget.targetDistance)
-        .limit(1)
-        .maybeSingle();
+    _futureWorkout = _loadWorkout();
+  }
+
+  /// Fetches candidate workouts and picks one by distance or by time
+  /// (see `lib/core/workout_picker.dart`).
+  Future<Map<String, dynamic>?> _loadWorkout() async {
+    final query = Supabase.instance.client.from('workouts').select();
+    switch (widget.mode) {
+      case SearchMode.distance:
+        return pickByDistance(await query, targetDistance: widget.value);
+      case SearchMode.time:
+        return pickByTime(
+          await query.lte('duration_minutes', widget.value),
+          availableMinutes: widget.value,
+        );
+    }
   }
 
   @override
@@ -62,16 +76,22 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
                     children: [
                       const Icon(Icons.search_off, size: 64, color: AppTheme.secondary),
                       const SizedBox(height: 16),
-                      Text(
-                        'No workout found for ${widget.targetDistance}m',
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              color: AppTheme.primary,
-                            ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 32),
+                        child: Text(
+                          widget.mode == SearchMode.time
+                              ? widget.appState.tNoWorkoutFits(widget.value)
+                              : widget.appState.tNoWorkouts,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                                color: AppTheme.primary,
+                              ),
+                        ),
                       ),
                       const SizedBox(height: 24),
                       ElevatedButton(
                         onPressed: () => Navigator.pop(context),
-                        child: const Text('Go Back'),
+                        child: Text(widget.appState.tGoBack),
                       )
                     ],
                   ),
@@ -138,7 +158,8 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
 
   Widget _buildHeroCard(BuildContext context, Map<String, dynamic> workout) {
     final title = widget.appState.localizedDbField(workout, 'title').toUpperCase();
-    final distance = workout['distance_meters'] ?? widget.targetDistance;
+    final distance = workout['distance_meters'] ??
+        (widget.mode == SearchMode.distance ? widget.value : 0);
     final duration = workout['duration_minutes'] ?? 45;
 
     return Container(

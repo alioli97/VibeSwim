@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
 import '../core/app_state.dart';
+import '../core/workout_picker.dart';
 import 'workout_detail_screen.dart';
 import 'history_screen.dart';
 
@@ -15,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedDistance = 2500;
   int _selectedTime = 30;
+  SearchMode _searchMode = SearchMode.distance;
   late PageController _distancePageController;
 
   @override
@@ -80,62 +82,92 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Future<void> _showCustomDistanceDialog() async {
-    final TextEditingController controller = TextEditingController();
-    
-    return showDialog(
+  /// Dialog to type a positive whole number. Returns null if cancelled or
+  /// the input is invalid.
+  Future<int?> _askNumber({
+    required String title,
+    required String hint,
+    required String suffix,
+    int? initialValue,
+  }) {
+    final controller = TextEditingController(text: initialValue?.toString() ?? '');
+    // Not disposing `controller`: the dialog still uses it during its closing
+    // animation after showDialog returns.
+    return showDialog<int>(
       context: context,
       builder: (context) {
+        void save() {
+          final parsed = int.tryParse(controller.text.trim());
+          Navigator.pop(context, parsed != null && parsed > 0 ? parsed : null);
+        }
+
         return AlertDialog(
           backgroundColor: Colors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          title: Text(widget.appState.tDistance, style: TextStyle(color: AppTheme.primary)),
+          title: Text(title, style: const TextStyle(color: AppTheme.primary)),
           content: TextField(
             controller: controller,
             keyboardType: TextInputType.number,
             autofocus: true,
-            decoration: const InputDecoration(
-              hintText: 'e.g. 1800',
-              suffixText: 'meters',
-              border: OutlineInputBorder(),
-              focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppTheme.primaryContainer, width: 2))
+            onSubmitted: (_) => save(),
+            decoration: InputDecoration(
+              hintText: hint,
+              suffixText: suffix,
+              border: const OutlineInputBorder(),
+              focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: AppTheme.primaryContainer, width: 2)),
             ),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text('Cancel', style: TextStyle(color: Colors.grey)),
+              child: Text(widget.appState.tCancel,
+                  style: const TextStyle(color: Colors.grey)),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppTheme.primaryContainer,
                 foregroundColor: Colors.white,
               ),
-              onPressed: () {
-                if (controller.text.isNotEmpty) {
-                  final parsed = int.tryParse(controller.text);
-                  if (parsed != null && parsed > 0) {
-                    setState(() {
-                      _selectedDistance = parsed;
-                    });
-                    int newIndex = ((parsed - 100) / 100).floor();
-                    if (newIndex >= 0 && newIndex < 100) {
-                      _distancePageController.animateToPage(
-                        newIndex,
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeInOut,
-                      );
-                    }
-                  }
-                }
-                Navigator.pop(context);
-              },
-              child: const Text('Save'),
-            )
+              onPressed: save,
+              child: Text(widget.appState.tSave),
+            ),
           ],
         );
-      }
+      },
     );
+  }
+
+  /// True while the distance ruler scrolls to a typed custom distance, so
+  /// the intermediate pages don't overwrite it (e.g. 1850 → 1800).
+  bool _scrollingToCustomDistance = false;
+
+  Future<void> _showCustomDistanceDialog() async {
+    final distance = await _askNumber(
+      title: widget.appState.tDistance,
+      hint: '1800',
+      suffix: 'm',
+      initialValue: _selectedDistance % 100 == 0 ? null : _selectedDistance,
+    );
+    if (distance == null || !mounted) return;
+
+    setState(() {
+      _selectedDistance = distance;
+      _searchMode = SearchMode.distance;
+    });
+
+    // Move the ruler to the closest mark without changing the typed value.
+    final index = ((distance - 100) / 100).round().clamp(0, 99);
+    _scrollingToCustomDistance = true;
+    try {
+      await _distancePageController.animateToPage(
+        index,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    } finally {
+      _scrollingToCustomDistance = false;
+    }
   }
 
   Widget _buildLangOption(String code, String name, String emoji) {
@@ -186,6 +218,8 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Image.network(
                 'https://lh3.googleusercontent.com/aida-public/AB6AXuCKlCGq72IZf7upBXD3GTraHOd7Qj7kAq-fW_nzDyqWd-9SS7hnnCYh1x2nXxzjrPFBWKsikKcN87fw_E2WUGgFuXrb6WhroUtFQDhlu5T_Yos0oBj0l1SIqN1l1T2S43b7JwBS8pBM4FJen-TDeuEJx6j9_Q3kdLhOrSYVpow2bSiBEOchQG601TtTqclzdMhDGsxleZpiCDLLLY0yD_C8S8xH23BlICcRNG5ecxEz52iPZU6x0thAZ-HnHsuVaWA8cKUdlS5NCSPY',
                 fit: BoxFit.cover,
+                // Decorative background: show nothing if it can't load (offline, tests).
+                errorBuilder: (context, error, stackTrace) => const SizedBox.shrink(),
               ),
             ),
           ),
@@ -202,9 +236,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(height: 32),
                     _buildWelcomeSection(),
                     const SizedBox(height: 24),
-                    _buildDistanceCard(),
+                    _buildModeSelector(),
                     const SizedBox(height: 24),
-                    _buildTimeCard(),
+                    _dimUnlessActive(SearchMode.distance, _buildDistanceCard()),
+                    const SizedBox(height: 24),
+                    _dimUnlessActive(SearchMode.time, _buildTimeCard()),
                     const SizedBox(height: 32),
                     _buildGenerateAction(context),
                   ],
@@ -269,6 +305,63 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
         ),
       ],
+    );
+  }
+
+  /// "Distance | Time" switch: workouts are searched by one or the other.
+  Widget _buildModeSelector() {
+    return Container(
+      padding: const EdgeInsets.all(4),
+      decoration: BoxDecoration(
+        color: AppTheme.surfaceContainerLow,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Row(
+        children: [
+          _buildModeOption(SearchMode.distance, Icons.straighten, widget.appState.tDistance),
+          _buildModeOption(SearchMode.time, Icons.timer_outlined, widget.appState.tTime),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildModeOption(SearchMode mode, IconData icon, String label) {
+    final isActive = _searchMode == mode;
+    final color = isActive ? Colors.white : AppTheme.primary;
+    return Expanded(
+      child: GestureDetector(
+        onTap: () => setState(() => _searchMode = mode),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          decoration: BoxDecoration(
+            gradient: isActive
+                ? const LinearGradient(colors: [AppTheme.primary, AppTheme.primaryContainer])
+                : null,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, size: 20, color: color),
+              const SizedBox(width: 8),
+              Text(label,
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      color: color, fontWeight: FontWeight.bold)),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// Fades the card of the inactive search mode. It stays interactive:
+  /// using it switches the search mode to it.
+  Widget _dimUnlessActive(SearchMode mode, Widget card) {
+    return AnimatedOpacity(
+      duration: const Duration(milliseconds: 200),
+      opacity: _searchMode == mode ? 1 : 0.4,
+      child: card,
     );
   }
 
@@ -346,7 +439,11 @@ class _HomeScreenState extends State<HomeScreen> {
             child: PageView.builder(
               controller: _distancePageController,
               onPageChanged: (index) {
-                setState(() => _selectedDistance = (index + 1) * 100);
+                if (_scrollingToCustomDistance) return;
+                setState(() {
+                  _selectedDistance = (index + 1) * 100;
+                  _searchMode = SearchMode.distance;
+                });
               },
               scrollDirection: Axis.horizontal,
               itemCount: 100,
@@ -426,21 +523,7 @@ class _HomeScreenState extends State<HomeScreen> {
               _buildTimeOption(15),
               _buildTimeOption(30),
               _buildTimeOption(45),
-              Container(
-                decoration: BoxDecoration(
-                  color: AppTheme.surfaceContainerLow,
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.more_horiz, color: AppTheme.primary),
-                    Text(widget.appState.tCustom,
-                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                            color: AppTheme.primary, fontWeight: FontWeight.bold)),
-                  ],
-                ),
-              )
+              _buildCustomTimeOption(),
             ],
           )
         ],
@@ -448,11 +531,64 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  static const List<int> _presetTimes = [15, 30, 45];
+
+  /// "CUSTOM" cell: opens a dialog to type the minutes. When a custom time
+  /// is selected it shows that value highlighted; tapping it again edits it.
+  Widget _buildCustomTimeOption() {
+    final isSelected = !_presetTimes.contains(_selectedTime);
+    final color = isSelected ? Colors.white : AppTheme.primary;
+    return GestureDetector(
+      onTap: _showCustomTimeDialog,
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: isSelected
+              ? const LinearGradient(colors: [AppTheme.primary, AppTheme.primaryContainer])
+              : null,
+          color: isSelected ? null : AppTheme.surfaceContainerLow,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (isSelected)
+              Text('$_selectedTime',
+                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                      color: color, fontWeight: FontWeight.bold))
+            else
+              Icon(Icons.more_horiz, color: color),
+            Text(widget.appState.tCustom,
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    color: color, fontWeight: FontWeight.bold)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _showCustomTimeDialog() async {
+    final minutes = await _askNumber(
+      title: widget.appState.tAvailableTime,
+      hint: '60',
+      suffix: 'min',
+      initialValue: _presetTimes.contains(_selectedTime) ? null : _selectedTime,
+    );
+    if (minutes != null && mounted) {
+      setState(() {
+        _selectedTime = minutes;
+        _searchMode = SearchMode.time;
+      });
+    }
+  }
+
   Widget _buildTimeOption(int time) {
     bool isSelected = time == _selectedTime;
     return GestureDetector(
       onTap: () {
-        setState(() => _selectedTime = time);
+        setState(() {
+          _selectedTime = time;
+          _searchMode = SearchMode.time;
+        });
       },
       child: Container(
         decoration: BoxDecoration(
@@ -501,7 +637,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 MaterialPageRoute(
                   builder: (context) => WorkoutDetailScreen(
                     appState: widget.appState,
-                    targetDistance: _selectedDistance,
+                    mode: _searchMode,
+                    value: _searchMode == SearchMode.distance
+                        ? _selectedDistance
+                        : _selectedTime,
                   ),
                 ),
               );

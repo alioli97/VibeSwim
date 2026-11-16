@@ -102,6 +102,54 @@ class AppState extends ChangeNotifier {
     }
   }
 
+  String tNoWorkoutFits(int minutes) {
+    switch (_currentLanguage) {
+      case 'es': return 'No hay ningún entreno de $minutes min o menos';
+      case 'ca': return 'No hi ha cap entrenament de $minutes min o menys';
+      default: return 'No workout fits in $minutes min';
+    }
+  }
+
+  String get tNoWorkouts {
+    switch (_currentLanguage) {
+      case 'es': return 'No hay entrenos disponibles';
+      case 'ca': return 'No hi ha entrenaments disponibles';
+      default: return 'No workouts available';
+    }
+  }
+
+  String get tTime {
+    switch (_currentLanguage) {
+      case 'es': return 'Tiempo';
+      case 'ca': return 'Temps';
+      default: return 'Time';
+    }
+  }
+
+  String get tCancel {
+    switch (_currentLanguage) {
+      case 'es': return 'Cancelar';
+      case 'ca': return 'Cancel·lar';
+      default: return 'Cancel';
+    }
+  }
+
+  String get tSave {
+    switch (_currentLanguage) {
+      case 'es': return 'Guardar';
+      case 'ca': return 'Desar';
+      default: return 'Save';
+    }
+  }
+
+  String get tGoBack {
+    switch (_currentLanguage) {
+      case 'es': return 'Volver';
+      case 'ca': return 'Tornar';
+      default: return 'Go Back';
+    }
+  }
+
   // Translation getter for Supabase map
   String localizedDbField(Map<String, dynamic> row, String prefix) {
     // try exact match
