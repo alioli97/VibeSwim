@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'workout_history.dart';
@@ -109,6 +110,37 @@ class AppState extends ChangeNotifier {
         '$done de $goal completados',
         '$done de $goal completats',
       );
+
+  // Progress
+  String get tYourProgress => _tr('Your Progress', 'Tu progreso', 'El teu progrés');
+  String get tLastWeeks => _tr('Last 8 weeks', 'Últimas 8 semanas', 'Últimes 8 setmanes');
+  String get tGoalLine => _tr('Goal', 'Objetivo', 'Objectiu');
+  String get tTotals => _tr('Totals', 'Totales', 'Totals');
+  String get tTotalTime => _tr('Total Time', 'Tiempo total', 'Temps total');
+  String get tAvgPerWorkout => _tr('Avg. per Workout', 'Media por entreno', 'Mitjana per entrenament');
+  String get tLongestWorkout => _tr('Longest Workout', 'Entreno más largo', 'Entrenament més llarg');
+  String get tThisMonth => _tr('This Month', 'Este mes', 'Aquest mes');
+  String get tMonthComparison => _tr('This month vs last', 'Este mes vs el anterior', "Aquest mes vs l'anterior");
+  String get tLastMonth => _tr('Last Month', 'Mes anterior', 'Mes anterior');
+  String get tStreak => _tr('Streak', 'Racha', 'Ratxa');
+  String get tCurrentStreak => _tr('Current', 'Actual', 'Actual');
+  String get tBestStreak => _tr('Best', 'Mejor', 'Millor');
+  String get tStreakHint => _tr('Weeks in a row meeting your weekly goal', 'Semanas seguidas cumpliendo el objetivo semanal', "Setmanes seguides complint l'objectiu setmanal");
+  String tWeeks(int n) => _tr(
+        n == 1 ? '1 week' : '$n weeks',
+        n == 1 ? '1 semana' : '$n semanas',
+        n == 1 ? '1 setmana' : '$n setmanes',
+      );
+  String get tNoStatsYet => _tr('Log your first workout to see your stats.', 'Guarda tu primer entreno para ver tus estadísticas.', 'Desa el teu primer entrenament per veure les teves estadístiques.');
+
+  /// Meters with the language's thousands separator (12,450m / 12.450m).
+  String formatMeters(int meters) =>
+      '${NumberFormat.decimalPattern(_currentLanguage).format(meters)}m';
+
+  /// "45 min" or "3 h 05 min".
+  String formatMinutes(int minutes) => minutes < 60
+      ? '$minutes min'
+      : '${minutes ~/ 60} h ${(minutes % 60).toString().padLeft(2, '0')} min';
 
   // Translation getter for Supabase map
   String localizedDbField(Map<String, dynamic> row, String prefix) {
