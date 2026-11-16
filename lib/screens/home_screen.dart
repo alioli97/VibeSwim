@@ -8,7 +8,7 @@ import 'history_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final AppState appState;
-  const HomeScreen({Key? key, required this.appState}) : super(key: key);
+  const HomeScreen({super.key, required this.appState});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: 48,
                 height: 6,
                 decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(0.4),
+                  color: Colors.grey.withValues(alpha: 0.4),
                   borderRadius: BorderRadius.circular(4),
                 ),
               ),
@@ -141,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
         margin: const EdgeInsets.only(bottom: 12),
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: isSelected ? AppTheme.primary.withOpacity(0.05) : AppTheme.surfaceContainerLow,
+          color: isSelected ? AppTheme.primary.withValues(alpha: 0.05) : AppTheme.surfaceContainerLow,
           border: Border.all(
             color: isSelected ? AppTheme.primary : Colors.transparent,
             width: 2,
@@ -333,7 +333,7 @@ class _HomeScreenState extends State<HomeScreen> {
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: AppTheme.primary.withOpacity(0.04),
+            color: AppTheme.primary.withValues(alpha: 0.04),
             blurRadius: 24,
             offset: const Offset(0, 4),
           )
@@ -429,7 +429,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           decoration: BoxDecoration(
                             color: isSelected
                                 ? AppTheme.primaryContainer
-                                : Colors.grey.withOpacity(0.3),
+                                : Colors.grey.withValues(alpha: 0.3),
                             borderRadius: BorderRadius.circular(4),
                           ),
                         ),
@@ -458,7 +458,7 @@ class _HomeScreenState extends State<HomeScreen> {
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: AppTheme.primary.withOpacity(0.04),
+            color: AppTheme.primary.withValues(alpha: 0.04),
             blurRadius: 24,
             offset: const Offset(0, 4),
           )
@@ -568,8 +568,8 @@ class _HomeScreenState extends State<HomeScreen> {
             Text(widget.appState.tMinutes,
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
                     color: isSelected
-                        ? Colors.white.withOpacity(0.9)
-                        : AppTheme.primary.withOpacity(0.7))),
+                        ? Colors.white.withValues(alpha: 0.9)
+                        : AppTheme.primary.withValues(alpha: 0.7))),
           ],
         ),
       ),
@@ -585,8 +585,8 @@ class _HomeScreenState extends State<HomeScreen> {
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.transparent,
-              disabledForegroundColor: Colors.transparent.withOpacity(0.38),
-              disabledBackgroundColor: Colors.transparent.withOpacity(0.12),
+              disabledForegroundColor: Colors.transparent.withValues(alpha: 0.38),
+              disabledBackgroundColor: Colors.transparent.withValues(alpha: 0.12),
               shadowColor: Colors.transparent,
               padding: EdgeInsets.zero,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
@@ -610,7 +610,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 gradient: const LinearGradient(colors: [AppTheme.primary, AppTheme.primaryContainer]),
                 borderRadius: BorderRadius.circular(24),
                 boxShadow: [
-                  BoxShadow(color: AppTheme.primary.withOpacity(0.4), blurRadius: 24, offset: const Offset(0, 12))
+                  BoxShadow(color: AppTheme.primary.withValues(alpha: 0.4), blurRadius: 24, offset: const Offset(0, 12))
                 ],
               ),
               child: Container(
@@ -645,11 +645,11 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Container(
         padding: const EdgeInsets.only(bottom: 24, top: 16),
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.9),
+          color: Colors.white.withValues(alpha: 0.9),
           borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
           boxShadow: [
             BoxShadow(
-              color: AppTheme.primary.withOpacity(0.08),
+              color: AppTheme.primary.withValues(alpha: 0.08),
               blurRadius: 32,
               offset: const Offset(0, -8),
             )
@@ -663,7 +663,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Navigator.push(
                 context,
                 PageRouteBuilder(
-                  pageBuilder: (_, __, ___) => HistoryScreen(appState: widget.appState),
+                  pageBuilder: (_, _, _) => HistoryScreen(appState: widget.appState),
                   transitionDuration: Duration.zero,
                 ),
               );

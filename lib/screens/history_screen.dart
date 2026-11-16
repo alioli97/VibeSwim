@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 
 class HistoryScreen extends StatefulWidget {
   final AppState appState;
-  const HistoryScreen({Key? key, required this.appState}) : super(key: key);
+  const HistoryScreen({super.key, required this.appState});
 
   @override
   State<HistoryScreen> createState() => _HistoryScreenState();
@@ -121,7 +121,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
 
   Widget _buildAppBar(BuildContext context) {
     return SliverAppBar(
-      backgroundColor: Colors.white.withOpacity(0.9),
+      backgroundColor: Colors.white.withValues(alpha: 0.9),
       pinned: true,
       elevation: 0,
       centerTitle: false,
@@ -198,7 +198,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
             borderRadius: BorderRadius.circular(24),
             boxShadow: [
               BoxShadow(
-                color: AppTheme.primary.withOpacity(0.04),
+                color: AppTheme.primary.withValues(alpha: 0.04),
                 blurRadius: 24,
                 offset: const Offset(0, 4),
               ),
@@ -334,10 +334,10 @@ class _HistoryScreenState extends State<HistoryScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.grey.withOpacity(0.1)),
+        border: Border.all(color: Colors.grey.withValues(alpha: 0.1)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.01),
+            color: Colors.black.withValues(alpha: 0.01),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -401,11 +401,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
     return Container(
       padding: const EdgeInsets.only(bottom: 24, top: 16),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.9),
+        color: Colors.white.withValues(alpha: 0.9),
         borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
         boxShadow: [
           BoxShadow(
-            color: AppTheme.primary.withOpacity(0.08),
+            color: AppTheme.primary.withValues(alpha: 0.08),
             blurRadius: 32,
             offset: const Offset(0, -8),
           ),

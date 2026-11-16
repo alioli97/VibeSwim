@@ -29,7 +29,7 @@ void main() async {
 class SwimVibeApp extends StatelessWidget {
   final AppState appState;
 
-  const SwimVibeApp({Key? key, required this.appState}) : super(key: key);
+  const SwimVibeApp({super.key, required this.appState});
 
   @override
   Widget build(BuildContext context) {
