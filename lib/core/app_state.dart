@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'favorites.dart';
 import 'workout_history.dart';
 import 'workout_picker.dart';
 
@@ -17,7 +18,12 @@ class AppState extends ChangeNotifier {
   /// Workouts the user has finished, stored on the device.
   final WorkoutHistory history;
 
-  AppState(this.prefs) : history = WorkoutHistory(prefs) {
+  /// Starred workouts, stored on the device.
+  final Favorites favorites;
+
+  AppState(this.prefs)
+      : history = WorkoutHistory(prefs),
+        favorites = Favorites(prefs) {
     _currentLanguage = prefs.getString(keyLanguage) ?? 'en';
     _difficulty = DifficultyFilter.values.asNameMap()[prefs.getString(keyDifficulty)] ??
         DifficultyFilter.any;
@@ -83,6 +89,12 @@ class AppState extends ChangeNotifier {
         'No hay entrenos de nivel $level que encajen. Prueba otra dificultad.',
         "No hi ha entrenaments de nivell $level que encaixin. Prova una altra dificultat.",
       );
+  String get tFavorites => _tr('Favorites', 'Favoritos', 'Preferits');
+  String get tAddFavorite => _tr('Add to favorites', 'Añadir a favoritos', 'Afegir a preferits');
+  String get tRemoveFavorite => _tr('Remove from favorites', 'Quitar de favoritos', 'Treure de preferits');
+  String get tAddedToFavorites => _tr('Added to favorites', 'Añadido a favoritos', 'Afegit a preferits');
+  String get tRemovedFromFavorites => _tr('Removed from favorites', 'Quitado de favoritos', 'Tret de preferits');
+  String get tNoFavoritesYet => _tr('No favorites yet. Tap ☆ on a workout to save it here.', 'Aún no tienes favoritos. Pulsa ☆ en un entreno para guardarlo aquí.', 'Encara no tens preferits. Prem ☆ en un entrenament per desar-lo aquí.');
   String get tLanguage => _tr('Language', 'Idioma', 'Idioma');
 
   // Dialogs and common
