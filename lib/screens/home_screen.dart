@@ -5,6 +5,7 @@ import '../core/workout_picker.dart';
 import '../widgets/app_bottom_nav.dart';
 import '../widgets/language_sheet.dart';
 import '../widgets/number_dialog.dart';
+import 'favorites_screen.dart';
 import 'workout_detail_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -165,9 +166,25 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-        IconButton(
-          icon: const Icon(Icons.settings, color: Colors.grey),
-          onPressed: () => showLanguageSheet(context, widget.appState),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.star_border, color: Colors.grey),
+              tooltip: widget.appState.tFavorites,
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => FavoritesScreen(appState: widget.appState),
+                ),
+              ),
+            ),
+            IconButton(
+              icon: const Icon(Icons.settings, color: Colors.grey),
+              tooltip: widget.appState.tLanguage,
+              onPressed: () => showLanguageSheet(context, widget.appState),
+            ),
+          ],
         ),
       ],
     );

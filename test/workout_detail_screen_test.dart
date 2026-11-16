@@ -105,10 +105,7 @@ void main() {
     final appState = await pumpDetail(tester,
         mode: SearchMode.distance, value: 1500, repository: FakeWorkoutRepository(rows));
 
-    await tester.runAsync(() async {
-      await tester.tap(find.text('Finish & Log'));
-      await Future<void>.delayed(Duration.zero);
-    });
+    await tester.tap(find.text('Finish & Log'));
     await tester.pumpAndSettle();
 
     expect(appState.history.entries, hasLength(1));
@@ -166,10 +163,7 @@ void main() {
     expect(find.text('MEDIUM'), findsOneWidget);
 
     // Log it, then ask for another: the new one can be logged again.
-    await tester.runAsync(() async {
-      await tester.tap(find.text('Finish & Log'));
-      await Future<void>.delayed(Duration.zero);
-    });
+    await tester.tap(find.text('Finish & Log'));
     await tester.pumpAndSettle();
     expect(find.text('Logged'), findsOneWidget);
 
@@ -281,5 +275,23 @@ void main() {
 
       expect(find.text('No beginner workouts match. Try another difficulty.'), findsOneWidget);
     });
+  });
+
+  testWidgets('star button adds and removes the workout from favorites', (tester) async {
+    final appState = await pumpDetail(tester,
+        mode: SearchMode.distance, value: 2500, repository: FakeWorkoutRepository(rows));
+
+    await tester.tap(find.byTooltip('Add to favorites'));
+    await tester.pumpAndSettle();
+    expect(appState.favorites.isFavorite('Medium'), isTrue);
+    expect(find.text('Added to favorites'), findsOneWidget);
+
+    await tester.tap(find.byTooltip('Remove from favorites'));
+    await tester.pumpAndSettle();
+    expect(appState.favorites.items, isEmpty);
+
+    // Let the snackbar time out so no timers are left pending.
+    await tester.pump(const Duration(seconds: 5));
+    await tester.pumpAndSettle();
   });
 }

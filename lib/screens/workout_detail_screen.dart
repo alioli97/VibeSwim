@@ -22,6 +22,10 @@ class WorkoutDetailScreen extends StatefulWidget {
   /// Only workouts of this difficulty are considered.
   final DifficultyFilter difficulty;
 
+  /// Shows exactly this workout (e.g. a favorite) instead of fetching and
+  /// picking one; "Generate another" is hidden then.
+  final Map<String, dynamic>? workout;
+
   const WorkoutDetailScreen({
     super.key,
     required this.appState,
@@ -30,7 +34,21 @@ class WorkoutDetailScreen extends StatefulWidget {
     this.repository = const SupabaseWorkoutRepository(),
     this.share = shareWithSystem,
     this.difficulty = DifficultyFilter.any,
+    this.workout,
   });
+
+  /// Opens a specific workout, e.g. from the favorites list.
+  WorkoutDetailScreen.fixed({
+    Key? key,
+    required AppState appState,
+    required Map<String, dynamic> workout,
+  }) : this(
+          key: key,
+          appState: appState,
+          mode: SearchMode.distance,
+          value: (workout['distance_meters'] as num?)?.toInt() ?? 0,
+          workout: workout,
+        );
 
   @override
   State<WorkoutDetailScreen> createState() => _WorkoutDetailScreenState();
@@ -64,6 +82,12 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
   /// Fetches candidate workouts and picks one by distance or by time
   /// (see `lib/core/workout_picker.dart`).
   Future<Map<String, dynamic>?> _loadWorkout() async {
+    final fixed = widget.workout;
+    if (fixed != null) {
+      _rows = [fixed];
+      _workout = fixed;
+      return fixed;
+    }
     final rows = await widget.repository.fetchWorkouts(
       maxMinutes: widget.mode == SearchMode.time ? widget.value : null,
     );
@@ -150,7 +174,8 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
   Widget build(BuildContext context) {
     // Pushed routes aren't rebuilt by SwimVibeApp, so listen for language changes here.
     return ListenableBuilder(
-      listenable: widget.appState,
+      // Language changes and the ⭐ state.
+      listenable: Listenable.merge([widget.appState, widget.appState.favorites]),
       builder: (context, _) => _buildScreen(context),
     );
   }
@@ -262,12 +287,36 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
         ),
       ),
       actions: [
+        _buildFavoriteButton(),
         IconButton(
           icon: const Icon(Icons.settings, color: AppTheme.primaryContainer),
           tooltip: widget.appState.tLanguage,
           onPressed: () => showLanguageSheet(context, widget.appState),
         )
       ],
+    );
+  }
+
+  Widget _buildFavoriteButton() {
+    final workout = _workout;
+    final favorites = widget.appState.favorites;
+    final starred = workout != null && favorites.isFavorite(workout['id']);
+    return IconButton(
+      icon: Icon(starred ? Icons.star : Icons.star_border, color: AppTheme.primaryContainer),
+      tooltip: starred ? widget.appState.tRemoveFavorite : widget.appState.tAddFavorite,
+      onPressed: workout == null
+          ? null
+          : () async {
+              final nowStarred = await favorites.toggle(workout);
+              if (!mounted) return;
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(SnackBar(
+                  content: Text(nowStarred
+                      ? widget.appState.tAddedToFavorites
+                      : widget.appState.tRemovedFromFavorites),
+                ));
+            },
     );
   }
 
@@ -629,12 +678,14 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
             tooltip: widget.appState.tShare,
             onPressed: _workout == null ? null : _share,
           ),
-          const SizedBox(width: 12),
-          _buildSquareAction(
-            icon: Icons.refresh,
-            tooltip: widget.appState.tGenerateAnother,
-            onPressed: _workout == null ? null : _generateAnother,
-          ),
+          if (widget.workout == null) ...[
+            const SizedBox(width: 12),
+            _buildSquareAction(
+              icon: Icons.refresh,
+              tooltip: widget.appState.tGenerateAnother,
+              onPressed: _workout == null ? null : _generateAnother,
+            ),
+          ],
           const SizedBox(width: 12),
           Expanded(
             child: Container(
