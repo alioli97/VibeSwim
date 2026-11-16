@@ -7,14 +7,20 @@ enum SearchMode { distance, time }
 /// (above or below; on a tie the longer distance wins). The duration is
 /// ignored. If several workouts share that distance, one is chosen at random.
 ///
+/// Workouts whose `id` is in [exclude] are skipped (used by "Generate
+/// another" so the next closest is chosen once a distance is used up).
+///
 /// Returns null when there are no workouts with a distance.
 Map<String, dynamic>? pickByDistance(
   List<Map<String, dynamic>> workouts, {
   required int targetDistance,
+  Set<Object?> exclude = const {},
   Random? random,
 }) {
   return _pickClosest(
-    workouts.where((w) => w['distance_meters'] is int).toList(),
+    workouts
+        .where((w) => w['distance_meters'] is int && !exclude.contains(w['id']))
+        .toList(),
     field: 'distance_meters',
     target: targetDistance,
     random: random,
@@ -25,16 +31,21 @@ Map<String, dynamic>? pickByDistance(
 /// [availableMinutes] without exceeding it. The distance is ignored. If
 /// several workouts share that duration, one is chosen at random.
 ///
+/// Workouts whose `id` is in [exclude] are skipped.
+///
 /// Returns null when no workout fits in the available time.
 Map<String, dynamic>? pickByTime(
   List<Map<String, dynamic>> workouts, {
   required int availableMinutes,
+  Set<Object?> exclude = const {},
   Random? random,
 }) {
   return _pickClosest(
     workouts.where((w) {
       final duration = w['duration_minutes'];
-      return duration is int && duration <= availableMinutes;
+      return duration is int &&
+          duration <= availableMinutes &&
+          !exclude.contains(w['id']);
     }).toList(),
     field: 'duration_minutes',
     target: availableMinutes,
