@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
 import '../core/app_state.dart';
 import '../core/workout_picker.dart';
+import '../widgets/app_bottom_nav.dart';
+import '../widgets/language_sheet.dart';
 import '../widgets/number_dialog.dart';
 import 'workout_detail_screen.dart';
-import 'history_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final AppState appState;
@@ -34,53 +35,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void dispose() {
     _distancePageController.dispose();
     super.dispose();
-  }
-
-  void _showLanguageSheet() {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      isScrollControlled: true,
-      builder: (context) {
-        return Container(
-          decoration: const BoxDecoration(
-            color: AppTheme.surface,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(40)),
-          ),
-          padding: const EdgeInsets.only(top: 16, bottom: 48, left: 32, right: 32),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: 48,
-                height: 6,
-                decoration: BoxDecoration(
-                  color: Colors.grey.withValues(alpha: 0.4),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-              ),
-              const SizedBox(height: 32),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(widget.appState.tLanguage,
-                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          color: AppTheme.primary, fontWeight: FontWeight.bold)),
-                  IconButton(
-                    icon: const Icon(Icons.close, color: AppTheme.secondary),
-                    onPressed: () => Navigator.pop(context),
-                  )
-                ],
-              ),
-              const SizedBox(height: 16),
-              _buildLangOption('es', 'Español', '🇪🇸'),
-              _buildLangOption('en', 'English', '🇬🇧'),
-              _buildLangOption('ca', 'Català', '🇦🇩'),
-            ],
-          ),
-        );
-      },
-    );
   }
 
   Future<int?> _askNumber({
@@ -128,42 +82,6 @@ class _HomeScreenState extends State<HomeScreen> {
     } finally {
       _scrollingToCustomDistance = false;
     }
-  }
-
-  Widget _buildLangOption(String code, String name, String emoji) {
-    bool isSelected = widget.appState.currentLanguage == code;
-    return GestureDetector(
-      onTap: () {
-        widget.appState.setLanguage(code);
-        Navigator.pop(context);
-      },
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 12),
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: isSelected ? AppTheme.primary.withValues(alpha: 0.05) : AppTheme.surfaceContainerLow,
-          border: Border.all(
-            color: isSelected ? AppTheme.primary : Colors.transparent,
-            width: 2,
-          ),
-          borderRadius: BorderRadius.circular(24),
-        ),
-        child: Row(
-          children: [
-            Text(emoji, style: const TextStyle(fontSize: 24)),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Text(name,
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: isSelected ? AppTheme.primary : AppTheme.onBackground,
-                      )),
-            ),
-            if (isSelected)
-              const Icon(Icons.check_circle, color: AppTheme.primary),
-          ],
-        ),
-      ),
-    );
   }
 
   @override
@@ -238,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         IconButton(
           icon: const Icon(Icons.settings, color: Colors.grey),
-          onPressed: _showLanguageSheet,
+          onPressed: () => showLanguageSheet(context, widget.appState),
         ),
       ],
     );
@@ -642,77 +560,7 @@ class _HomeScreenState extends State<HomeScreen> {
       bottom: 0,
       left: 0,
       right: 0,
-      child: Container(
-        padding: const EdgeInsets.only(bottom: 24, top: 16),
-        decoration: BoxDecoration(
-          color: Colors.white.withValues(alpha: 0.9),
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-          boxShadow: [
-            BoxShadow(
-              color: AppTheme.primary.withValues(alpha: 0.08),
-              blurRadius: 32,
-              offset: const Offset(0, -8),
-            )
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            _buildNavItem(Icons.pool, widget.appState.tNavWorkouts, true),
-            _buildNavItem(Icons.history, widget.appState.tNavHistory, false, onTap: () {
-              Navigator.push(
-                context,
-                PageRouteBuilder(
-                  pageBuilder: (_, _, _) => HistoryScreen(appState: widget.appState),
-                  transitionDuration: Duration.zero,
-                ),
-              );
-            }),
-            _buildNavItem(Icons.insights, widget.appState.tNavProgress, false),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildNavItem(IconData icon, String label, bool isActive, {VoidCallback? onTap}) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (isActive)
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(colors: [AppTheme.primary, AppTheme.primaryContainer]),
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Column(
-                children: [
-                  Icon(icon, color: Colors.white),
-                  const SizedBox(height: 4),
-                  Text(label.toUpperCase(),
-                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          color: Colors.white, fontSize: 10, letterSpacing: 1.5, fontWeight: FontWeight.bold)),
-                ],
-              ),
-            )
-          else
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-              child: Column(
-                children: [
-                  Icon(icon, color: Colors.grey),
-                  const SizedBox(height: 4),
-                  Text(label.toUpperCase(),
-                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          color: Colors.grey, fontSize: 10, letterSpacing: 1.5, fontWeight: FontWeight.bold)),
-                ],
-              ),
-            )
-        ],
-      ),
+      child: AppBottomNav(appState: widget.appState, current: AppTab.workouts),
     );
   }
 }

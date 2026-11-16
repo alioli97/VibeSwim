@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
 import '../core/app_state.dart';
 import '../core/workout_history.dart';
+import '../widgets/app_bottom_nav.dart';
 import '../widgets/number_dialog.dart';
 import 'package:intl/intl.dart';
 
@@ -17,8 +18,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
   WorkoutHistory get _history => widget.appState.history;
 
   /// Meters with the language's thousands separator (12,450 / 12.450).
-  String _meters(int meters) =>
-      '${NumberFormat.decimalPattern(widget.appState.currentLanguage).format(meters)}m';
+  String _meters(int meters) => widget.appState.formatMeters(meters);
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +115,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
             ),
         ],
       ),
-      bottomNavigationBar: _buildBottomNavBar(context),
+      bottomNavigationBar: AppBottomNav(appState: widget.appState, current: AppTab.history),
     );
   }
 
@@ -130,7 +130,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
           colors: [AppTheme.primary, AppTheme.primaryContainer],
         ).createShader(bounds),
         child: Text(
-          widget.appState.tHistoryProgress,
+          widget.appState.tHistory,
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
             color: Colors.white,
             fontWeight: FontWeight.w900,
@@ -392,108 +392,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
             tooltip: widget.appState.tDelete,
             onPressed: onDelete,
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildBottomNavBar(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(bottom: 24, top: 16),
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.9),
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-        boxShadow: [
-          BoxShadow(
-            color: AppTheme.primary.withValues(alpha: 0.08),
-            blurRadius: 32,
-            offset: const Offset(0, -8),
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          _buildNavItem(
-            context,
-            Icons.pool,
-            widget.appState.tNavWorkouts,
-            false,
-            onTap: () => Navigator.pop(context),
-          ),
-          _buildNavItem(
-            context,
-            Icons.history,
-            widget.appState.tNavHistory,
-            true,
-          ),
-          _buildNavItem(
-            context,
-            Icons.insights,
-            widget.appState.tNavProgress,
-            false,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildNavItem(
-    BuildContext context,
-    IconData icon,
-    String label,
-    bool isActive, {
-    VoidCallback? onTap,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (isActive)
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [AppTheme.primary, AppTheme.primaryContainer],
-                ),
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Column(
-                children: [
-                  Icon(icon, color: Colors.white),
-                  const SizedBox(height: 4),
-                  Text(
-                    label.toUpperCase(),
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: Colors.white,
-                      fontSize: 10,
-                      letterSpacing: 1.5,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            )
-          else
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-              child: Column(
-                children: [
-                  Icon(icon, color: Colors.grey),
-                  const SizedBox(height: 4),
-                  Text(
-                    label.toUpperCase(),
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: Colors.grey,
-                      fontSize: 10,
-                      letterSpacing: 1.5,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
         ],
       ),
     );

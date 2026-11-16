@@ -13,6 +13,8 @@ class LoggedWorkout {
 
   int get distanceMeters => (workout['distance_meters'] as num?)?.toInt() ?? 0;
 
+  int get durationMinutes => (workout['duration_minutes'] as num?)?.toInt() ?? 0;
+
   Map<String, dynamic> toJson() => {
         'workout': workout,
         'completed_at': completedAt.toUtc().toIso8601String(),

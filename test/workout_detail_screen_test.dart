@@ -212,4 +212,18 @@ void main() {
     expect(find.text('Terminar y guardar'), findsOneWidget);
     expect(tester.takeException(), isNull); // no overflow
   });
+
+  testWidgets('settings button changes the language on the detail screen', (tester) async {
+    final appState = await pumpDetail(tester,
+        mode: SearchMode.distance, value: 2500, repository: FakeWorkoutRepository(rows));
+    expect(find.text('Finish & Log'), findsOneWidget);
+
+    await tester.tap(find.byTooltip('Language'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Català'));
+    await tester.pumpAndSettle();
+
+    expect(appState.currentLanguage, 'ca');
+    expect(find.text('Acabar i desar'), findsOneWidget);
+  });
 }

@@ -4,6 +4,7 @@ import '../core/app_state.dart';
 import '../core/workout_picker.dart';
 import '../core/workout_repository.dart';
 import '../core/workout_share.dart';
+import '../widgets/language_sheet.dart';
 
 class WorkoutDetailScreen extends StatefulWidget {
   final AppState appState;
@@ -128,6 +129,14 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Pushed routes aren't rebuilt by SwimVibeApp, so listen for language changes here.
+    return ListenableBuilder(
+      listenable: widget.appState,
+      builder: (context, _) => _buildScreen(context),
+    );
+  }
+
+  Widget _buildScreen(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme.background,
       body: Stack(
@@ -233,7 +242,8 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
       actions: [
         IconButton(
           icon: const Icon(Icons.settings, color: AppTheme.primaryContainer),
-          onPressed: () {},
+          tooltip: widget.appState.tLanguage,
+          onPressed: () => showLanguageSheet(context, widget.appState),
         )
       ],
     );
