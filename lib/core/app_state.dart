@@ -86,6 +86,8 @@ class AppState extends ChangeNotifier {
   String get tVeryRelaxed => _tr('Very relaxed', 'Muy suave', 'Molt suau');
   String get tFinishAndLog => _tr('Finish & Log', 'Terminar y guardar', 'Acabar i desar');
   String get tLogged => _tr('Logged', 'Guardado', 'Desat');
+  String get tGenerateAnother => _tr('Generate another', 'Generar otro', 'Generar-ne un altre');
+  String get tNoOtherWorkout => _tr('No other workout matches', 'No hay otro entreno que encaje', "No hi ha cap altre entrenament que encaixi");
   String get tShare => _tr('Share', 'Compartir', 'Compartir');
   String get tShareFailed => _tr('Could not share the workout', 'No se ha podido compartir el entreno', "No s'ha pogut compartir l'entrenament");
   String get tSavedToHistory => _tr('Saved to your history', 'Guardado en tu historial', "Desat al teu historial");

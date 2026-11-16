@@ -47,8 +47,9 @@ void main() {
     required int value,
     required WorkoutRepository repository,
     ShareTextFn? share,
+    String lang = 'en',
   }) async {
-    SharedPreferences.setMockInitialValues({});
+    SharedPreferences.setMockInitialValues({AppState.keyLanguage: lang});
     final appState = AppState(await SharedPreferences.getInstance());
     await tester.pumpWidget(MaterialApp(
       home: WorkoutDetailScreen(
@@ -149,5 +150,66 @@ void main() {
     final button = tester.widget<IconButton>(
         find.ancestor(of: find.byIcon(Icons.share), matching: find.byType(IconButton)));
     expect(button.onPressed, isNull);
+  });
+
+  testWidgets('Generate another cycles through the next closest without repeating',
+      (tester) async {
+    final appState = await pumpDetail(tester,
+        mode: SearchMode.distance, value: 2500, repository: FakeWorkoutRepository(rows));
+    expect(find.text('MEDIUM'), findsOneWidget);
+
+    // Log it, then ask for another: the new one can be logged again.
+    await tester.runAsync(() async {
+      await tester.tap(find.text('Finish & Log'));
+      await Future<void>.delayed(Duration.zero);
+    });
+    await tester.pumpAndSettle();
+    expect(find.text('Logged'), findsOneWidget);
+
+    Future<void> another() async {
+      await tester.tap(find.byTooltip('Generate another'));
+      await tester.pumpAndSettle();
+    }
+
+    await another();
+    expect(find.text('LONG'), findsOneWidget); // 1000 m away, tie with Short → longer
+    expect(find.text('Finish & Log'), findsOneWidget);
+
+    await another();
+    expect(find.text('SHORT'), findsOneWidget);
+
+    await another(); // all seen: starts over, skipping the current one
+    expect(find.text('MEDIUM'), findsOneWidget);
+
+    expect(appState.history.entries, hasLength(1));
+  });
+
+  testWidgets('Generate another says so when there is no other workout', (tester) async {
+    await pumpDetail(tester,
+        mode: SearchMode.time,
+        value: 40,
+        repository: FakeWorkoutRepository(rows)); // only Short fits in 40 min
+
+    await tester.tap(find.byTooltip('Generate another'));
+    await tester.pump();
+
+    expect(find.text('SHORT'), findsOneWidget);
+    expect(find.text('No other workout matches'), findsOneWidget);
+  });
+
+  testWidgets('bottom actions fit on a small phone in Spanish', (tester) async {
+    tester.view.physicalSize = const Size(320, 640);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+
+    await pumpDetail(tester,
+        mode: SearchMode.distance,
+        value: 2500,
+        repository: FakeWorkoutRepository(rows),
+        lang: 'es');
+
+    expect(find.byTooltip('Generar otro'), findsOneWidget);
+    expect(find.text('Terminar y guardar'), findsOneWidget);
+    expect(tester.takeException(), isNull); // no overflow
   });
 }

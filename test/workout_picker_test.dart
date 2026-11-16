@@ -103,4 +103,25 @@ void main() {
       );
     });
   });
+
+  group('exclude (Generate another)', () {
+    test('by distance: other workouts at the same distance first, then the next closest', () {
+      String? pick(Set<String> seen) =>
+          pickByDistance(workouts, targetDistance: 900, exclude: seen)?['id'] as String?;
+
+      expect(pick({'900a'}), '900b');
+      expect(pick({'900a', '900b'}), '800a'); // 100 m away; 1100 is 200 m away
+      expect(pick({'900a', '900b', '800a'}), '1100a');
+      expect(pick(workouts.map((w) => w['id'] as String).toSet()), isNull);
+    });
+
+    test('by time: next longest that still fits', () {
+      String? pick(Set<String> seen) =>
+          pickByTime(workouts, availableMinutes: 27, exclude: seen)?['id'] as String?;
+
+      expect(pick({}), '1100a');
+      expect(pick({'1100a'}), '900b');
+      expect(pick({'1100a', '900b'}), '900a');
+    });
+  });
 }

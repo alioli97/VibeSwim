@@ -38,6 +38,12 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
   Map<String, dynamic>? _workout;
   bool _logged = false;
 
+  /// Rows fetched once, reused by "Generate another".
+  List<Map<String, dynamic>> _rows = const [];
+
+  /// Ids already shown on this screen, so "Generate another" doesn't repeat.
+  final Set<Object?> _seen = {};
+
   @override
   void initState() {
     super.initState();
@@ -47,17 +53,48 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
   /// Fetches candidate workouts and picks one by distance or by time
   /// (see `lib/core/workout_picker.dart`).
   Future<Map<String, dynamic>?> _loadWorkout() async {
-    final repo = widget.repository;
-    final workout = switch (widget.mode) {
-      SearchMode.distance =>
-        pickByDistance(await repo.fetchWorkouts(), targetDistance: widget.value),
-      SearchMode.time => pickByTime(
-          await repo.fetchWorkouts(maxMinutes: widget.value),
-          availableMinutes: widget.value,
-        ),
-    };
+    _rows = await widget.repository.fetchWorkouts(
+      maxMinutes: widget.mode == SearchMode.time ? widget.value : null,
+    );
+    final workout = _pick();
+    if (workout != null) _seen.add(workout['id']);
     if (mounted) setState(() => _workout = workout);
     return workout;
+  }
+
+  /// Closest workout to the target that isn't in [exclude].
+  Map<String, dynamic>? _pick({Set<Object?> exclude = const {}}) =>
+      switch (widget.mode) {
+        SearchMode.distance =>
+          pickByDistance(_rows, targetDistance: widget.value, exclude: exclude),
+        SearchMode.time =>
+          pickByTime(_rows, availableMinutes: widget.value, exclude: exclude),
+      };
+
+  /// Shows a workout not seen yet on this screen: others with the same
+  /// distance/time first, then the next closest. Once all have been shown,
+  /// starts over (never repeating the current one).
+  void _generateAnother() {
+    final current = _workout;
+    if (current == null) return;
+    var next = _pick(exclude: _seen);
+    if (next == null) {
+      _seen
+        ..clear()
+        ..add(current['id']);
+      next = _pick(exclude: _seen);
+    }
+    if (next == null) {
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(content: Text(widget.appState.tNoOtherWorkout)));
+      return;
+    }
+    _seen.add(next['id']);
+    setState(() {
+      _workout = next;
+      _logged = false;
+    });
   }
 
   Future<void> _finishAndLog() async {
@@ -111,7 +148,8 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
                   ),
                 );
               }
-              final workout = snapshot.data;
+              // _workout, not snapshot.data: "Generate another" replaces it.
+              final workout = _workout;
               if (workout == null) {
                 return Center(
                   child: Column(
@@ -142,6 +180,8 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
               }
 
               return CustomScrollView(
+                // New workout → new scroll view, back at the top.
+                key: ObjectKey(workout),
                 slivers: [
                   _buildAppBar(context),
                   SliverToBoxAdapter(
@@ -236,23 +276,30 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '${distance}m',
-                    style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w900,
-                        ),
-                  ),
-                  Text(
-                    widget.appState.tSwimSession,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: Colors.white.withValues(alpha: 0.9),
-                        ),
-                  ),
-                ],
+              // Flexible + scaleDown: the big distance shrinks on narrow phones
+              // instead of overflowing.
+              Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        '${distance}m',
+                        style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w900,
+                            ),
+                      ),
+                    ),
+                    Text(
+                      widget.appState.tSwimSession,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            color: Colors.white.withValues(alpha: 0.9),
+                          ),
+                    ),
+                  ],
+                ),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -510,6 +557,33 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
     );
   }
 
+  Widget _buildSquareAction({
+    required IconData icon,
+    required String tooltip,
+    required VoidCallback? onPressed,
+  }) {
+    return Container(
+      width: 64,
+      height: 64,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.1),
+            blurRadius: 20,
+            offset: const Offset(0, 8),
+          )
+        ],
+      ),
+      child: IconButton(
+        icon: Icon(icon, color: AppTheme.primary),
+        tooltip: tooltip,
+        onPressed: onPressed,
+      ),
+    );
+  }
+
   Widget _buildFloatingActions(BuildContext context) {
     return Positioned(
       bottom: 32,
@@ -517,28 +591,19 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
       right: 24,
       child: Row(
         children: [
-          Container(
-            width: 64,
-            height: 64,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(16),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.1),
-                  blurRadius: 20,
-                  offset: const Offset(0, 8),
-                )
-              ],
-            ),
-            child: IconButton(
-              icon: const Icon(Icons.share, color: AppTheme.primary),
-              tooltip: widget.appState.tShare,
-              // Disabled until a workout is shown.
-              onPressed: _workout == null ? null : _share,
-            ),
+          // Both disabled until a workout is shown.
+          _buildSquareAction(
+            icon: Icons.share,
+            tooltip: widget.appState.tShare,
+            onPressed: _workout == null ? null : _share,
           ),
-          const SizedBox(width: 16),
+          const SizedBox(width: 12),
+          _buildSquareAction(
+            icon: Icons.refresh,
+            tooltip: widget.appState.tGenerateAnother,
+            onPressed: _workout == null ? null : _generateAnother,
+          ),
+          const SizedBox(width: 12),
           Expanded(
             child: Container(
               height: 64,
@@ -568,12 +633,17 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
                   children: [
                     Icon(_logged ? Icons.done_all : Icons.check_circle, color: Colors.white),
                     const SizedBox(width: 8),
-                    Text(
-                      _logged ? widget.appState.tLogged : widget.appState.tFinishAndLog,
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleLarge
-                          ?.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+                    Flexible(
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          _logged ? widget.appState.tLogged : widget.appState.tFinishAndLog,
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge
+                              ?.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                      ),
                     ),
                   ],
                 ),
