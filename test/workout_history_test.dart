@@ -114,4 +114,55 @@ void main() {
     expect(history.entries, hasLength(1));
     expect(history.totalDistance, 500);
   });
+
+  group('backup', () {
+    Future<WorkoutHistory> freshHistory() async {
+      SharedPreferences.setMockInitialValues({});
+      return WorkoutHistory(await SharedPreferences.getInstance());
+    }
+
+    test('export → import restores workouts, translations and the goal', () async {
+      final original = WorkoutHistory(prefs);
+      await original.add(workout('a', 800), completedAt: DateTime(2026, 11, 10, 9, 30));
+      await original.add(workout('b', 400), completedAt: DateTime(2026, 11, 12, 18));
+      await original.setWeeklyGoal(7000);
+      final backup = original.exportJson();
+
+      final restored = await freshHistory();
+      expect(await restored.importJson(backup), 2);
+      expect(restored.entries.map((e) => e.workout['id']), ['b', 'a']);
+      expect(restored.entries.last.workout['title_es'], 'Entreno a');
+      expect(restored.entries.last.completedAt, DateTime(2026, 11, 10, 9, 30));
+      expect(restored.weeklyGoalMeters, 7000);
+
+      // Persisted, not just in memory.
+      final reloaded = WorkoutHistory(restored.prefs);
+      expect(reloaded.entries, hasLength(2));
+      expect(reloaded.weeklyGoalMeters, 7000);
+    });
+
+    test('import merges without duplicating entries already there', () async {
+      final history = WorkoutHistory(prefs);
+      await history.add(workout('a', 800), completedAt: DateTime(2026, 11, 10, 9));
+      final backup = history.exportJson();
+      // Same workout done again on another day is a different entry.
+      await history.add(workout('a', 800), completedAt: DateTime(2026, 11, 14, 9));
+
+      expect(await history.importJson(backup), 0);
+      expect(history.entries, hasLength(2));
+    });
+
+    test('skips malformed entries and rejects files that are not backups', () async {
+      final history = WorkoutHistory(prefs);
+      final backup = '{"format": "swimvibe-history", "version": 1, "workouts": ['
+          '{"workout": {"id": "x", "distance_meters": 500}, "completed_at": "2026-11-10T09:00:00Z"},'
+          '{"nonsense": true}]}';
+      expect(await history.importJson(backup), 1);
+
+      for (final bad in ['not json', '[]', '{"workouts": []}', '{"format": "other", "workouts": []}']) {
+        expect(() => history.importJson(bad), throwsFormatException, reason: bad);
+      }
+      expect(history.entries, hasLength(1));
+    });
+  });
 }

@@ -5,6 +5,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:swimvibe/core/app_state.dart';
+import 'package:swimvibe/core/history_backup.dart';
 import 'package:swimvibe/screens/history_screen.dart';
 
 void main() {
@@ -13,10 +14,21 @@ void main() {
     await initializeDateFormatting();
   });
 
-  Future<AppState> pumpHistory(WidgetTester tester, {String lang = 'en'}) async {
+  Future<AppState> pumpHistory(
+    WidgetTester tester, {
+    String lang = 'en',
+    ExportBackupFn? exportBackup,
+    PickBackupFn? pickBackup,
+  }) async {
     SharedPreferences.setMockInitialValues({AppState.keyLanguage: lang});
     final appState = AppState(await SharedPreferences.getInstance());
-    await tester.pumpWidget(MaterialApp(home: HistoryScreen(appState: appState)));
+    await tester.pumpWidget(MaterialApp(
+      home: HistoryScreen(
+        appState: appState,
+        exportBackup: exportBackup ?? (_, _) async {},
+        pickBackup: pickBackup ?? () async => null,
+      ),
+    ));
     return appState;
   }
 
@@ -115,5 +127,53 @@ void main() {
     expect(find.text('50%'), findsOneWidget); // 1,000 of 2,000
     expect(find.text('1,000m of 2,000m completed'), findsOneWidget);
     expect(appState.history.weeklyGoalMeters, 2000);
+  });
+
+  Future<void> openMenuAndTap(WidgetTester tester, String item) async {
+    await tester.tap(find.byTooltip('Backup'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text(item));
+    await tester.pumpAndSettle();
+  }
+
+  testWidgets('export hands the backup JSON to the share sheet', (tester) async {
+    String? exported, fileName;
+    final appState = await pumpHistory(tester, exportBackup: (json, name) async {
+      exported = json;
+      fileName = name;
+    });
+    await tester.runAsync(() => appState.history.add({'id': 'a', 'distance_meters': 800}));
+    await tester.pump();
+
+    await openMenuAndTap(tester, 'Export backup');
+
+    expect(fileName, matches(RegExp(r'^swimvibe-backup-\d{4}-\d{2}-\d{2}\.json$')));
+    expect(exported, contains('"swimvibe-history"'));
+    expect(exported, contains('"distance_meters": 800'));
+  });
+
+  testWidgets('import merges the chosen backup and reports how many', (tester) async {
+    // A backup made from another phone.
+    SharedPreferences.setMockInitialValues({});
+    final other = AppState(await SharedPreferences.getInstance());
+    await other.history.add({'id': 'x', 'distance_meters': 1000, 'title_en': 'From backup'});
+    final backup = other.history.exportJson();
+
+    final appState = await pumpHistory(tester, pickBackup: () async => backup);
+    await tester.runAsync(() => openMenuAndTap(tester, 'Import backup'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('1 workout imported'), findsOneWidget);
+    expect(find.text('From backup'), findsOneWidget);
+    expect(appState.history.totalDistance, 1000);
+  });
+
+  testWidgets('import of a file that is not a backup shows an error', (tester) async {
+    final appState = await pumpHistory(tester, pickBackup: () async => '{"hello": 1}');
+    await tester.runAsync(() => openMenuAndTap(tester, 'Import backup'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('This file is not a SwimVibe backup'), findsOneWidget);
+    expect(appState.history.entries, isEmpty);
   });
 }
