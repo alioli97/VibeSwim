@@ -95,6 +95,55 @@ class WorkoutHistory extends ChangeNotifier {
     return true;
   }
 
+  /// Marks a file as a SwimVibe backup (checked by [importJson]).
+  static const String backupFormat = 'swimvibe-history';
+
+  /// Whole history + weekly goal as JSON, to save or share as a backup.
+  String exportJson({DateTime? now}) => const JsonEncoder.withIndent('  ').convert({
+        'format': backupFormat,
+        'version': 1,
+        'exported_at': (now ?? DateTime.now()).toUtc().toIso8601String(),
+        'weekly_goal_meters': _weeklyGoalMeters,
+        'workouts': _entries.map((e) => e.toJson()).toList(),
+      });
+
+  /// Merges a backup made by [exportJson] into the history: entries already
+  /// present (same workout id and completion time) are skipped, malformed
+  /// ones ignored, and the weekly goal is restored. Returns how many
+  /// workouts were added. Throws [FormatException] if [json] isn't a backup.
+  Future<int> importJson(String json) async {
+    final Object? decoded;
+    try {
+      decoded = jsonDecode(json);
+    } on FormatException {
+      throw const FormatException('Not a SwimVibe backup');
+    }
+    if (decoded is! Map || decoded['format'] != backupFormat || decoded['workouts'] is! List) {
+      throw const FormatException('Not a SwimVibe backup');
+    }
+
+    String key(LoggedWorkout e) =>
+        '${e.workout['id']}@${e.completedAt.toUtc().millisecondsSinceEpoch}';
+    final existing = _entries.map(key).toSet();
+    var added = 0;
+    for (final entry in (decoded['workouts'] as List).map(LoggedWorkout.fromJson)) {
+      if (entry != null && existing.add(key(entry))) {
+        _entries.add(entry);
+        added++;
+      }
+    }
+    _entries.sort((a, b) => b.completedAt.compareTo(a.completedAt));
+
+    final goal = decoded['weekly_goal_meters'];
+    if (goal is int && goal > 0) {
+      _weeklyGoalMeters = goal;
+      await prefs.setInt(keyWeeklyGoal, goal);
+    }
+    notifyListeners();
+    await _save();
+    return added;
+  }
+
   Future<void> _save() => prefs.setString(
         keyHistory,
         jsonEncode(_entries.map((e) => e.toJson()).toList()),

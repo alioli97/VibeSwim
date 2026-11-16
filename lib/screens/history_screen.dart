@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
 import '../core/app_state.dart';
+import '../core/history_backup.dart';
 import '../core/workout_history.dart';
 import '../widgets/app_bottom_nav.dart';
 import '../widgets/number_dialog.dart';
@@ -8,7 +9,17 @@ import 'package:intl/intl.dart';
 
 class HistoryScreen extends StatefulWidget {
   final AppState appState;
-  const HistoryScreen({super.key, required this.appState});
+
+  /// Backup file I/O; tests pass fakes.
+  final ExportBackupFn exportBackup;
+  final PickBackupFn pickBackup;
+
+  const HistoryScreen({
+    super.key,
+    required this.appState,
+    this.exportBackup = shareBackupFile,
+    this.pickBackup = pickBackupFile,
+  });
 
   @override
   State<HistoryScreen> createState() => _HistoryScreenState();
@@ -137,7 +148,65 @@ class _HistoryScreenState extends State<HistoryScreen> {
           ),
         ),
       ),
+      actions: [
+        PopupMenuButton<_BackupAction>(
+          icon: const Icon(Icons.more_vert, color: AppTheme.primary),
+          tooltip: widget.appState.tBackup,
+          onSelected: (action) => switch (action) {
+            _BackupAction.export => _export(),
+            _BackupAction.import => _import(),
+          },
+          itemBuilder: (context) => [
+            PopupMenuItem(
+              value: _BackupAction.export,
+              child: ListTile(
+                leading: const Icon(Icons.upload_file),
+                title: Text(widget.appState.tExportBackup),
+              ),
+            ),
+            PopupMenuItem(
+              value: _BackupAction.import,
+              child: ListTile(
+                leading: const Icon(Icons.download),
+                title: Text(widget.appState.tImportBackup),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
+  }
+
+  void _snack(String text) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text(text)));
+  }
+
+  Future<void> _export() async {
+    try {
+      await widget.exportBackup(_history.exportJson(), backupFileName(DateTime.now()));
+    } catch (_) {
+      _snack(widget.appState.tExportFailed);
+    }
+  }
+
+  Future<void> _import() async {
+    final String? json;
+    try {
+      json = await widget.pickBackup();
+    } catch (_) {
+      _snack(widget.appState.tImportFailed);
+      return;
+    }
+    if (json == null) return; // cancelled
+    try {
+      final added = await _history.importJson(json);
+      _snack(widget.appState.tImported(added));
+    } on FormatException {
+      _snack(widget.appState.tNotABackup);
+    }
   }
 
   Future<void> _delete(LoggedWorkout entry) async {
@@ -397,3 +466,5 @@ class _HistoryScreenState extends State<HistoryScreen> {
     );
   }
 }
+
+enum _BackupAction { export, import }

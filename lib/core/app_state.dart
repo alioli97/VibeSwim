@@ -105,6 +105,17 @@ class AppState extends ChangeNotifier {
   String get tDelete => _tr('Delete', 'Borrar', 'Esborrar');
   String get tUndo => _tr('Undo', 'Deshacer', 'Desfer');
   String get tWorkoutDeleted => _tr('Workout deleted', 'Entreno borrado', 'Entrenament esborrat');
+  String get tBackup => _tr('Backup', 'Copia de seguridad', 'Còpia de seguretat');
+  String get tExportBackup => _tr('Export backup', 'Exportar copia', 'Exportar còpia');
+  String get tImportBackup => _tr('Import backup', 'Importar copia', 'Importar còpia');
+  String get tExportFailed => _tr('Could not export the history', 'No se ha podido exportar el historial', "No s'ha pogut exportar l'historial");
+  String get tImportFailed => _tr('Could not open the file', 'No se ha podido abrir el archivo', "No s'ha pogut obrir el fitxer");
+  String get tNotABackup => _tr('This file is not a SwimVibe backup', 'Este archivo no es una copia de SwimVibe', 'Aquest fitxer no és una còpia de SwimVibe');
+  String tImported(int n) => _tr(
+        n == 1 ? '1 workout imported' : '$n workouts imported',
+        n == 1 ? '1 entreno importado' : '$n entrenos importados',
+        n == 1 ? '1 entrenament importat' : '$n entrenaments importats',
+      );
   String tCompletedOf(String done, String goal) => _tr(
         '$done of $goal completed',
         '$done de $goal completados',
