@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SwimVibe - Workout Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed": "#091f21",
+                    "on-primary-container": "#a5bdff",
+                    "surface-dim": "#d6dbdd",
+                    "primary-fixed": "#dae2ff",
+                    "tertiary-fixed-dim": "#ffb59a",
+                    "secondary": "#4d6265",
+                    "on-tertiary-fixed": "#380d00",
+                    "inverse-surface": "#2c3133",
+                    "surface": "#f5fafc",
+                    "tertiary-fixed": "#ffdbcf",
+                    "inverse-primary": "#b1c5ff",
+                    "on-primary-fixed-variant": "#00419e",
+                    "on-tertiary-fixed-variant": "#802900",
+                    "on-secondary-fixed-variant": "#364a4d",
+                    "surface-container": "#eaeff1",
+                    "background": "#f5fafc",
+                    "surface-container-low": "#eff4f6",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#ecf2f4",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#b4cbce",
+                    "secondary-container": "#d0e7ea",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#c3c6d5",
+                    "tertiary-container": "#8b2e01",
+                    "on-primary-fixed": "#001946",
+                    "on-surface-variant": "#434653",
+                    "surface-variant": "#dee3e5",
+                    "outline": "#737784",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#53686b",
+                    "on-secondary": "#ffffff",
+                    "surface-tint": "#2559bd",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed": "#d0e7ea",
+                    "on-background": "#171c1e",
+                    "surface-bright": "#f5fafc",
+                    "surface-container-high": "#e4e9eb",
+                    "on-surface": "#171c1e",
+                    "primary-fixed-dim": "#b1c5ff",
+                    "on-tertiary-container": "#ffaa8a",
+                    "on-error-container": "#93000a",
+                    "tertiary": "#651f00",
+                    "on-error": "#ffffff",
+                    "primary-container": "#0047ab",
+                    "primary": "#00327d",
+                    "surface-container-highest": "#dee3e5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1rem",
+                    "3xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Lexend"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-header {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Anchor -->
+<nav class="flex justify-between items-center px-6 h-16 w-full fixed top-0 z-50 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,71,171,0.06)]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#0047AB]" data-icon="arrow_back">arrow_back</span>
+<span class="font-lexend font-black text-2xl bg-gradient-to-r from-[#00327d] to-[#0047ab] bg-clip-text text-transparent">SwimVibe</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#0047AB]" data-icon="settings">settings</span>
+</div>
+</nav>
+<main class="pt-20 pb-32 px-4 max-w-2xl mx-auto">
+<!-- Hero Header Card (Asymmetric Layout) -->
+<header class="relative overflow-hidden rounded-3xl bg-primary-container p-8 mb-8 shadow-xl">
+<div class="relative z-10">
+<p class="font-label text-on-primary-container/80 text-xs uppercase tracking-[0.2em] mb-2">Morning Endurance</p>
+<div class="flex justify-between items-end">
+<div>
+<h1 class="font-headline font-black text-6xl text-white tracking-tighter">2500m</h1>
+<p class="font-body text-on-primary-container font-medium text-lg">Threshold Focus</p>
+</div>
+<div class="text-right">
+<span class="material-symbols-outlined text-white text-3xl mb-1" data-icon="schedule">schedule</span>
+<p class="font-headline font-bold text-2xl text-white">45 min</p>
+</div>
+</div>
+</div>
+<!-- Decorative "Water" Elements -->
+<div class="absolute -bottom-12 -right-12 w-64 h-64 bg-primary/20 rounded-full blur-3xl"></div>
+<div class="absolute -top-12 -left-12 w-48 h-48 bg-cyan-400/10 rounded-full blur-2xl"></div>
+</header>
+<!-- Stats Overview Bento (Brief) -->
+<div class="grid grid-cols-2 gap-4 mb-8">
+<div class="bg-surface-container-low p-4 rounded-2xl flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="speed">speed</span>
+</div>
+<div>
+<p class="text-[10px] uppercase font-label tracking-widest text-secondary">Est. Pace</p>
+<p class="font-headline font-bold text-on-surface">1:48/100m</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-2xl flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="water_waves">waves</span>
+</div>
+<div>
+<p class="text-[10px] uppercase font-label tracking-widest text-secondary">Intensity</p>
+<p class="font-headline font-bold text-on-surface">Moderate</p>
+</div>
+</div>
+</div>
+<!-- The Plan Section -->
+<section class="space-y-6">
+<h2 class="font-headline font-extrabold text-2xl px-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="assignment">assignment</span>
+                The Plan
+            </h2>
+<!-- Warm-up Block -->
+<div class="bg-surface-container-lowest rounded-3xl p-6 shadow-sm border border-outline-variant/10">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline font-bold text-lg text-primary">Warm-up</h3>
+<p class="text-sm text-secondary">Get the blood flowing</p>
+</div>
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">400m</span>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-4 p-3 bg-surface-container rounded-xl">
+<div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center font-headline font-bold text-primary">4x</div>
+<div class="flex-1">
+<p class="font-bold text-on-surface">100m easy freestyle</p>
+<p class="text-xs text-secondary">RPE 3 • focus on long strokes</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Set Block -->
+<div class="bg-surface-container-lowest rounded-3xl p-6 shadow-md border-l-4 border-primary">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline font-bold text-lg text-primary">Main Set</h3>
+<p class="text-sm text-secondary">Threshold &amp; Technique</p>
+</div>
+<span class="bg-primary text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">1200m</span>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-4 p-4 bg-surface-container rounded-2xl">
+<div class="w-10 h-10 rounded-xl bg-primary-container text-white flex items-center justify-center font-headline font-bold text-lg">10x</div>
+<div class="flex-1">
+<p class="font-bold text-lg text-on-surface">100m freestyle</p>
+<div class="flex gap-4 mt-1">
+<span class="text-xs font-label text-primary font-bold">INTERVAL: 1:45</span>
+<span class="text-xs font-label text-secondary">RPE 7-8</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 bg-surface-container/50 rounded-2xl">
+<div class="w-10 h-10 rounded-xl bg-secondary-container text-primary flex items-center justify-center font-headline font-bold text-lg">4x</div>
+<div class="flex-1">
+<p class="font-bold text-on-surface">50m kick</p>
+<p class="text-xs text-secondary">Board optional • focus on hip rotation</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Cool down Block -->
+<div class="bg-surface-container-lowest rounded-3xl p-6 shadow-sm border border-outline-variant/10">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline font-bold text-lg text-primary">Cool down</h3>
+<p class="text-sm text-secondary">Recovery and stretch</p>
+</div>
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">200m</span>
+</div>
+<div class="flex items-center gap-4 p-3 bg-surface-container rounded-xl">
+<div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center font-headline font-bold text-primary">1x</div>
+<div class="flex-1">
+<p class="font-bold text-on-surface">200m slow swim</p>
+<p class="text-xs text-secondary">Choice of stroke • very relaxed</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Aesthetic Lifestyle Visual -->
+<section class="mt-8">
+<div class="rounded-3xl h-48 w-full relative overflow-hidden group">
+<img alt="Swimming pool" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Close-up of crystal clear blue pool water with light refracting through the surface creating organic wave patterns" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg_hY-D60EgxzrK93o9sVxzOSs2LqFJerkILXYoiXNyJ-gwOhpGEYkFC1Iu1ZgICql8XZwYhuABOqh_gijBYEtE6TKCAAeFtzbI7491sAfc5D99t3xISGrzP3s66OTDdDgAOnVsmhDfmUxaxOs8ixZStGjTJ5fMDaYpWxUv7SUVbeE_E0MpEjaTPFzpNjj4CnJ_ImyrNv_tSdm_KmZAQrCOq4gEtEZvzZOCU7cSViVem0FI4-6YPoFXVm8CLHJCAwHu-ZUiu4jxFfR"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-6">
+<p class="text-white font-lexend font-medium italic">"The water is your friend... you don't have to fight with water, just share the same spirit as the water, and it will help you move."</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Buttons Layer -->
+<div class="fixed bottom-8 left-0 w-full px-6 flex items-center gap-4 z-50 pointer-events-none">
+<!-- Share FAB -->
+<button class="pointer-events-auto h-16 w-16 rounded-2xl bg-white shadow-2xl flex items-center justify-center text-primary active:scale-95 transition-all duration-200">
+<span class="material-symbols-outlined text-3xl" data-icon="share">share</span>
+</button>
+<!-- Main Finish & Log FAB -->
+<button class="pointer-events-auto flex-1 h-16 rounded-2xl bg-gradient-to-r from-primary to-primary-container text-white shadow-2xl flex items-center justify-center gap-3 active:scale-[0.98] transition-all duration-200">
+<span class="material-symbols-outlined text-2xl" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-headline font-bold text-lg tracking-tight">Finish &amp; Log</span>
+</button>
+</div>
+<!-- Hidden Navigation Shell Logic (Suppressed for focused task) -->
+</body></html>
