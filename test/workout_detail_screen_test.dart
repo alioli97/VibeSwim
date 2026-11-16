@@ -48,9 +48,15 @@ void main() {
     required WorkoutRepository repository,
     ShareTextFn? share,
     String lang = 'en',
+    DifficultyFilter difficulty = DifficultyFilter.any,
+    List<String> doneRecently = const [],
   }) async {
     SharedPreferences.setMockInitialValues({AppState.keyLanguage: lang});
     final appState = AppState(await SharedPreferences.getInstance());
+    for (final id in doneRecently) {
+      await appState.history.add({'id': id, 'distance_meters': 100},
+          completedAt: DateTime.now().subtract(const Duration(days: 3)));
+    }
     await tester.pumpWidget(MaterialApp(
       home: WorkoutDetailScreen(
         appState: appState,
@@ -58,6 +64,7 @@ void main() {
         value: value,
         repository: repository,
         share: share ?? (_, _) async {},
+        difficulty: difficulty,
       ),
     ));
     await tester.pumpAndSettle();
@@ -225,5 +232,54 @@ void main() {
 
     expect(appState.currentLanguage, 'ca');
     expect(find.text('Acabar i desar'), findsOneWidget);
+  });
+
+  group('smarter picking', () {
+    final leveled = [
+      {...workout('Easy 2400', 2400, 45), 'difficulty_level_en': 'Beginner'},
+      {...workout('Hard 2400', 2400, 45), 'difficulty_level_en': 'Advanced / Expert'},
+      {...workout('Mid 2200', 2200, 40), 'difficulty_level_en': 'Intermediate'},
+    ];
+
+    testWidgets('skips a workout done in the last 14 days', (tester) async {
+      await pumpDetail(tester,
+          mode: SearchMode.distance,
+          value: 2500,
+          repository: FakeWorkoutRepository(rows),
+          doneRecently: ['Medium']);
+
+      expect(find.text('MEDIUM'), findsNothing);
+      expect(find.text('LONG'), findsOneWidget); // next closest that wasn't done
+    });
+
+    testWidgets('still shows a recent workout when nothing else fits', (tester) async {
+      await pumpDetail(tester,
+          mode: SearchMode.time,
+          value: 40,
+          repository: FakeWorkoutRepository(rows), // only Short fits
+          doneRecently: ['Short']);
+
+      expect(find.text('SHORT'), findsOneWidget);
+    });
+
+    testWidgets('only picks workouts of the chosen difficulty', (tester) async {
+      await pumpDetail(tester,
+          mode: SearchMode.distance,
+          value: 2400,
+          repository: FakeWorkoutRepository(leveled),
+          difficulty: DifficultyFilter.advanced);
+
+      expect(find.text('HARD 2400'), findsOneWidget);
+    });
+
+    testWidgets('says when no workout has the chosen difficulty', (tester) async {
+      await pumpDetail(tester,
+          mode: SearchMode.distance,
+          value: 2400,
+          repository: FakeWorkoutRepository(rows), // no difficulty at all
+          difficulty: DifficultyFilter.beginner);
+
+      expect(find.text('No beginner workouts match. Try another difficulty.'), findsOneWidget);
+    });
   });
 }

@@ -19,6 +19,9 @@ class WorkoutDetailScreen extends StatefulWidget {
   /// Opens the share sheet; tests pass a fake.
   final ShareTextFn share;
 
+  /// Only workouts of this difficulty are considered.
+  final DifficultyFilter difficulty;
+
   const WorkoutDetailScreen({
     super.key,
     required this.appState,
@@ -26,6 +29,7 @@ class WorkoutDetailScreen extends StatefulWidget {
     required this.value,
     this.repository = const SupabaseWorkoutRepository(),
     this.share = shareWithSystem,
+    this.difficulty = DifficultyFilter.any,
   });
 
   @override
@@ -45,6 +49,12 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
   /// Ids already shown on this screen, so "Generate another" doesn't repeat.
   final Set<Object?> _seen = {};
 
+  /// Ids logged in the last 14 days: avoided while there are alternatives.
+  Set<Object?> _recent = const {};
+
+  /// True when workouts fit the distance/time but none has the difficulty.
+  bool _onlyDifficultyMissing = false;
+
   @override
   void initState() {
     super.initState();
@@ -54,22 +64,31 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
   /// Fetches candidate workouts and picks one by distance or by time
   /// (see `lib/core/workout_picker.dart`).
   Future<Map<String, dynamic>?> _loadWorkout() async {
-    _rows = await widget.repository.fetchWorkouts(
+    final rows = await widget.repository.fetchWorkouts(
       maxMinutes: widget.mode == SearchMode.time ? widget.value : null,
     );
+    _rows = rows.where((w) => matchesDifficulty(w, widget.difficulty)).toList();
+    _recent = widget.appState.history.recentWorkoutIds();
     final workout = _pick();
+    _onlyDifficultyMissing = workout == null && _pickFrom(rows, const {}) != null;
     if (workout != null) _seen.add(workout['id']);
     if (mounted) setState(() => _workout = workout);
     return workout;
   }
 
-  /// Closest workout to the target that isn't in [exclude].
+  /// Closest workout to the target that isn't in [exclude], preferring
+  /// ones not done recently: those are only picked when nothing else fits.
   Map<String, dynamic>? _pick({Set<Object?> exclude = const {}}) =>
+      _pickExcluding({...exclude, ..._recent}) ?? _pickExcluding(exclude);
+
+  Map<String, dynamic>? _pickExcluding(Set<Object?> exclude) => _pickFrom(_rows, exclude);
+
+  Map<String, dynamic>? _pickFrom(List<Map<String, dynamic>> rows, Set<Object?> exclude) =>
       switch (widget.mode) {
         SearchMode.distance =>
-          pickByDistance(_rows, targetDistance: widget.value, exclude: exclude),
+          pickByDistance(rows, targetDistance: widget.value, exclude: exclude),
         SearchMode.time =>
-          pickByTime(_rows, availableMinutes: widget.value, exclude: exclude),
+          pickByTime(rows, availableMinutes: widget.value, exclude: exclude),
       };
 
   /// Shows a workout not seen yet on this screen: others with the same
@@ -169,9 +188,12 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 32),
                         child: Text(
-                          widget.mode == SearchMode.time
-                              ? widget.appState.tNoWorkoutFits(widget.value)
-                              : widget.appState.tNoWorkouts,
+                          _onlyDifficultyMissing
+                              ? widget.appState.tNoWorkoutsForDifficulty(
+                                  widget.appState.difficultyName(widget.difficulty).toLowerCase())
+                              : widget.mode == SearchMode.time
+                                  ? widget.appState.tNoWorkoutFits(widget.value)
+                                  : widget.appState.tNoWorkouts,
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.titleLarge?.copyWith(
                                 color: AppTheme.primary,

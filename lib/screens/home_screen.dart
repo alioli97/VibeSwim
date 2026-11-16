@@ -128,6 +128,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     _dimUnlessActive(SearchMode.distance, _buildDistanceCard()),
                     const SizedBox(height: 24),
                     _dimUnlessActive(SearchMode.time, _buildTimeCard()),
+                    const SizedBox(height: 24),
+                    _buildDifficultySelector(),
                     const SizedBox(height: 32),
                     _buildGenerateAction(context),
                   ],
@@ -239,6 +241,46 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  /// Chips to restrict the generated workout to a difficulty (persisted in
+  /// AppState; applies to both search modes).
+  Widget _buildDifficultySelector() {
+    final appState = widget.appState;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          appState.tDifficultyLabel,
+          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                color: AppTheme.primary,
+                fontWeight: FontWeight.bold,
+              ),
+        ),
+        const SizedBox(height: 8),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final filter in DifficultyFilter.values)
+              ChoiceChip(
+                label: Text(appState.difficultyName(filter)),
+                selected: appState.difficulty == filter,
+                onSelected: (_) => appState.setDifficulty(filter),
+                selectedColor: AppTheme.primaryContainer,
+                backgroundColor: AppTheme.surfaceContainerLow,
+                showCheckmark: false,
+                side: BorderSide.none,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                labelStyle: TextStyle(
+                  color: appState.difficulty == filter ? Colors.white : AppTheme.primary,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+          ],
+        ),
+      ],
     );
   }
 
@@ -528,6 +570,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     value: _searchMode == SearchMode.distance
                         ? _selectedDistance
                         : _selectedTime,
+                    difficulty: widget.appState.difficulty,
                   ),
                 ),
               );

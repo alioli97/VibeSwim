@@ -124,4 +124,27 @@ void main() {
       expect(pick({'1100a', '900b'}), '900a');
     });
   });
+
+  group('matchesDifficulty', () {
+    Map<String, dynamic> level(String? en) => {'difficulty_level_en': en};
+
+    test('any matches everything, including rows without difficulty', () {
+      expect(matchesDifficulty(level(null), DifficultyFilter.any), isTrue);
+      expect(matchesDifficulty(level('Advanced'), DifficultyFilter.any), isTrue);
+    });
+
+    test('combos match each of their levels; Expert counts as advanced', () {
+      expect(matchesDifficulty(level('Beginner / Intermediate'), DifficultyFilter.beginner), isTrue);
+      expect(matchesDifficulty(level('Beginner / Intermediate'), DifficultyFilter.intermediate), isTrue);
+      expect(matchesDifficulty(level('Beginner / Intermediate'), DifficultyFilter.advanced), isFalse);
+      expect(matchesDifficulty(level('Advanced / Expert'), DifficultyFilter.advanced), isTrue);
+      expect(matchesDifficulty(level('Expert'), DifficultyFilter.advanced), isTrue);
+      expect(matchesDifficulty(level('intermediate'), DifficultyFilter.intermediate), isTrue);
+    });
+
+    test('rows without difficulty only match any', () {
+      expect(matchesDifficulty(level(null), DifficultyFilter.beginner), isFalse);
+      expect(matchesDifficulty({}, DifficultyFilter.advanced), isFalse);
+    });
+  });
 }

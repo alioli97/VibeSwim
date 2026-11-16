@@ -3,9 +3,11 @@ import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'workout_history.dart';
+import 'workout_picker.dart';
 
 class AppState extends ChangeNotifier {
   static const String keyLanguage = 'language_code';
+  static const String keyDifficulty = 'difficulty_filter';
 
   String _currentLanguage = 'en'; // 'en', 'es', 'ca'
   String get currentLanguage => _currentLanguage;
@@ -17,6 +19,19 @@ class AppState extends ChangeNotifier {
 
   AppState(this.prefs) : history = WorkoutHistory(prefs) {
     _currentLanguage = prefs.getString(keyLanguage) ?? 'en';
+    _difficulty = DifficultyFilter.values.asNameMap()[prefs.getString(keyDifficulty)] ??
+        DifficultyFilter.any;
+  }
+
+  /// Difficulty filter chosen on the home screen (persisted).
+  DifficultyFilter _difficulty = DifficultyFilter.any;
+  DifficultyFilter get difficulty => _difficulty;
+
+  void setDifficulty(DifficultyFilter filter) {
+    if (_difficulty == filter) return;
+    _difficulty = filter;
+    prefs.setString(keyDifficulty, filter.name);
+    notifyListeners();
   }
 
   void setLanguage(String lang) {
@@ -52,6 +67,22 @@ class AppState extends ChangeNotifier {
   String get tHistory => _tr('History', 'Historial', 'Historial');
   String get tSetCustom => _tr('SET CUSTOM', 'PERSONALIZAR', 'PERSONALITZAR');
   String get tCustom => _tr('CUSTOM', 'OTRO', 'ALTRE');
+  String get tDifficultyLabel => _tr('Difficulty', 'Dificultad', 'Dificultat');
+  String get tAnyDifficulty => _tr('Any', 'Cualquiera', 'Qualsevol');
+  String get tBeginner => _tr('Beginner', 'Principiante', 'Principiant');
+  String get tIntermediate => _tr('Intermediate', 'Intermedio', 'Intermedi');
+  String get tAdvanced => _tr('Advanced', 'Avanzado', 'Avançat');
+  String difficultyName(DifficultyFilter f) => switch (f) {
+        DifficultyFilter.any => tAnyDifficulty,
+        DifficultyFilter.beginner => tBeginner,
+        DifficultyFilter.intermediate => tIntermediate,
+        DifficultyFilter.advanced => tAdvanced,
+      };
+  String tNoWorkoutsForDifficulty(String level) => _tr(
+        'No $level workouts match. Try another difficulty.',
+        'No hay entrenos de nivel $level que encajen. Prueba otra dificultad.',
+        "No hi ha entrenaments de nivell $level que encaixin. Prova una altra dificultat.",
+      );
   String get tLanguage => _tr('Language', 'Idioma', 'Idioma');
 
   // Dialogs and common

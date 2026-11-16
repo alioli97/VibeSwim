@@ -165,4 +165,15 @@ void main() {
       expect(history.entries, hasLength(1));
     });
   });
+
+  test('recentWorkoutIds returns workouts logged in the last 14 days', () async {
+    final history = WorkoutHistory(prefs);
+    final now = DateTime(2026, 11, 17, 12);
+    await history.add(workout('today', 400), completedAt: DateTime(2026, 11, 17, 8));
+    await history.add(workout('13days', 400), completedAt: DateTime(2026, 11, 4, 13));
+    await history.add(workout('15days', 400), completedAt: DateTime(2026, 11, 2, 12));
+
+    expect(history.recentWorkoutIds(now: now), {'today', '13days'});
+    expect(history.recentWorkoutIds(now: now, within: const Duration(days: 1)), {'today'});
+  });
 }
