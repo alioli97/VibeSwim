@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import '../theme/app_theme.dart';
 import '../core/app_state.dart';
 import '../core/workout_picker.dart';
+import '../core/workout_repository.dart';
 
 class WorkoutDetailScreen extends StatefulWidget {
   final AppState appState;
@@ -11,11 +11,15 @@ class WorkoutDetailScreen extends StatefulWidget {
   /// Target meters when [mode] is distance, available minutes when it is time.
   final int value;
 
+  /// Source of workouts; Supabase unless a test passes a fake.
+  final WorkoutRepository repository;
+
   const WorkoutDetailScreen({
     super.key,
     required this.appState,
     required this.mode,
     required this.value,
+    this.repository = const SupabaseWorkoutRepository(),
   });
 
   @override
@@ -38,11 +42,12 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
   /// Fetches candidate workouts and picks one by distance or by time
   /// (see `lib/core/workout_picker.dart`).
   Future<Map<String, dynamic>?> _loadWorkout() async {
-    final query = Supabase.instance.client.from('workouts').select();
+    final repo = widget.repository;
     final workout = switch (widget.mode) {
-      SearchMode.distance => pickByDistance(await query, targetDistance: widget.value),
+      SearchMode.distance =>
+        pickByDistance(await repo.fetchWorkouts(), targetDistance: widget.value),
       SearchMode.time => pickByTime(
-          await query.lte('duration_minutes', widget.value),
+          await repo.fetchWorkouts(maxMinutes: widget.value),
           availableMinutes: widget.value,
         ),
     };
