@@ -1,0 +1,42 @@
+/* Shared style of the SwimVibe pages (privacy policy and support). */
+:root {
+  --bg: #f5fafc; --surface: #ffffff; --fg: #12233f; --muted: #4d6265;
+  --line: #d6e2ee; --accent: #0047ab; --accent-soft: #e3edfa;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d1524; --surface: #152036; --fg: #e3eaf5; --muted: #a3b3c7;
+    --line: #26344d; --accent: #8fb4ff; --accent-soft: #1a2c4d; color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font: 16px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  padding: 32px max(16px, env(safe-area-inset-right)) 56px max(16px, env(safe-area-inset-left));
+}
+main { max-width: 720px; margin: 0 auto; }
+header { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+header img { width: 56px; height: 56px; border-radius: 14px; }
+.app { font-weight: 600; color: var(--muted); font-size: 15px; }
+h1 { font-size: 30px; line-height: 1.2; margin: 4px 0 0; }
+h2 { font-size: 20px; margin: 32px 0 8px; }
+h3 { font-size: 17px; margin: 24px 0 4px; }
+p, li { max-width: 65ch; }
+ul { padding-left: 22px; }
+li + li { margin-top: 6px; }
+a { color: var(--accent); }
+.updated { color: var(--muted); font-size: 14px; margin: 4px 0 20px; }
+.summary {
+  background: var(--accent-soft); border: 1px solid var(--line); border-radius: 12px;
+  padding: 16px 20px; margin: 20px 0;
+}
+.summary p { margin: 0; }
+nav.lang { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 0; }
+nav.lang a {
+  text-decoration: none; padding: 6px 14px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--fg); font-size: 14px;
+}
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+section + section { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 16px; }
+.links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }

@@ -1,0 +1,22 @@
+SCREEN RECORDING
+A screen recording made on a physical iPhone is attached to our reply in App Review. It starts at app launch and shows Home (distance and time), generating a workout, "Generate another", favorites, "Finish & Log", History (weekly goal, delete, export backup) and Progress. The app has no accounts, no login, no user-generated content shared with others and no paid content or in-app purchases.
+
+1. PURPOSE AND AUDIENCE
+SwimVibe is a swim training app for adults and teenagers who swim laps in a pool, from beginners to experienced swimmers and triathletes. Many swimmers arrive at the pool without a plan, or with a fixed amount of time, and end up swimming the same continuous laps. SwimVibe gives them a complete structured workout (warm-up, main set and cool-down) that matches the distance they want to swim or the time they have, and lets them log it and follow a weekly distance goal.
+
+2. HOW TO USE THE MAIN FEATURES
+No login, credentials or sample files are needed. An internet connection is needed to generate a workout.
+- Home: choose "Distance" (meters) or "Time" (minutes) and a value (or "CUSTOM"), optionally a difficulty, and tap "Generate Workout". The workout screen shows the plan.
+- Workout screen: "Generate another" (circular arrow) shows a different workout, the star adds it to Favorites, the share button sends it as text, the gear changes the language, and "Finish & Log" saves it to the history.
+- History (bottom bar): totals, weekly goal (tap it to change it) and the logged workouts; swipe or tap the bin to delete one. The ⋮ menu exports or imports a backup file (JSON).
+- Progress (bottom bar): last 8 weeks against the weekly goal, streak and totals.
+- Favorites: the star on the Home screen.
+
+3. EXTERNAL SERVICES
+The workouts are read from a database hosted on Supabase (supabase.com), using its public read-only API key. The request contains no personal data (no account, no identifiers, no history). Nothing is written to the server. There are no analytics, ads, payments, authentication or AI services. The history, weekly goal and favorites are stored only on the device; backups are files the user exports or imports through the system share sheet / file picker.
+
+4. REGIONAL DIFFERENCES
+The app works the same in every region. The interface is in English, Spanish and Catalan, and distances are in meters.
+
+5. REGULATED INDUSTRY AND HEALTH
+The app is not a medical device and makes no health claims. It shows general swimming workouts written by the developer; it does not measure anything, read health data or give personalised or medical advice. The support page reminds users to swim at their own level and to check with a doctor if they have a health condition.

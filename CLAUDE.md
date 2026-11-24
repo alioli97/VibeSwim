@@ -30,8 +30,10 @@ dart run flutter_launcher_icons   # regenerate app icons from assets/icon/ (conf
 - Tap buttons that write to SharedPreferences outside `tester.runAsync` (then `pumpAndSettle`): a snackbar shown from inside `runAsync` finishes its animation after the test and fails it.
 - `HistoryScreen` / `ProgressScreen` tests need `initializeDateFormatting()`; write to `WorkoutHistory` inside `tester.runAsync` (SharedPreferences I/O).
 - Build `AppState` from `SharedPreferences.setMockInitialValues({})`.
-- Test HTTP always returns 400: tests set `GoogleFonts.config.allowRuntimeFetching = false`, and any `Image.network` must have an `errorBuilder` or the test fails (the app currently has none).
+- Fonts: Lexend and Inter (only the weights `AppTheme` uses) are bundled in `assets/google_fonts/` and `main()` sets `GoogleFonts.config.allowRuntimeFetching = false`, so the app never downloads fonts. `test/flutter_test_config.dart` preloads them before every test file (a font finishing loading mid-test leaves a pending frame callback and fails it). If the theme starts using another weight, add its `.ttf` there (named like `Inter-SemiBold.ttf`).
+- Test HTTP always returns 400: any `Image.network` must have an `errorBuilder` or the test fails (the app currently has none).
 - iOS: `.github/workflows/ios.yml` builds unsigned on PRs touching `ios/`/pubspec and on `master`; "Run workflow" signs and uploads to TestFlight (secrets in docs/RELEASE.md). Claude can't set GitHub secrets or use the App Store Connect key: the user runs those.
+- App Store material: listing texts, App Store Connect answers and review notes in `store/app-store/` (README there; `check.py` checks lengths); screenshots in `store/screenshots/ios/{en,es,ca}/`, rendered by `store/screenshots/screenshots_test.dart` (not in CI; real rows in `workouts.json`). The privacy policy and support page are `site/`, published by `.github/workflows/pages.yml` to https://alioli97.github.io/VibeSwim/ (keep the privacy policy in sync with what the app stores and sends).
 - CI: `.github/workflows/ci.yml` runs `flutter analyze` and `flutter test` (Flutter 3.50.0; keep it in sync with the local SDK) on pushes and PRs to `master`; keep both green.
 
 ## Architecture
