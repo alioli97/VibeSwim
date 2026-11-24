@@ -65,6 +65,11 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  # Lexend and Inter for google_fonts, bundled so the app never downloads them
+  # from Google (main() turns runtime fetching off). Only the weights AppTheme uses.
+  assets:
+    - assets/google_fonts/
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

@@ -85,3 +85,11 @@ upload, Apple processes the build (roughly 10–30 minutes) before it shows up i
 - Export compliance answered in `Info.plist` (`ITSAppUsesNonExemptEncryption = false`): the app
   only uses standard HTTPS to read workouts from Supabase.
 - Icon: generated from `assets/icon/icon.png` without transparency (`remove_alpha_ios`).
+
+### App Store listing
+
+Texts, screenshots and every App Store Connect answer (category, age rating, privacy, review
+notes): `store/app-store/README.md`. Privacy policy and support URLs:
+https://alioli97.github.io/VibeSwim/privacy/ and https://alioli97.github.io/VibeSwim/support/
+(`site/`, published by `.github/workflows/pages.yml`; GitHub Pages must be set to deploy from
+GitHub Actions once: Settings → Pages → Source → GitHub Actions).
