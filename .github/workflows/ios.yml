@@ -4,10 +4,10 @@ name: iOS
 # - On PRs and pushes to master: unsigned build, to check that the iOS project
 #   compiles and that the localized Info.plist strings end up in the bundle.
 # - Run manually ("Run workflow"): signed archive uploaded to TestFlight.
-#   The archive is signed for development with automatic signing through the
-#   App Store Connect API key (it needs one registered device). The export
-#   re-signs it for distribution on the runner with our own Apple Distribution
-#   certificate and App Store profile: Apple's cloud-managed distribution
+#   Archive and export are signed on the runner with our own Apple Distribution
+#   certificate and App Store profile (manual signing). The API key is only used
+#   to upload. Automatic signing would create a new development certificate on
+#   every fresh runner (until the account's limit), and Apple's cloud-managed distribution
 #   signing writes the accented certificate name ("Alió") in a different
 #   Unicode form than the certificate, and App Store Connect rejects the
 #   signature (ITMS-90035).
@@ -96,29 +96,11 @@ jobs:
       - name: Generate the Flutter build configuration
         # TestFlight needs a new build number on every upload; the run number
         # of this workflow always grows. The version name comes from pubspec.yaml.
-        # --no-codesign: xcodebuild signs below with the API key.
+        # --no-codesign: xcodebuild signs below with the distribution certificate.
         run: |
           build_number=$((100 + GITHUB_RUN_NUMBER))
           echo "BUILD_NUMBER=$build_number" >> "$GITHUB_ENV"
           flutter build ios --release --config-only --no-codesign --build-number=$build_number
-
-      - name: Archive (signed)
-        # Automatic signing signs the archive with a development profile, which
-        # Apple only issues when the team has at least one registered device
-        # (docs/RELEASE.md, "iOS"). The export step re-signs it for distribution.
-        run: |
-          xcodebuild archive \
-            -workspace ios/Runner.xcworkspace \
-            -scheme Runner \
-            -configuration Release \
-            -destination generic/platform=iOS \
-            -archivePath "$RUNNER_TEMP/Runner.xcarchive" \
-            -allowProvisioningUpdates \
-            -authenticationKeyPath "$KEY_PATH" \
-            -authenticationKeyID "$KEY_ID" \
-            -authenticationKeyIssuerID "$ISSUER_ID" \
-            DEVELOPMENT_TEAM="$TEAM_ID" \
-            CODE_SIGN_STYLE=Automatic
 
       - name: Install the distribution certificate and profile
         env:
@@ -150,7 +132,28 @@ jobs:
           done
           echo "PROFILE_UUID=$uuid" >> "$GITHUB_ENV"
 
-      - name: Export the IPA (distribution signing on the runner)
+      - name: Archive (signed for distribution)
+        # Manual signing with our own Apple Distribution certificate and App Store
+        # profile. Automatic signing would make Apple issue a new development
+        # certificate on every fresh runner until the account hits its limit.
+        # The settings go into the Runner target's xcconfig (on the runner only),
+        # so the Swift package targets aren't given a provisioning profile.
+        run: |
+          cat >> ios/Flutter/Release.xcconfig <<EOF
+          CODE_SIGN_STYLE = Manual
+          DEVELOPMENT_TEAM = $TEAM_ID
+          CODE_SIGN_IDENTITY = Apple Distribution
+          CODE_SIGN_IDENTITY[sdk=iphoneos*] = Apple Distribution
+          PROVISIONING_PROFILE_SPECIFIER = $PROFILE_UUID
+          EOF
+          xcodebuild archive \
+            -workspace ios/Runner.xcworkspace \
+            -scheme Runner \
+            -configuration Release \
+            -destination generic/platform=iOS \
+            -archivePath "$RUNNER_TEMP/Runner.xcarchive"
+
+      - name: Export the IPA
         run: |
           cat > "$RUNNER_TEMP/ExportOptions.plist" <<EOF
           <?xml version="1.0" encoding="UTF-8"?>

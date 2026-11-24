@@ -21,16 +21,17 @@ free because the repository is public). PRs that touch the iOS project and pushe
 build the app unsigned. A signed build is uploaded to TestFlight by running the workflow by hand:
 **Actions → iOS → Run workflow**.
 
-The archive is signed automatically by Xcode through an App Store Connect API key; the export
-re-signs it for distribution with the certificate and profile stored as secrets (never in the
-repository). The pipeline is the one already used for InvestYoung (same Apple Developer team).
+The archive and the export are signed on the runner with the Apple Distribution certificate and
+the App Store profile stored as secrets (never in the repository); the App Store Connect API key
+is only used for the upload. The pipeline started as InvestYoung's (same Apple Developer team),
+which signs the archive with Xcode's automatic signing instead: each fresh runner then makes
+Apple issue a new development certificate, until the account reaches its limit ("Your account
+has reached the maximum number of certificates"). Manual signing avoids that.
 
 ### One-time setup
 
 Reused from InvestYoung (same team), nothing new to create:
 
-- The registered device (automatic signing needs one to issue the development profile used at
-  archive time).
 - The App Store Connect API key (Admin role) and the team id.
 - The Apple Distribution certificate (`~/ios-signing/dist.p12`, expires 2027-11-21).
 
