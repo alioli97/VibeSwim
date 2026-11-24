@@ -124,10 +124,8 @@ class AppState extends ChangeNotifier {
   String get tWarmUpHint => _tr('Get the blood flowing', 'Entra en calor', 'Entra en calor');
   String get tMainSet => _tr('Main Set', 'Serie principal', 'Sèrie principal');
   String get tMainSetHint => _tr('Focus on quality', 'Céntrate en la técnica', "Centra't en la tècnica");
-  String get tPushYourPace => _tr('Push your pace', 'Aprieta el ritmo', 'Apreta el ritme');
   String get tCoolDown => _tr('Cool down', 'Vuelta a la calma', 'Tornada a la calma');
   String get tCoolDownHint => _tr('Recovery and stretch', 'Recuperación y estiramientos', 'Recuperació i estiraments');
-  String get tVeryRelaxed => _tr('Very relaxed', 'Muy suave', 'Molt suau');
   String get tFinishAndLog => _tr('Finish & Log', 'Terminar y guardar', 'Acabar i desar');
   String get tLogged => _tr('Logged', 'Guardado', 'Desat');
   String get tGenerateAnother => _tr('Generate another', 'Generar otro', 'Generar-ne un altre');
