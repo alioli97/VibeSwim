@@ -450,9 +450,12 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
   }
 
   Widget _buildThePlanSet(BuildContext context, Map<String, dynamic> workout) {
-    final warmUpText = widget.appState.localizedDbField(workout, 'warm_up_text');
-    final mainSetText = widget.appState.localizedDbField(workout, 'main_set_text');
-    final coolDownText = widget.appState.localizedDbField(workout, 'cool_down_text');
+    final t = widget.appState;
+    final blocks = [
+      (t.tWarmUp, t.tWarmUpHint, t.localizedDbField(workout, 'warm_up_text')),
+      (t.tMainSet, t.tMainSetHint, t.localizedDbField(workout, 'main_set_text')),
+      (t.tCoolDown, t.tCoolDownHint, t.localizedDbField(workout, 'cool_down_text')),
+    ];
 
     return Padding(
       padding: const EdgeInsets.only(top: 32),
@@ -463,7 +466,7 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
             children: [
               const Icon(Icons.assignment, color: AppTheme.primary, size: 28),
               const SizedBox(width: 8),
-              Text(widget.appState.tThePlan,
+              Text(t.tThePlan,
                   style: Theme.of(context)
                       .textTheme
                       .headlineSmall
@@ -471,69 +474,27 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
             ],
           ),
           const SizedBox(height: 24),
-          if (warmUpText.isNotEmpty) ...[
-            _buildPlanBlock(
-              context,
-              widget.appState.tWarmUp,
-              widget.appState.tWarmUpHint,
-              '', // Could parse from string if wanted
-              const Color(0xFFD0E7EA),
-              AppTheme.secondary,
-              [
-                _buildSetRow(context, '•', warmUpText,
-                    '', Colors.white, AppTheme.primary)
-              ]
-            ),
-            const SizedBox(height: 16),
-          ],
-          
-          if (mainSetText.isNotEmpty) ...[
-            _buildPlanBlock(
-                context,
-                widget.appState.tMainSet,
-                widget.appState.tMainSetHint,
-                '',
-                AppTheme.primaryContainer,
-                Colors.white,
-                [
-                  _buildSetRow(context, '•', mainSetText,
-                      widget.appState.tPushYourPace, AppTheme.primaryContainer, Colors.white,
-                      highlight: true),
-                ],
-                hasLeftBorder: true),
-            const SizedBox(height: 16),
-          ],
-          
-          if (coolDownText.isNotEmpty) ...[
-            _buildPlanBlock(
-              context,
-              widget.appState.tCoolDown,
-              widget.appState.tCoolDownHint,
-              '',
-              const Color(0xFFD0E7EA),
-              AppTheme.secondary,
-              [
-                _buildSetRow(context, '•', coolDownText,
-                    widget.appState.tVeryRelaxed, Colors.white, AppTheme.primary)
-              ]
-            ),
-          ],
+          for (final (title, hint, text) in blocks)
+            if (text.trim().isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: _buildPlanBlock(context, title, hint, text),
+              ),
         ],
       ),
     );
   }
 
-  Widget _buildPlanBlock(BuildContext context, String title, String subtitle, String length,
-      Color badgeBgColor, Color badgeTextColor, List<Widget> items,
-      {bool hasLeftBorder = false}) {
+  /// One section of the plan: title and hint, then one row per line of [text].
+  Widget _buildPlanBlock(BuildContext context, String title, String hint, String text) {
+    final lines =
+        text.split('\n').map((l) => l.trim()).where((l) => l.isNotEmpty).toList();
     return Container(
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.fromLTRB(20, 20, 20, 8),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24),
-        border: hasLeftBorder
-            ? const Border(left: BorderSide(color: AppTheme.primary, width: 4))
-            : Border.all(color: Colors.grey.withValues(alpha: 0.1)),
+        border: const Border(left: BorderSide(color: AppTheme.primary, width: 4)),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.02),
@@ -545,94 +506,49 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(title,
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleLarge
-                          ?.copyWith(color: AppTheme.primary, fontWeight: FontWeight.bold)),
-                  Text(subtitle,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium
-                          ?.copyWith(color: AppTheme.secondary)),
-                ],
-              ),
-              if (length.isNotEmpty)
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: badgeBgColor,
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Text(
-                    length,
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          color: badgeTextColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                )
-            ],
-          ),
-          const SizedBox(height: 16),
-          ...items,
+          Text(title,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.copyWith(color: AppTheme.primary, fontWeight: FontWeight.bold)),
+          Text(hint,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: AppTheme.secondary)),
+          const SizedBox(height: 8),
+          for (var i = 0; i < lines.length; i++) ...[
+            if (i > 0) Divider(height: 1, color: Colors.grey.withValues(alpha: 0.15)),
+            _buildPlanLine(context, lines[i]),
+          ],
         ],
       ),
     );
   }
 
-  Widget _buildSetRow(BuildContext context, String reps, String title, String subtitle,
-      Color iconBg, Color iconColor,
-      {bool highlight = false}) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: highlight ? AppTheme.surfaceContainerLow.withValues(alpha: 0.5) : AppTheme.surfaceContainerLow,
-        borderRadius: BorderRadius.circular(16),
-      ),
+  /// Leading amount of a plan line ("400", "2x200", "4 x 100"), shown in its own column.
+  static final _amount = RegExp(r'^(\d+\s*[x×]\s*\d+|\d+)\s+(.+)$');
+
+  Widget _buildPlanLine(BuildContext context, String line) {
+    final match = _amount.firstMatch(line);
+    final textStyle = Theme.of(context).textTheme.titleMedium;
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12),
       child: Row(
-        // Allow text to wrap if it's too long
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: iconBg,
-              borderRadius: BorderRadius.circular(12),
+          if (match != null) ...[
+            SizedBox(
+              width: 72,
+              child: Text(match.group(1)!.replaceAll(' ', ''),
+                  style: textStyle?.copyWith(
+                      color: AppTheme.primary, fontWeight: FontWeight.w900)),
             ),
-            alignment: Alignment.center,
-            child: Text(reps,
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium
-                    ?.copyWith(color: iconColor, fontWeight: FontWeight.bold)),
-          ),
-          const SizedBox(width: 16),
+          ],
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(title,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium
-                        ?.copyWith(fontWeight: FontWeight.bold)),
-                if (subtitle.isNotEmpty)
-                  Text(subtitle,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall
-                          ?.copyWith(color: AppTheme.secondary)),
-              ],
-            ),
-          )
+            child: Text(match?.group(2) ?? line,
+                style: textStyle?.copyWith(fontWeight: FontWeight.w500)),
+          ),
         ],
       ),
     );

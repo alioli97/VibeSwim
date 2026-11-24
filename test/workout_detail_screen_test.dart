@@ -228,6 +228,21 @@ void main() {
     expect(find.text('Acabar i desar'), findsOneWidget);
   });
 
+  testWidgets('the plan shows one row per line with the amount apart', (tester) async {
+    await pumpDetail(tester,
+        mode: SearchMode.distance,
+        value: 2400,
+        repository: FakeWorkoutRepository([
+          {...workout('Medium', 2400, 45), 'main_set_text_en': '2x200 drills\n300 kick\nEasy swim'},
+        ]));
+
+    expect(find.text('2x200'), findsOneWidget);
+    expect(find.text('drills'), findsOneWidget);
+    expect(find.text('300'), findsOneWidget);
+    expect(find.text('kick'), findsOneWidget);
+    expect(find.text('Easy swim'), findsOneWidget);
+  });
+
   group('smarter picking', () {
     final leveled = [
       {...workout('Easy 2400', 2400, 45), 'difficulty_level_en': 'Beginner'},
