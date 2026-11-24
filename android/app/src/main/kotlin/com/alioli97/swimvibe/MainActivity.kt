@@ -1,4 +1,4 @@
-package com.aalio.swimvibe
+package com.alioli97.swimvibe
 
 import io.flutter.embedding.android.FlutterActivity
 
