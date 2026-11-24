@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-SwimVibe (Dart package `swimvibe`, Android id `com.aalio.swimvibe`): a Flutter app that generates swim workouts based on a target distance and available time. Workouts are read from a **Supabase** backend. Platforms in the repo: `android/`, `linux/`, `web/` (no iOS folder). Flutter 3.50 (Dart 3.14). Material widgets come from `package:material_ui/material_ui.dart` (the `package:flutter/material.dart` import is deprecated since Flutter 3.47): always import that one.
+SwimVibe (Dart package `swimvibe`, Android application id and iOS bundle id `com.alioli97.swimvibe`, final: never change it): a Flutter app that generates swim workouts based on a target distance and available time. Workouts are read from a **Supabase** backend. Platforms in the repo: `android/`, `ios/` (iPhone only, built on GitHub Actions: there is no Mac), `linux/`, `web/`. Release steps (signing, TestFlight, store setup): `docs/RELEASE.md`. Flutter 3.50 (Dart 3.14). Material widgets come from `package:material_ui/material_ui.dart` (the `package:flutter/material.dart` import is deprecated since Flutter 3.47): always import that one.
 
 `home.html` and `workout_detail.html` in the repo root are static Tailwind design mockups the Flutter screens were built from (colors in `lib/theme/app_theme.dart` mirror their palette). They are not used by the app.
 
@@ -31,6 +31,7 @@ dart run flutter_launcher_icons   # regenerate app icons from assets/icon/ (conf
 - `HistoryScreen` / `ProgressScreen` tests need `initializeDateFormatting()`; write to `WorkoutHistory` inside `tester.runAsync` (SharedPreferences I/O).
 - Build `AppState` from `SharedPreferences.setMockInitialValues({})`.
 - Test HTTP always returns 400: tests set `GoogleFonts.config.allowRuntimeFetching = false`, and any `Image.network` must have an `errorBuilder` or the test fails (the app currently has none).
+- iOS: `.github/workflows/ios.yml` builds unsigned on PRs touching `ios/`/pubspec and on `master`; "Run workflow" signs and uploads to TestFlight (secrets in docs/RELEASE.md). Claude can't set GitHub secrets or use the App Store Connect key: the user runs those.
 - CI: `.github/workflows/ci.yml` runs `flutter analyze` and `flutter test` (Flutter 3.50.0; keep it in sync with the local SDK) on pushes and PRs to `master`; keep both green.
 
 ## Architecture
