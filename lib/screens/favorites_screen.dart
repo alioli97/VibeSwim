@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../core/app_state.dart';
 import '../core/favorites.dart';
@@ -13,20 +13,25 @@ class FavoritesScreen extends StatelessWidget {
 
   Favorites get _favorites => appState.favorites;
 
-  Future<void> _remove(BuildContext context, Map<String, dynamic> workout) async {
+  Future<void> _remove(
+    BuildContext context,
+    Map<String, dynamic> workout,
+  ) async {
     final messenger = ScaffoldMessenger.of(context);
     final index = _favorites.items.indexWhere((w) => w['id'] == workout['id']);
     if (index < 0) return;
     await _favorites.toggle(workout);
     messenger
       ..hideCurrentSnackBar()
-      ..showSnackBar(SnackBar(
-        content: Text(appState.tRemovedFromFavorites),
-        action: SnackBarAction(
-          label: appState.tUndo,
-          onPressed: () => _favorites.restore(workout, index),
+      ..showSnackBar(
+        SnackBar(
+          content: Text(appState.tRemovedFromFavorites),
+          action: SnackBarAction(
+            label: appState.tUndo,
+            onPressed: () => _favorites.restore(workout, index),
+          ),
         ),
-      ));
+      );
   }
 
   @override
@@ -44,9 +49,9 @@ class FavoritesScreen extends StatelessWidget {
             title: Text(
               appState.tFavorites,
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: AppTheme.primary,
-                    fontWeight: FontWeight.w900,
-                  ),
+                color: AppTheme.primary,
+                fontWeight: FontWeight.w900,
+              ),
             ),
           ),
           body: items.isEmpty
@@ -56,14 +61,16 @@ class FavoritesScreen extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Icon(Icons.star_border, size: 64, color: AppTheme.secondary),
+                        const Icon(
+                          Icons.star_border,
+                          size: 64,
+                          color: AppTheme.secondary,
+                        ),
                         const SizedBox(height: 16),
                         Text(
                           appState.tNoFavoritesYet,
                           textAlign: TextAlign.center,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium
+                          style: Theme.of(context).textTheme.titleMedium
                               ?.copyWith(color: AppTheme.secondary),
                         ),
                       ],
@@ -87,7 +94,10 @@ class FavoritesScreen extends StatelessWidget {
                           color: Colors.red.shade400,
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: const Icon(Icons.delete_outline, color: Colors.white),
+                        child: const Icon(
+                          Icons.delete_outline,
+                          color: Colors.white,
+                        ),
                       ),
                       child: _buildItem(context, workout),
                     );
@@ -103,46 +113,52 @@ class FavoritesScreen extends StatelessWidget {
     final difficulty = appState.localizedDbField(workout, 'difficulty_level');
     final details = [
       if (workout['distance_meters'] != null) '${workout['distance_meters']} m',
-      if (workout['duration_minutes'] != null) '${workout['duration_minutes']} min',
+      if (workout['duration_minutes'] != null)
+        '${workout['duration_minutes']} min',
       if (difficulty.isNotEmpty) difficulty,
     ].join(' · ');
 
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      decoration: BoxDecoration(
+    // The white card is a Material (not a DecoratedBox) so the ListTile's
+    // tap splash is painted on it and stays visible.
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Material(
         color: Colors.white,
+        elevation: 1,
+        shadowColor: Colors.black.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.01),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
+        clipBehavior: Clip.antiAlias,
+        child: ListTile(
+          contentPadding: const EdgeInsets.fromLTRB(20, 8, 8, 8),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
           ),
-        ],
-      ),
-      child: ListTile(
-        contentPadding: const EdgeInsets.fromLTRB(20, 8, 8, 8),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: Text(
-          title.isNotEmpty ? title : appState.tWorkout,
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: AppTheme.onBackground,
+          title: Text(
+            title.isNotEmpty ? title : appState.tWorkout,
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.bold,
+              color: AppTheme.onBackground,
+            ),
+          ),
+          subtitle: Text(
+            details,
+            style: Theme.of(
+              context,
+            ).textTheme.labelSmall?.copyWith(color: AppTheme.secondary),
+          ),
+          trailing: IconButton(
+            icon: const Icon(Icons.star, color: AppTheme.primaryContainer),
+            tooltip: appState.tRemoveFavorite,
+            onPressed: () => _remove(context, workout),
+          ),
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => WorkoutDetailScreen.fixed(
+                appState: appState,
+                workout: workout,
               ),
-        ),
-        subtitle: Text(
-          details,
-          style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppTheme.secondary),
-        ),
-        trailing: IconButton(
-          icon: const Icon(Icons.star, color: AppTheme.primaryContainer),
-          tooltip: appState.tRemoveFavorite,
-          onPressed: () => _remove(context, workout),
-        ),
-        onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => WorkoutDetailScreen.fixed(appState: appState, workout: workout),
+            ),
           ),
         ),
       ),
