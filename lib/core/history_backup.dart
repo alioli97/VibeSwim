@@ -28,11 +28,9 @@ Future<void> shareBackupFile(String json, String fileName) async {
 }
 
 Future<String?> pickBackupFile() async {
-  final result = await FilePicker.pickFiles(
+  final file = await FilePicker.pickFile(
     type: FileType.custom,
-    allowedExtensions: ['json'],
-    withData: true,
+    allowedExtensions: const ['json'],
   );
-  final bytes = result?.files.single.bytes;
-  return bytes == null ? null : utf8.decode(bytes, allowMalformed: true);
+  return file?.xFile.readAsString();
 }

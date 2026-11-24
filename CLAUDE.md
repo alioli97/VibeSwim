@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-SwimVibe (Dart package `swimvibe`, Android id `com.aalio.swimvibe`): a Flutter app that generates swim workouts based on a target distance and available time. Workouts are read from a **Supabase** backend. Platforms in the repo: `android/`, `linux/`, `web/` (no iOS folder). Dart SDK `^3.11.4`.
+SwimVibe (Dart package `swimvibe`, Android id `com.aalio.swimvibe`): a Flutter app that generates swim workouts based on a target distance and available time. Workouts are read from a **Supabase** backend. Platforms in the repo: `android/`, `linux/`, `web/` (no iOS folder). Flutter 3.50 (Dart 3.14). Material widgets come from `package:material_ui/material_ui.dart` (the `package:flutter/material.dart` import is deprecated since Flutter 3.47): always import that one.
 
 `home.html` and `workout_detail.html` in the repo root are static Tailwind design mockups the Flutter screens were built from (colors in `lib/theme/app_theme.dart` mirror their palette). They are not used by the app.
 
@@ -31,7 +31,7 @@ dart run flutter_launcher_icons   # regenerate app icons from assets/icon/ (conf
 - `HistoryScreen` / `ProgressScreen` tests need `initializeDateFormatting()`; write to `WorkoutHistory` inside `tester.runAsync` (SharedPreferences I/O).
 - Build `AppState` from `SharedPreferences.setMockInitialValues({})`.
 - Test HTTP always returns 400: tests set `GoogleFonts.config.allowRuntimeFetching = false`, and any `Image.network` must have an `errorBuilder` or the test fails (the app currently has none).
-- CI: `.github/workflows/ci.yml` runs `flutter analyze` and `flutter test` (Flutter 3.41.6) on pushes and PRs to `master`; keep both green.
+- CI: `.github/workflows/ci.yml` runs `flutter analyze` and `flutter test` (Flutter 3.50.0; keep it in sync with the local SDK) on pushes and PRs to `master`; keep both green.
 
 ## Architecture
 
