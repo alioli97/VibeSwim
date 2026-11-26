@@ -1,0 +1,32 @@
+id: eb9e99c5-b389-49a3-b4e1-b6ce6ce2b2a4
+distance_meters: 1100
+duration_minutes: 24
+difficulty: advanced
+title:
+  en: "Threshold 100s"
+  es: "Series de 100 en Umbral"
+  ca: "Sèries de 100 al Llindar"
+warm_up:
+  en: |-
+    200 mixed stroke relaxed
+    4x50 crawl progressive 1-4 resting 10sec
+  es: |-
+    200 variados suave
+    4x50 crol progresivo 1-4 descanso 10seg
+  ca: |-
+    200 variats suau
+    4x50 crol progressiu 1-4 descans 10seg
+main_set:
+  en: |-
+    6x100 crawl strong pace resting 15sec
+  es: |-
+    6x100 crol ritmo fuerte descanso 15seg
+  ca: |-
+    6x100 crol ritme fort descans 15seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

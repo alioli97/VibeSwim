@@ -1,0 +1,35 @@
+id: a7da0f86-10e9-404e-b624-46c47e90b51d
+distance_meters: 1300
+duration_minutes: 32
+difficulty: intermediate
+title:
+  en: "Steady 100s with Paddles"
+  es: "Series de 100 y Palas"
+  ca: "Sèries de 100 i Pales"
+warm_up:
+  en: |-
+    300 mixed stroke relaxed
+    4x50 technique resting 15sec
+  es: |-
+    300 variados suave
+    4x50 técnica descanso 15seg
+  ca: |-
+    300 variats suau
+    4x50 tècnica descans 15seg
+main_set:
+  en: |-
+    5x100 crawl steady pace resting 20sec
+    4x50 pullboy strokes paddles resting 15sec
+  es: |-
+    5x100 crol ritmo constante descanso 20seg
+    4x50 brazos palas descanso 15seg
+  ca: |-
+    5x100 crol ritme constant descans 20seg
+    4x50 braços PALES descans 15seg
+cool_down:
+  en: |-
+    100 backstroke relaxed
+  es: |-
+    100 espalda suave
+  ca: |-
+    100 esquena suau

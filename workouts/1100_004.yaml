@@ -1,0 +1,35 @@
+id: d5dbad8e-2284-4e36-9a57-bcf81722e305
+distance_meters: 1100
+duration_minutes: 30
+difficulty: intermediate
+title:
+  en: "Build and Speed"
+  es: "Progresión y Velocidad"
+  ca: "Progressió i Velocitat"
+warm_up:
+  en: |-
+    300 mixed stroke relaxed
+  es: |-
+    300 variados suave
+  ca: |-
+    300 variats suau
+main_set:
+  en: |-
+    8x50 crawl progressive 1-4 resting 15sec
+    4x50 kicking fins resting 15sec
+    4x25 crawl MAX resting 30sec
+  es: |-
+    8x50 crol progresivo 1-4 descanso 15seg
+    4x50 pies aletas descanso 15seg
+    4x25 crol MAX descanso 30seg
+  ca: |-
+    8x50 crol progressiu 1-4 descans 15seg
+    4x50 peus ALETES descans 15seg
+    4x25 crol MAX descans 30seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

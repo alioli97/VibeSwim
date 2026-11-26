@@ -1,0 +1,35 @@
+id: 2ed9b6e5-b456-416f-a024-3ff9a268e497
+distance_meters: 1100
+duration_minutes: 35
+difficulty: beginner
+title:
+  en: "Steady Freestyle for Starters"
+  es: "Crol Constante para Empezar"
+  ca: "Crol Constant per Començar"
+warm_up:
+  en: |-
+    200 crawl relaxed
+    4x50 kicking resting 20sec
+  es: |-
+    200 crol suave
+    4x50 pies descanso 20seg
+  ca: |-
+    200 crol suau
+    4x50 peus descans 20seg
+main_set:
+  en: |-
+    4x100 crawl resting 30sec
+    4x50 backstroke resting 20sec
+  es: |-
+    4x100 crol descanso 30seg
+    4x50 espalda descanso 20seg
+  ca: |-
+    4x100 crol descans 30seg
+    4x50 esquena descans 20seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

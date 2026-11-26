@@ -1,0 +1,32 @@
+id: 81600175-2826-4fd6-9fae-dfcdfcfd92e2
+distance_meters: 1200
+duration_minutes: 28
+difficulty: intermediate_advanced
+title:
+  en: "Medley and Pace"
+  es: "Estilos y Ritmo"
+  ca: "Estils i Ritme"
+warm_up:
+  en: |-
+    300 mixed stroke relaxed
+  es: |-
+    300 variados suave
+  ca: |-
+    300 variats suau
+main_set:
+  en: |-
+    4x100 medley resting 20sec
+    8x50 crawl strong pace resting 15sec
+  es: |-
+    4x100 estilos descanso 20seg
+    8x50 crol ritmo fuerte descanso 15seg
+  ca: |-
+    4x100 estils descans 20seg
+    8x50 crol ritme fort descans 15seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

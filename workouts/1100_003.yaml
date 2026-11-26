@@ -1,0 +1,32 @@
+id: 2e180279-0bfb-4d61-a59a-c5ed2268a18c
+distance_meters: 1100
+duration_minutes: 26
+difficulty: intermediate
+title:
+  en: "Steady 200s"
+  es: "Series de 200 Constantes"
+  ca: "Sèries de 200 Constants"
+warm_up:
+  en: |-
+    200 mixed stroke relaxed
+    4x50 technique resting 15sec
+  es: |-
+    200 variados suave
+    4x50 técnica descanso 15seg
+  ca: |-
+    200 variats suau
+    4x50 tècnica descans 15seg
+main_set:
+  en: |-
+    3x200 crawl steady pace resting 30sec
+  es: |-
+    3x200 crol ritmo constante descanso 30seg
+  ca: |-
+    3x200 crol ritme constant descans 30seg
+cool_down:
+  en: |-
+    100 backstroke relaxed
+  es: |-
+    100 espalda suave
+  ca: |-
+    100 esquena suau
