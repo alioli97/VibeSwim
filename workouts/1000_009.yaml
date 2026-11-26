@@ -1,0 +1,35 @@
+id: cd9d0047-780a-4b06-b756-d951eb45d466
+distance_meters: 1000
+duration_minutes: 27
+difficulty: advanced
+title:
+  en: "Aerobic Power and Speed Transfer"
+  es: "Potencia Aeróbica y Transferencia de Velocidad"
+  ca: "Potència Aeròbica i Transferència de Velocitat"
+warm_up:
+  en: |-
+    300 mixed stroke
+  es: |-
+    300 variados
+  ca: |-
+    300 variats
+main_set:
+  en: |-
+    4x50 kicking resting 10–15sec
+    4x50 technique
+    4x50 crawl MAX resting 10–15sec
+  es: |-
+    4x50 pies descanso 10–15seg
+    4x50 técnica
+    4x50 crol MAX descanso 10–15seg
+  ca: |-
+    4x50 peus descans 10–15seg
+    4x50 tècnica
+    4x50 crol MAX descans 10–15seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

@@ -1,0 +1,44 @@
+id: 7c7ea32b-3622-41df-a9f6-e534a3394259
+distance_meters: 400
+duration_minutes: 10
+difficulty: beginner
+title:
+  en: "Pace and Recovery Intervals"
+  es: "Intervalos de Ritmo y Recuperación"
+  ca: "Intervals de Ritme i Recuperació"
+warm_up:
+  en: |-
+    25 Ae2
+    50 relaxed
+  es: |-
+    25 Ae2
+    50 suave
+  ca: |-
+    25 Ae2
+    50 suau
+main_set:
+  en: |-
+    75 Ae2
+    50 relaxed
+    25 Ae2
+    50 relaxed
+    25 Ae2
+  es: |-
+    75 Ae2
+    50 suave
+    25 Ae2
+    50 suave
+    25 Ae2
+  ca: |-
+    75 Ae2
+    50 suau
+    25 Ae2
+    50 suau
+    25 Ae2
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

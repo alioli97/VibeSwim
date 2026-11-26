@@ -1,0 +1,35 @@
+id: b0d37d56-076f-48d0-b317-3cf0b6acadc0
+distance_meters: 1100
+duration_minutes: 27
+difficulty: intermediate_advanced
+title:
+  en: "Fins Endurance and Efficiency Medley"
+  es: "Combinado de Resistencia con Aletas y Eficiencia"
+  ca: "Combinat de Resistència amb Aletes i Eficiència"
+warm_up:
+  en: |-
+    2x150 (100 backstroke+50 crawl) resting 15sec
+    4x25 minimum strokes
+  es: |-
+    2x150 (100 espalda+50 crol) descanso 15seg
+    4x25 mínimas brazadas
+  ca: |-
+    2x150 (100 esquena+50 crol) descans 15seg
+    4x25 mínimes braçades
+main_set:
+  en: |-
+    3x100 rest 10sec fins
+    300 Ae1
+  es: |-
+    3x100 descanso 10seg aletas
+    300 Ae1
+  ca: |-
+    3x100 descans 10seg ALETES
+    300 Ae1
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

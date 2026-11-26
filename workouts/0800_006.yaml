@@ -1,0 +1,29 @@
+id: 512d01ad-4381-488e-9bd5-79c757a645c1
+distance_meters: 800
+duration_minutes: 18
+difficulty: intermediate
+title:
+  en: "Standard Aerobic Endurance Set"
+  es: "Serie de Resistencia Aeróbica Estándar"
+  ca: "Sèrie de Resistència Aeròbica Estàndard"
+warm_up:
+  en: |-
+    100 mixed stroke
+  es: |-
+    100 variados
+  ca: |-
+    100 variats
+main_set:
+  en: |-
+    6x100 crawl resting 10–15sec
+  es: |-
+    6x100 crol descanso 10–15seg
+  ca: |-
+    6x100 crol descans 10–15seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

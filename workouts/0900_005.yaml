@@ -1,0 +1,32 @@
+id: 30937482-54cf-4e25-9adf-0a88aa6f0a6b
+distance_meters: 900
+duration_minutes: 26
+difficulty: intermediate
+title:
+  en: "Kick Specialization and Core Endurance"
+  es: "Especialización de Patada y Resistencia de Core"
+  ca: "Especialització de Patada i Resistència de Core"
+warm_up:
+  en: |-
+    300 mixed stroke
+  es: |-
+    300 variados
+  ca: |-
+    300 variats
+main_set:
+  en: |-
+    4x100 kicking resting 10–15sec
+    2x50 backstroke resting 10–15sec
+  es: |-
+    4x100 pies descanso 10–15seg
+    2x50 espalda descanso 10–15seg
+  ca: |-
+    4x100 peus descans 10–15seg
+    2x50 esquena descans 10–15seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

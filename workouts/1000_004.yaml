@@ -1,0 +1,32 @@
+id: f5e97aca-f7d5-45cf-a393-be032e906b73
+distance_meters: 1000
+duration_minutes: 31
+difficulty: intermediate_advanced
+title:
+  en: "Aerobic Endurance and Foundation Power"
+  es: "Resistencia Aeróbica y Potencia de Base"
+  ca: "Resistència Aeròbica i Potència de Base"
+warm_up:
+  en: |-
+    200 mixed stroke
+  es: |-
+    200 variados
+  ca: |-
+    200 variats
+main_set:
+  en: |-
+    4x100 kicking resting 10–15sec
+    4x50 crawl resting 10–15sec
+  es: |-
+    4x100 pies descanso 10–15seg
+    4x50 crol descanso 10–15seg
+  ca: |-
+    4x100 peus descans 10–15seg
+    4x50 crol descans 10–15seg
+cool_down:
+  en: |-
+    200 relaxed
+  es: |-
+    200 suave
+  ca: |-
+    200 suau

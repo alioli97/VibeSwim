@@ -1,0 +1,29 @@
+id: a9951dd5-0f74-4dc9-bbd3-0b00cb20d4ee
+distance_meters: 800
+duration_minutes: 19
+difficulty: beginner_intermediate
+title:
+  en: "Core Freestyle Routine"
+  es: "Rutina Base de Crol"
+  ca: "Rutina Base de Crol"
+warm_up:
+  en: |-
+    200 mixed stroke
+  es: |-
+    200 variados
+  ca: |-
+    200 variats
+main_set:
+  en: |-
+    5x100 crawl resting 15–20sec
+  es: |-
+    5x100 crol descanso 15–20seg
+  ca: |-
+    5x100 crol descans 15–20seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

@@ -20,6 +20,7 @@ flutter test --plain-name "<test name>"     # single test by name
 flutter build apk --debug
 flutter build web
 dart run flutter_launcher_icons   # regenerate app icons from assets/icon/ (config in pubspec.yaml)
+dart run tool/workouts.dart check|new <m>|sql|pull   # workout files in workouts/ (see workouts/README.md)
 ```
 
 `flutter run -d linux` needs host packages not bundled with the Flutter snap (`clang cmake ninja-build g++ pkg-config libgtk-3-dev`); use `-d chrome` or an Android device otherwise.
@@ -39,7 +40,7 @@ dart run flutter_launcher_icons   # regenerate app icons from assets/icon/ (conf
 ## Architecture
 
 - `lib/main.dart` — calls `initSupabase()`, loads `SharedPreferences`, creates `AppState`, and wraps `MaterialApp` in a `ListenableBuilder` so the whole app rebuilds when `AppState` notifies. No router: navigation is `Navigator.push/pop` with `MaterialPageRoute`.
-- `lib/core/supabase_config.dart` — Supabase URL + anon key (public by design; reads depend on RLS) and `initSupabase()`.
+- `lib/core/supabase_keys.dart` — Supabase URL + anon key (public by design; reads depend on RLS), plain Dart so `tool/` can use it; `lib/core/supabase_config.dart` has `initSupabase()`.
 - `lib/core/workout_repository.dart` — `WorkoutRepository` (`fetchWorkouts({maxMinutes})`); `SupabaseWorkoutRepository` queries the `workouts` table. Screens never call `Supabase.instance` directly.
 - `lib/core/app_state.dart` — `AppState extends ChangeNotifier`, passed explicitly through constructors to every screen (no Provider/Riverpod). Holds the current language (`en` default, `es`, `ca`; persisted under `language_code` in SharedPreferences), the home difficulty filter (`difficulty`, persisted under `difficulty_filter`), `history` and `favorites`.
 - `lib/core/workout_history.dart` — `WorkoutHistory` (its own `ChangeNotifier`, exposed as `appState.history`): the user's completed workouts, stored **on the device** as JSON under `workout_history` in SharedPreferences (no user accounts, nothing written to Supabase). Each `LoggedWorkout` keeps a snapshot of the full Supabase row (so titles stay translatable offline) plus `completedAt`. Entries can be removed (`remove`) and put back (`restore`, used by the undo snackbar). Backup: `exportJson()` (format `swimvibe-history`, v1, with the weekly goal) and `importJson()` (merges, skipping entries with the same workout `id` + `completedAt`; restores the goal; `FormatException` if it isn't a backup). Also computes total distance and meters this week (from Monday 00:00 local) against `weeklyGoalMeters`, which the user can change (persisted under `weekly_goal_meters`, default 5000).
@@ -63,3 +64,7 @@ dart run flutter_launcher_icons   # regenerate app icons from assets/icon/ (conf
 ### Supabase `workouts` table (columns used by the code)
 
 `id` (uuid), `number_train_by_meters` (e.g. `1500_001`), `distance_meters`, `duration_minutes`, `created_at`, and localized text columns with `_en` / `_es` / `_ca` suffixes: `title_*`, `difficulty_level_*`, `warm_up_text_*`, `main_set_text_*`, `cool_down_text_*`. Rows are returned as `Map<String, dynamic>` (no model classes). Access uses the anon key, so reads depend on the table's RLS policies.
+
+### Adding or editing workouts
+
+`workouts/*.yaml` (one file per row, named after `number_train_by_meters`) are the source of truth for the table's content. `tool/workouts.dart` validates them (`tool/src/workout_file.dart`: all three languages, same line count per language, every line starts with its meters and they add up to `distance_meters`, known difficulty key → the three `difficulty_level_*` labels) and prints an upsert by `id` that the user pastes into the Supabase SQL Editor: the anon key can't write (RLS), and there is no service key on this machine. `test/workout_files_test.dart` checks every file in CI. When the user writes a new workout in one language, fill in the other two in the same style as the existing files (es "suave"/en "relaxed"/ca "suau", "crol"/"crawl"/"crol", "descanso 20seg"/"resting 20sec"/"descans 20seg").

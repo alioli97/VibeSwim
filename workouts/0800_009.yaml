@@ -1,0 +1,29 @@
+id: edeaf191-d66f-4eb6-9473-6e036e752313
+distance_meters: 800
+duration_minutes: 20
+difficulty: intermediate
+title:
+  en: "Backstroke Endurance Specialization"
+  es: "Especialización de Resistencia en Espalda"
+  ca: "Especialització de Resistència en Esquena"
+warm_up:
+  en: |-
+    100 mixed stroke
+  es: |-
+    100 variados
+  ca: |-
+    100 variats
+main_set:
+  en: |-
+    6x100 backstroke resting 10–15sec
+  es: |-
+    6x100 espalda descanso 10–15seg
+  ca: |-
+    6x100 esquena descans 10–15seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

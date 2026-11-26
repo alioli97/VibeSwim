@@ -1,0 +1,32 @@
+id: 35f75402-3ed3-4132-a2e9-83f789be518f
+distance_meters: 500
+duration_minutes: 14
+difficulty: beginner
+title:
+  en: "Pull-Focus and Stability Routine"
+  es: "Rutina de Enfoque en Brazos y Estabilidad"
+  ca: "Rutina d'Enfocament en Braços i Estabilitat"
+warm_up:
+  en: |-
+    100 mixed stroke
+  es: |-
+    100 variados
+  ca: |-
+    100 variats
+main_set:
+  en: |-
+    2x50 kicking
+    4x50 pullboy strokes
+  es: |-
+    2x50 pies
+    4x50 brazos
+  ca: |-
+    2x50 peus
+    4x50 braços
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

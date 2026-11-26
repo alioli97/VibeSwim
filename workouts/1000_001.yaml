@@ -1,0 +1,32 @@
+id: f120a5ff-cab5-416f-8002-9ad77888132e
+distance_meters: 1000
+duration_minutes: 27
+difficulty: intermediate
+title:
+  en: "Quality and Efficiency Session"
+  es: "Sesión de Calidad y Eficiencia"
+  ca: "Sessió de Qualitat i Eficiència"
+warm_up:
+  en: |-
+    200 mixed stroke
+  es: |-
+    200 variados
+  ca: |-
+    200 variats
+main_set:
+  en: |-
+    4x100 crawl resting 15–20sec
+    4x50 technique
+  es: |-
+    4x100 crol descanso 15–20seg
+    4x50 técnica
+  ca: |-
+    4x100 crol descans 15–20seg
+    4x50 tècnica
+cool_down:
+  en: |-
+    200 relaxed
+  es: |-
+    200 suave
+  ca: |-
+    200 suau

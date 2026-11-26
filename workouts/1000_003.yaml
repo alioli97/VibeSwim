@@ -1,0 +1,32 @@
+id: 6f7df35d-1339-40ab-b130-83fe14dbdc5a
+distance_meters: 1000
+duration_minutes: 24
+difficulty: intermediate
+title:
+  en: "Aerobic Endurance and Postural Compensation"
+  es: "Resistencia Aeróbica y Compensación Postural"
+  ca: "Resistència Aeròbica i Compensació Postural"
+warm_up:
+  en: |-
+    100 mixed stroke
+  es: |-
+    100 variados
+  ca: |-
+    100 variats
+main_set:
+  en: |-
+    6x100 crawl resting 10–15sec
+    4x50 backstroke resting 10–15sec
+  es: |-
+    6x100 crol descanso 10–15seg
+    4x50 espalda descanso 10–15seg
+  ca: |-
+    6x100 crol descans 10–15seg
+    4x50 esquena descans 10–15seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

@@ -1,0 +1,32 @@
+id: 78a45c6e-a50e-4a1a-907f-5d622ee05cad
+distance_meters: 800
+duration_minutes: 23
+difficulty: intermediate
+title:
+  en: "Applied Technique and Aerobic Endurance"
+  es: "Técnica Aplicada y Resistencia Aeróbica"
+  ca: "Tècnica Aplicada i Resistència Aeròbica"
+warm_up:
+  en: |-
+    200 mixed stroke
+  es: |-
+    200 variados
+  ca: |-
+    200 variats
+main_set:
+  en: |-
+    4x50 technique
+    4x50 crawl resting 10–15sec
+  es: |-
+    4x50 técnica
+    4x50 crol descanso 10–15seg
+  ca: |-
+    4x50 tècnica
+    4x50 crol descans 10–15seg
+cool_down:
+  en: |-
+    200 relaxed
+  es: |-
+    200 suave
+  ca: |-
+    200 suau

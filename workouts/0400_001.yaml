@@ -1,0 +1,29 @@
+id: 95d54da7-ed91-489d-abe5-82f0b30a3607
+distance_meters: 400
+duration_minutes: 16
+difficulty: intermediate
+title:
+  en: "Freestyle Sprint and Power"
+  es: "Sprint y Potencia de Crol"
+  ca: "Sprint i Potència de Crol"
+warm_up:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau
+main_set:
+  en: |-
+    8x25 crawl MAX
+  es: |-
+    8x25 crol MAX
+  ca: |-
+    8x25 crol MAX
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

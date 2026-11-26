@@ -1,0 +1,32 @@
+id: e7059953-4c77-4950-86d9-e942a04f3e7a
+distance_meters: 1000
+duration_minutes: 29
+difficulty: intermediate
+title:
+  en: "Base Endurance with Kick Power"
+  es: "Resistencia de Base con Potencia de Patada"
+  ca: "Resistència de Base amb Potència de Patada"
+warm_up:
+  en: |-
+    200 mixed stroke
+  es: |-
+    200 variados
+  ca: |-
+    200 variats
+main_set:
+  en: |-
+    4x50 kicking resting 10–15sec
+    4x100 crawl resting 15–20sec
+  es: |-
+    4x50 pies descanso 10–15seg
+    4x100 crol descanso 15–20seg
+  ca: |-
+    4x50 peus descans 10–15seg
+    4x100 crol descans 15–20seg
+cool_down:
+  en: |-
+    200 relaxed
+  es: |-
+    200 suave
+  ca: |-
+    200 suau

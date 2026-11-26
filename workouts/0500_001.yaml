@@ -1,0 +1,38 @@
+id: b3dd4402-457a-4498-b3e4-6d9d5abe71da
+distance_meters: 500
+duration_minutes: 11
+difficulty: beginner_intermediate
+title:
+  en: "Aerobic Control Intervals"
+  es: "Intervalos Aeróbicos de Control"
+  ca: "Intervals Aeròbics de Control"
+warm_up:
+  en: |-
+    50 Ae2
+    100 relaxed
+  es: |-
+    50 Ae2
+    100 suave
+  ca: |-
+    50 Ae2
+    100 suau
+main_set:
+  en: |-
+    50 Ae2
+    100 relaxed
+    50 Ae2
+  es: |-
+    50 Ae2
+    100 suave
+    50 Ae2
+  ca: |-
+    50 Ae2
+    100 suau
+    50 Ae2
+cool_down:
+  en: |-
+    150 relaxed
+  es: |-
+    150 suave
+  ca: |-
+    150 suau

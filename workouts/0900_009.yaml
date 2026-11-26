@@ -1,0 +1,29 @@
+id: bded8007-ac34-4dbe-a6eb-5f90c77b656d
+distance_meters: 900
+duration_minutes: 21
+difficulty: intermediate
+title:
+  en: "Threshold Endurance and Progressive Volume"
+  es: "Resistencia de Umbral y Volumen Progresivo"
+  ca: "Resistència d'Umbral i Volum Progressiu"
+warm_up:
+  en: |-
+    200 mixed stroke
+  es: |-
+    200 variados
+  ca: |-
+    200 variats
+main_set:
+  en: |-
+    6x100 crawl resting 10–15sec
+  es: |-
+    6x100 crol descanso 10–15seg
+  ca: |-
+    6x100 crol descans 10–15seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

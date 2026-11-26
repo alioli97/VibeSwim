@@ -1,0 +1,32 @@
+id: f878a60e-cf79-4276-9d22-95bb330295f0
+distance_meters: 400
+duration_minutes: 12
+difficulty: beginner_intermediate
+title:
+  en: "Hydrodynamic Efficiency and Control Session"
+  es: "Sesión de Eficiencia Hidrodinámica y Control"
+  ca: "Sessió d'Eficiència Hidrodinàmica i Control"
+warm_up:
+  en: |-
+    2x50 crawl bilateral breathing
+  es: |-
+    2x50 crol respiración bilateral
+  ca: |-
+    2x50 crol respiració bilateral
+main_set:
+  en: |-
+    4x25 minimum strokes
+    2x50 technique
+  es: |-
+    4x25 mínimas brazadas
+    2x50 técnica
+  ca: |-
+    4x25 mínimes braçades
+    2x50 tècnica
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

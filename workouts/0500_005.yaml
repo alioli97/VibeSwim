@@ -1,0 +1,32 @@
+id: b13594e4-8c49-4c6e-9e3f-6a8c7ac18124
+distance_meters: 500
+duration_minutes: 17
+difficulty: beginner_intermediate
+title:
+  en: "Efficiency and Technical Awareness Session"
+  es: "Sesión de Eficiencia y Consciencia Técnica"
+  ca: "Sessió d'Eficiència i Consciència Tècnica"
+warm_up:
+  en: |-
+    2x50 crawl bilateral breathing
+  es: |-
+    2x50 crol respiración bilateral
+  ca: |-
+    2x50 crol respiració bilateral
+main_set:
+  en: |-
+    4x25 minimum strokes
+    4x50 technique
+  es: |-
+    4x25 mínimas brazadas
+    4x50 técnica
+  ca: |-
+    4x25 mínimes braçades
+    4x50 tècnica
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

@@ -1,0 +1,32 @@
+id: d922686a-8236-4d33-b9bd-68a3024b8a7d
+distance_meters: 500
+duration_minutes: 15
+difficulty: beginner
+title:
+  en: "Balance and Propulsion Micro-session"
+  es: "Micro-sesión de Equilibrio y Propulsión"
+  ca: "Microsessió d'Equilibri i Propulsió"
+warm_up:
+  en: |-
+    100 mixed stroke
+  es: |-
+    100 variados
+  ca: |-
+    100 variats
+main_set:
+  en: |-
+    4x50 kicking
+    2x50 pullboy strokes
+  es: |-
+    4x50 pies
+    2x50 brazos
+  ca: |-
+    4x50 peus
+    2x50 braços
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

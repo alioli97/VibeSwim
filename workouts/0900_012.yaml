@@ -1,0 +1,32 @@
+id: e12456b9-b06e-4649-97d9-e94284054310
+distance_meters: 900
+duration_minutes: 23
+difficulty: intermediate
+title:
+  en: "Chunked Endurance and Postural Balance"
+  es: "Resistencia Fraccionada y Equilibrio Postural"
+  ca: "Resistència Fraccionada i Equilibri Postural"
+warm_up:
+  en: |-
+    400 mixed stroke
+  es: |-
+    400 variados
+  ca: |-
+    400 variats
+main_set:
+  en: |-
+    4x50 backstroke resting 10–15sec
+    4x50 crawl resting 10–15sec
+  es: |-
+    4x50 espalda descanso 10–15seg
+    4x50 crol descanso 10–15seg
+  ca: |-
+    4x50 esquena descans 10–15seg
+    4x50 crol descans 10–15seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

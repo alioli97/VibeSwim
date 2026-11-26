@@ -1,0 +1,29 @@
+id: 9ff3a5f1-d3bd-46e1-98ec-65ee125eae92
+distance_meters: 900
+duration_minutes: 21
+difficulty: intermediate
+title:
+  en: "Continuous Endurance and Active Recovery"
+  es: "Resistencia Continua y Recuperación Activa"
+  ca: "Resistència Contínua i Recuperació Activa"
+warm_up:
+  en: |-
+    100 mixed stroke
+  es: |-
+    100 variados
+  ca: |-
+    100 variats
+main_set:
+  en: |-
+    6x100 crawl resting 10–15sec
+  es: |-
+    6x100 crol descanso 10–15seg
+  ca: |-
+    6x100 crol descans 10–15seg
+cool_down:
+  en: |-
+    200 relaxed
+  es: |-
+    200 suave
+  ca: |-
+    200 suau

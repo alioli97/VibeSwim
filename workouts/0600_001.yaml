@@ -1,0 +1,32 @@
+id: 4abad035-9e7c-4817-aaf3-f31c1d8fc949
+distance_meters: 600
+duration_minutes: 19
+difficulty: beginner
+title:
+  en: "Isolation and Technique Session"
+  es: "Sesión de Aislamiento y Técnica"
+  ca: "Sessió d'Aïllament i Tècnica"
+warm_up:
+  en: |-
+    100 mixed stroke
+  es: |-
+    100 variados
+  ca: |-
+    100 variats
+main_set:
+  en: |-
+    4x50 kicking
+    4x50 pullboy strokes
+  es: |-
+    4x50 pies
+    4x50 brazos
+  ca: |-
+    4x50 cames
+    4x50 braços
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

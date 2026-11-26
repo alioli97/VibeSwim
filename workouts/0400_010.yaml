@@ -1,0 +1,22 @@
+id: 13493300-4f33-4db9-a765-be71c883f1bb
+distance_meters: 400
+duration_minutes: 9
+difficulty: beginner
+title:
+  en: "Backstroke-Crawl Medley Micro-session"
+  es: "Micro-sesión de Combinado Espalda-Crol"
+  ca: "Microsessió de Combinat Esquena-Crol"
+main_set:
+  en: |-
+    2x150 (100 backstroke+50 crawl) resting 15sec
+  es: |-
+    2x150 (100 espalda+50 crol) descanso 15seg
+  ca: |-
+    2x150 (100 esquena+50 crol) descans 15seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

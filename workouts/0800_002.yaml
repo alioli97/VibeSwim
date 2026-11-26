@@ -1,0 +1,29 @@
+id: 9354a299-36c2-468d-aaa8-c6dd3ffa11ed
+distance_meters: 800
+duration_minutes: 20
+difficulty: intermediate
+title:
+  en: "Aerobic Foundation and Volume"
+  es: "Consolidación Aeróbica y Volumen"
+  ca: "Consolidació Aeròbica i Volum"
+warm_up:
+  en: |-
+    200 mixed stroke
+  es: |-
+    200 variados
+  ca: |-
+    200 variats
+main_set:
+  en: |-
+    4x100 crawl resting 15–20sec
+  es: |-
+    4x100 crol descanso 15–20seg
+  ca: |-
+    4x100 crol descans 15–20seg
+cool_down:
+  en: |-
+    200 relaxed
+  es: |-
+    200 suave
+  ca: |-
+    200 suau

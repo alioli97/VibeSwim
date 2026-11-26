@@ -1,0 +1,44 @@
+id: ff63fd94-c9d0-469b-a08c-1c15c9592b51
+distance_meters: 2000
+duration_minutes: 54
+difficulty: advanced_expert
+title:
+  en: "Segmented Power & Speed Contrast Session"
+  es: "Sesión de Potencia Segmentada y Contraste de Velocidad"
+  ca: "Sessió de Potència Segmentada i Contrast de Velocitat"
+warm_up:
+  en: |-
+    200 mixed stroke
+    4x50 kicking medley fins resting 15–20sec
+    4x50 kicking medley resting 15–20sec
+  es: |-
+    200 variados
+    4x50 pies estilos aletas descanso 15–20seg
+    4x50 pies estilos descanso 15–20seg
+  ca: |-
+    200 variats
+    4x50 peus estils ALETES descans 15–20seg
+    4x50 peus estils descans 15–20seg
+main_set:
+  en: |-
+    3x100 pullboy strokes paddles
+    8x50 kicking (1 progressive-1 25 MAX+25 relaxed)
+    3x100 fins (50 swimming+50 kicking)
+    6x50 pullboy strokes (1 progressive-1 25 MAX+25 relaxed)
+  es: |-
+    3x100 brazos palas
+    8x50 pies (1 progresiva-1 25 MAX+25 suave)
+    3x100 aletas (50 nadar+50 pies)
+    6x50 brazos (1 progresiva-1 25 MAX+25 suave)
+  ca: |-
+    3x100 braços PALES
+    8x50 peus (1 progressiva-1 25 MAX+25 suau)
+    3x100 ALETES (50 nedar+50 peus)
+    6x50 braços (1 progressiva-1 25 MAX+25 suau)
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

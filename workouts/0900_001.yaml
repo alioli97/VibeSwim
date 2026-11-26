@@ -1,0 +1,32 @@
+id: 54fe54c1-dff5-4291-9923-dae947a8fa17
+distance_meters: 900
+duration_minutes: 23
+difficulty: intermediate
+title:
+  en: "Technique and Aerobic Endurance Session"
+  es: "Sesión de Técnica y Resistencia Aeróbica"
+  ca: "Sessió de Tècnica i Resistència Aeròbica"
+warm_up:
+  en: |-
+    300 mixed stroken
+  es: |-
+    300 variados
+  ca: |-
+    300 variats
+main_set:
+  en: |-
+    4x100 crawl resting 15–20sec
+    2x50 technique
+  es: |-
+    4x100 crol descanso 15–20seg
+    2x50 técnica
+  ca: |-
+    4x100 crol descans 15–20seg
+    2x50 tècnica
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

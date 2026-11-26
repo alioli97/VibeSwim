@@ -1,0 +1,29 @@
+id: b26baeda-3568-4459-8d50-4ca1c22712b8
+distance_meters: 700
+duration_minutes: 17
+difficulty: beginner_intermediate
+title:
+  en: "Short Freestyle Endurance Session"
+  es: "Sesión Corta de Resistencia (Crol)"
+  ca: "Sessió Curta de Resistència (Crol)"
+warm_up:
+  en: |-
+    100 mixed stroke
+  es: |-
+    100 variados
+  ca: |-
+    100 variats
+main_set:
+  en: |-
+    5x100 crawl resting 10–15sec
+  es: |-
+    5x100 crol descanso 10–15seg
+  ca: |-
+    5x100 crol descans 10–15seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau
