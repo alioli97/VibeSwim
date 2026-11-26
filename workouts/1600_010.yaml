@@ -1,0 +1,35 @@
+id: 7a25103a-7dab-41cd-b3a1-583bb2ce764b
+distance_meters: 1600
+duration_minutes: 39
+difficulty: advanced
+title:
+  en: "Sprints and Distance"
+  es: "Sprints y Fondo"
+  ca: "Esprints i Fons"
+warm_up:
+  en: |-
+    300 mixed stroke relaxed
+  es: |-
+    300 variados suave
+  ca: |-
+    300 variats suau
+main_set:
+  en: |-
+    16x25 crawl MAX resting 20sec
+    600 crawl continuous
+    4x50 butterfly resting 30sec
+  es: |-
+    16x25 crol MAX descanso 20seg
+    600 crol continuo
+    4x50 mariposa descanso 30seg
+  ca: |-
+    16x25 crol MAX descans 20seg
+    600 crol continu
+    4x50 papallona descans 30seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

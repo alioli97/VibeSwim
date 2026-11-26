@@ -1,0 +1,35 @@
+id: d04607d6-738a-4e6c-930f-3b79793ae412
+distance_meters: 1100
+duration_minutes: 26
+difficulty: intermediate
+title:
+  en: "Fartlek and Combos"
+  es: "Fartlek y Combinados"
+  ca: "Fartlek i Combinats"
+warm_up:
+  en: |-
+    200 mixed stroke relaxed
+    4x50 kicking resting 15sec
+  es: |-
+    200 variados suave
+    4x50 pies descanso 15seg
+  ca: |-
+    200 variats suau
+    4x50 peus descans 15seg
+main_set:
+  en: |-
+    2x150 (100 crawl + 50 backstroke) resting 20sec
+    300 crawl fartlek (25 fast + 75 easy)
+  es: |-
+    2x150 (100 crol + 50 espalda) descanso 20seg
+    300 crol fartlek (25 rápido + 75 suave)
+  ca: |-
+    2x150 (100 crol + 50 esquena) descans 20seg
+    300 crol fartlek (25 ràpid + 75 suau)
+cool_down:
+  en: |-
+    100 backstroke relaxed
+  es: |-
+    100 espalda suave
+  ca: |-
+    100 esquena suau

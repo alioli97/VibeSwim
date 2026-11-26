@@ -1,0 +1,38 @@
+id: 8e14a6dd-705b-44a1-a4b3-1ac872263c93
+distance_meters: 2000
+duration_minutes: 60
+difficulty: beginner
+title:
+  en: "Hundreds at Ease"
+  es: "Cientos sin Prisa"
+  ca: "Centenars sense Pressa"
+warm_up:
+  en: |-
+    200 crawl relaxed
+    4x50 kicking resting 20sec
+  es: |-
+    200 crol suave
+    4x50 pies descanso 20seg
+  ca: |-
+    200 crol suau
+    4x50 peus descans 20seg
+main_set:
+  en: |-
+    8x100 crawl resting 30sec
+    500 crawl relaxed
+    4x50 backstroke resting 20sec
+  es: |-
+    8x100 crol descanso 30seg
+    500 crol suave
+    4x50 espalda descanso 20seg
+  ca: |-
+    8x100 crol descans 30seg
+    500 crol suau
+    4x50 esquena descans 20seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

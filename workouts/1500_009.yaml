@@ -1,0 +1,32 @@
+id: e40c4153-3e0f-4d16-8080-6600a0bbce13
+distance_meters: 1500
+duration_minutes: 34
+difficulty: intermediate_advanced
+title:
+  en: "Reverse Medley"
+  es: "Estilos Inversos"
+  ca: "Estils Inversos"
+warm_up:
+  en: |-
+    300 mixed stroke relaxed
+  es: |-
+    300 variados suave
+  ca: |-
+    300 variats suau
+main_set:
+  en: |-
+    4x200 reverse medley (freestyle, breaststroke, backstroke, butterfly) resting 30sec
+    4x75 (25 butterfly + 50 crawl) resting 20sec
+  es: |-
+    4x200 estilos inversos (crol, braza, espalda, mariposa) descanso 30seg
+    4x75 (25 mariposa + 50 crol) descanso 20seg
+  ca: |-
+    4x200 estils inversos (crol, braça, esquena, papallona) descans 30seg
+    4x75 (25 papallona + 50 crol) descans 20seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau
