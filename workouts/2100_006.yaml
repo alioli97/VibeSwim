@@ -1,0 +1,38 @@
+id: b67e3240-715f-46e5-9fe7-4011d41b0ffc
+distance_meters: 2100
+duration_minutes: 54
+difficulty: beginner_intermediate
+title:
+  en: "Continuous Kilometre"
+  es: "Kilómetro Continuo"
+  ca: "Quilòmetre Continu"
+warm_up:
+  en: |-
+    200 crawl relaxed
+    4x50 technique resting 20sec
+  es: |-
+    200 crol suave
+    4x50 técnica descanso 20seg
+  ca: |-
+    200 crol suau
+    4x50 tècnica descans 20seg
+main_set:
+  en: |-
+    1000 crawl continuous
+    3x100 pullboy strokes resting 20sec
+    4x50 backstroke resting 20sec
+  es: |-
+    1000 crol continuo
+    3x100 brazos descanso 20seg
+    4x50 espalda descanso 20seg
+  ca: |-
+    1000 crol continu
+    3x100 braços descans 20seg
+    4x50 esquena descans 20seg
+cool_down:
+  en: |-
+    200 relaxed
+  es: |-
+    200 suave
+  ca: |-
+    200 suau
