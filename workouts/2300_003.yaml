@@ -1,0 +1,38 @@
+id: 61a65209-38b1-403e-b0f6-08a1dded1d04
+distance_meters: 2300
+duration_minutes: 54
+difficulty: intermediate
+title:
+  en: "Bilateral 400s and Paddles"
+  es: "Series de 400 Bilaterales y Palas"
+  ca: "Sèries de 400 Bilaterals i Pales"
+warm_up:
+  en: |-
+    300 mixed stroke relaxed
+    4x50 kicking fins resting 15sec
+  es: |-
+    300 variados suave
+    4x50 pies aletas descanso 15seg
+  ca: |-
+    300 variats suau
+    4x50 peus ALETES descans 15seg
+main_set:
+  en: |-
+    2x400 crawl breathing every 3 resting 30sec
+    4x100 pullboy strokes paddles resting 20sec
+    8x50 crawl progressive 1-4 resting 15sec
+  es: |-
+    2x400 crol respirando cada 3 descanso 30seg
+    4x100 brazos palas descanso 20seg
+    8x50 crol progresivo 1-4 descanso 15seg
+  ca: |-
+    2x400 crol respirant cada 3 descans 30seg
+    4x100 braços PALES descans 20seg
+    8x50 crol progressiu 1-4 descans 15seg
+cool_down:
+  en: |-
+    200 relaxed
+  es: |-
+    200 suave
+  ca: |-
+    200 suau

@@ -1,0 +1,35 @@
+id: a2f99a6a-3b36-48e8-99ee-4a335f27e6a9
+distance_meters: 2900
+duration_minutes: 74
+difficulty: beginner_intermediate
+title:
+  en: "Easy 250s"
+  es: "Series de 250 Tranquilas"
+  ca: "Sèries de 250 Tranquil·les"
+warm_up:
+  en: |-
+    300 mixed stroke relaxed
+    4x50 technique resting 20sec
+  es: |-
+    300 variados suave
+    4x50 técnica descanso 20seg
+  ca: |-
+    300 variats suau
+    4x50 tècnica descans 20seg
+main_set:
+  en: |-
+    8x250 crawl resting 30sec
+    4x50 kicking resting 20sec
+  es: |-
+    8x250 crol descanso 30seg
+    4x50 pies descanso 20seg
+  ca: |-
+    8x250 crol descans 30seg
+    4x50 peus descans 20seg
+cool_down:
+  en: |-
+    200 backstroke relaxed
+  es: |-
+    200 espalda suave
+  ca: |-
+    200 esquena suau
