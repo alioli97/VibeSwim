@@ -1,0 +1,41 @@
+id: 1b44a062-8791-42ae-8d2d-206e0a630aa7
+distance_meters: 8200
+duration_minutes: 168
+difficulty: intermediate_advanced
+title:
+  en: "Fins and Speed"
+  es: "Aletas y Velocidad"
+  ca: "Aletes i Velocitat"
+warm_up:
+  en: |-
+    300 mixed stroke relaxed
+    4x50 kicking fins resting 15sec
+  es: |-
+    300 variados suave
+    4x50 pies aletas descanso 15seg
+  ca: |-
+    300 variats suau
+    4x50 peus ALETES descans 15seg
+main_set:
+  en: |-
+    6x1000 crawl continuous resting 30sec
+    500 crawl continuous resting 30sec
+    8x50 butterfly kick fins resting 15sec
+    6x100 crawl fins fast resting 20sec
+  es: |-
+    6x1000 crol continuo descanso 30seg
+    500 crol continuo descanso 30seg
+    8x50 pies mariposa aletas descanso 15seg
+    6x100 crol aletas rápido descanso 20seg
+  ca: |-
+    6x1000 crol continu descans 30seg
+    500 crol continu descans 30seg
+    8x50 peus papallona ALETES descans 15seg
+    6x100 crol ALETES ràpid descans 20seg
+cool_down:
+  en: |-
+    200 relaxed
+  es: |-
+    200 suave
+  ca: |-
+    200 suau

@@ -91,7 +91,7 @@ bool _check(List<WorkoutFile> workouts) {
 
 void _new(List<String> args) {
   final meters = args.isEmpty ? null : int.tryParse(args.first);
-  if (meters == null || meters <= 0 || meters > 9999) {
+  if (meters == null || meters <= 0 || meters > 99999) {
     throw const FormatException(
       'Usage: dart run tool/workouts.dart new <meters>',
     );
