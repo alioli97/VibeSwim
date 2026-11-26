@@ -1,0 +1,41 @@
+id: f1eb7117-c8ac-4d03-8a7a-b686425a44d3
+distance_meters: 700
+duration_minutes: 18
+difficulty: intermediate
+title:
+  en: "Freestyle Ladder"
+  es: "Escalera de Crol"
+  ca: "Escala de Crol"
+warm_up:
+  en: |-
+    100 mixed stroke relaxed
+    2x50 technique resting 15sec
+  es: |-
+    100 variados suave
+    2x50 técnica descanso 15seg
+  ca: |-
+    100 variats suau
+    2x50 tècnica descans 15seg
+main_set:
+  en: |-
+    50 crawl resting 15sec
+    100 crawl resting 15sec
+    150 crawl resting 20sec
+    100 crawl resting 15sec
+  es: |-
+    50 crol descanso 15seg
+    100 crol descanso 15seg
+    150 crol descanso 20seg
+    100 crol descanso 15seg
+  ca: |-
+    50 crol descans 15seg
+    100 crol descans 15seg
+    150 crol descans 20seg
+    100 crol descans 15seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

@@ -1,0 +1,32 @@
+id: 9c56df5a-9576-43d9-a0d2-ccf2aab1fb5f
+distance_meters: 700
+duration_minutes: 18
+difficulty: intermediate
+title:
+  en: "Technique and Kicking with Fins"
+  es: "Técnica y Pies con Aletas"
+  ca: "Tècnica i Peus amb Aletes"
+warm_up:
+  en: |-
+    200 crawl relaxed
+  es: |-
+    200 crol suave
+  ca: |-
+    200 crol suau
+main_set:
+  en: |-
+    4x50 kicking fins resting 15sec
+    4x50 technique resting 15sec
+  es: |-
+    4x50 pies aletas descanso 15seg
+    4x50 técnica descanso 15seg
+  ca: |-
+    4x50 peus ALETES descans 15seg
+    4x50 tècnica descans 15seg
+cool_down:
+  en: |-
+    100 backstroke relaxed
+  es: |-
+    100 espalda suave
+  ca: |-
+    100 esquena suau

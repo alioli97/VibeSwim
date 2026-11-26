@@ -1,0 +1,32 @@
+id: c11b9b3d-4728-4b76-a03e-eb393ac68022
+distance_meters: 600
+duration_minutes: 15
+difficulty: intermediate_advanced
+title:
+  en: "Broken Freestyle Pace"
+  es: "Ritmo de Crol Fraccionado"
+  ca: "Ritme de Crol Fraccionat"
+warm_up:
+  en: |-
+    100 crawl relaxed
+    2x50 crawl progressive resting 15sec
+  es: |-
+    100 crol suave
+    2x50 crol progresivo descanso 15seg
+  ca: |-
+    100 crol suau
+    2x50 crol progressiu descans 15seg
+main_set:
+  en: |-
+    6x50 crawl steady pace resting 10sec
+  es: |-
+    6x50 crol ritmo constante descanso 10seg
+  ca: |-
+    6x50 crol ritme constant descans 10seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

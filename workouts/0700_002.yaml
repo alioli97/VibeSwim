@@ -1,0 +1,35 @@
+id: 8fd39090-f37c-44e7-9830-25f80131947f
+distance_meters: 700
+duration_minutes: 21
+difficulty: beginner
+title:
+  en: "Easy Aerobic Base"
+  es: "Base Aeróbica Suave"
+  ca: "Base Aeròbica Suau"
+warm_up:
+  en: |-
+    100 crawl relaxed
+    2x50 kicking resting 20sec
+  es: |-
+    100 crol suave
+    2x50 pies descanso 20seg
+  ca: |-
+    100 crol suau
+    2x50 peus descans 20seg
+main_set:
+  en: |-
+    4x75 crawl resting 30sec
+    2x50 backstroke resting 20sec
+  es: |-
+    4x75 crol descanso 30seg
+    2x50 espalda descanso 20seg
+  ca: |-
+    4x75 crol descans 30seg
+    2x50 esquena descans 20seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau
