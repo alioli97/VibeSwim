@@ -1,0 +1,32 @@
+id: 64acf718-815d-4164-a852-106246e44e0d
+distance_meters: 500
+duration_minutes: 16
+difficulty: advanced
+title:
+  en: "Pure Speed"
+  es: "Velocidad Pura"
+  ca: "Velocitat Pura"
+warm_up:
+  en: |-
+    100 mixed stroke relaxed
+  es: |-
+    100 variados suave
+  ca: |-
+    100 variats suau
+main_set:
+  en: |-
+    8x25 crawl MAX resting 30sec
+    2x50 crawl strong pace resting 20sec
+  es: |-
+    8x25 crol MAX descanso 30seg
+    2x50 crol ritmo fuerte descanso 20seg
+  ca: |-
+    8x25 crol MAX descans 30seg
+    2x50 crol ritme fort descans 20seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau
