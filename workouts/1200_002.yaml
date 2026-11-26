@@ -1,0 +1,32 @@
+id: cd262273-d0f0-4860-a6f7-2b296d39d130
+distance_meters: 1200
+duration_minutes: 32
+difficulty: beginner_intermediate
+title:
+  en: "Easy Endurance"
+  es: "Resistencia Tranquila"
+  ca: "Resistència Tranquil·la"
+warm_up:
+  en: |-
+    200 mixed stroke relaxed
+    4x50 kicking resting 20sec
+  es: |-
+    200 variados suave
+    4x50 pies descanso 20seg
+  ca: |-
+    200 variats suau
+    4x50 peus descans 20seg
+main_set:
+  en: |-
+    4x150 crawl resting 30sec
+  es: |-
+    4x150 crol descanso 30seg
+  ca: |-
+    4x150 crol descans 30seg
+cool_down:
+  en: |-
+    200 backstroke relaxed
+  es: |-
+    200 espalda suave
+  ca: |-
+    200 esquena suau

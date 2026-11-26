@@ -1,0 +1,32 @@
+id: c5661581-cdbe-4344-9c38-67ecef80a370
+distance_meters: 1900
+duration_minutes: 40
+difficulty: advanced
+title:
+  en: "Twelve Threshold 100s"
+  es: "Doce de 100 en Umbral"
+  ca: "Dotze de 100 al Llindar"
+warm_up:
+  en: |-
+    300 mixed stroke relaxed
+    4x50 crawl progressive 1-4 resting 10sec
+  es: |-
+    300 variados suave
+    4x50 crol progresivo 1-4 descanso 10seg
+  ca: |-
+    300 variats suau
+    4x50 crol progressiu 1-4 descans 10seg
+main_set:
+  en: |-
+    12x100 crawl strong pace resting 15sec
+  es: |-
+    12x100 crol ritmo fuerte descanso 15seg
+  ca: |-
+    12x100 crol ritme fort descans 15seg
+cool_down:
+  en: |-
+    200 relaxed
+  es: |-
+    200 suave
+  ca: |-
+    200 suau

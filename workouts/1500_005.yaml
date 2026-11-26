@@ -1,0 +1,35 @@
+id: f737798d-b984-4e5e-8bdf-f44752e4222f
+distance_meters: 1500
+duration_minutes: 34
+difficulty: intermediate_advanced
+title:
+  en: "Medley and Negative Splits"
+  es: "Estilos y Negativos"
+  ca: "Estils i Negatius"
+warm_up:
+  en: |-
+    200 mixed stroke relaxed
+    4x50 kicking medley resting 15sec
+  es: |-
+    200 variados suave
+    4x50 pies estilos descanso 15seg
+  ca: |-
+    200 variats suau
+    4x50 peus estils descans 15seg
+main_set:
+  en: |-
+    4x100 medley resting 20sec
+    3x200 crawl 2nd half faster resting 20sec
+  es: |-
+    4x100 estilos descanso 20seg
+    3x200 crol 2ª mitad más rápida descanso 20seg
+  ca: |-
+    4x100 estils descans 20seg
+    3x200 crol 2a meitat més ràpida descans 20seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

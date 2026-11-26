@@ -1,0 +1,35 @@
+id: 1b1e2ca2-67af-4130-aded-ded94597bf86
+distance_meters: 1600
+duration_minutes: 40
+difficulty: intermediate
+title:
+  en: "200s with a Finish"
+  es: "Series de 200 con Remate"
+  ca: "Sèries de 200 amb Remat"
+warm_up:
+  en: |-
+    300 mixed stroke relaxed
+    4x50 technique resting 15sec
+  es: |-
+    300 variados suave
+    4x50 técnica descanso 15seg
+  ca: |-
+    300 variats suau
+    4x50 tècnica descans 15seg
+main_set:
+  en: |-
+    4x200 crawl steady pace resting 30sec
+    4x50 crawl MAX resting 30sec
+  es: |-
+    4x200 crol ritmo constante descanso 30seg
+    4x50 crol MAX descanso 30seg
+  ca: |-
+    4x200 crol ritme constant descans 30seg
+    4x50 crol MAX descans 30seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

@@ -1,0 +1,35 @@
+id: edba1dcf-4a3a-4520-96a9-138129279c39
+distance_meters: 1700
+duration_minutes: 46
+difficulty: beginner_intermediate
+title:
+  en: "Six 150s"
+  es: "Seis de 150"
+  ca: "Sis de 150"
+warm_up:
+  en: |-
+    200 crawl relaxed
+    4x50 technique resting 20sec
+  es: |-
+    200 crol suave
+    4x50 técnica descanso 20seg
+  ca: |-
+    200 crol suau
+    4x50 tècnica descans 20seg
+main_set:
+  en: |-
+    6x150 crawl resting 30sec
+    4x50 kicking resting 20sec
+  es: |-
+    6x150 crol descanso 30seg
+    4x50 pies descanso 20seg
+  ca: |-
+    6x150 crol descans 30seg
+    4x50 peus descans 20seg
+cool_down:
+  en: |-
+    200 backstroke relaxed
+  es: |-
+    200 espalda suave
+  ca: |-
+    200 esquena suau

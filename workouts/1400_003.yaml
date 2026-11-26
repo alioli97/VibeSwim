@@ -1,0 +1,35 @@
+id: e11ebf53-ca1e-4f21-8604-4e3a14afa08f
+distance_meters: 1400
+duration_minutes: 33
+difficulty: intermediate
+title:
+  en: "400 and Paddles"
+  es: "Cuatrocientos y Palas"
+  ca: "Quatre-cents i Pales"
+warm_up:
+  en: |-
+    200 mixed stroke relaxed
+    4x50 technique resting 15sec
+  es: |-
+    200 variados suave
+    4x50 técnica descanso 15seg
+  ca: |-
+    200 variats suau
+    4x50 tècnica descans 15seg
+main_set:
+  en: |-
+    400 crawl steady pace resting 30sec
+    4x100 pullboy strokes paddles resting 20sec
+  es: |-
+    400 crol ritmo constante descanso 30seg
+    4x100 brazos palas descanso 20seg
+  ca: |-
+    400 crol ritme constant descans 30seg
+    4x100 braços PALES descans 20seg
+cool_down:
+  en: |-
+    200 backstroke relaxed
+  es: |-
+    200 espalda suave
+  ca: |-
+    200 esquena suau

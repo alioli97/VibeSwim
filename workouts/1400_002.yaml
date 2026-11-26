@@ -1,0 +1,35 @@
+id: 54bea684-397d-4c88-824c-1fcd51aecfcd
+distance_meters: 1400
+duration_minutes: 36
+difficulty: intermediate
+title:
+  en: "Pace and Finish"
+  es: "Ritmo y Remate"
+  ca: "Ritme i Remat"
+warm_up:
+  en: |-
+    300 mixed stroke relaxed
+    4x50 kicking fins resting 15sec
+  es: |-
+    300 variados suave
+    4x50 pies aletas descanso 15seg
+  ca: |-
+    300 variats suau
+    4x50 peus ALETES descans 15seg
+main_set:
+  en: |-
+    6x100 crawl steady pace resting 20sec
+    4x50 crawl MAX resting 30sec
+  es: |-
+    6x100 crol ritmo constante descanso 20seg
+    4x50 crol MAX descanso 30seg
+  ca: |-
+    6x100 crol ritme constant descans 20seg
+    4x50 crol MAX descans 30seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

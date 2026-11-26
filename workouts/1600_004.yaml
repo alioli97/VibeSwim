@@ -1,0 +1,35 @@
+id: 9a34e19e-e25f-4f48-af0a-4aacc849120f
+distance_meters: 1600
+duration_minutes: 37
+difficulty: intermediate_advanced
+title:
+  en: "Medley and Twelve 50s"
+  es: "Estilos y Doce de 50"
+  ca: "Estils i Dotze de 50"
+warm_up:
+  en: |-
+    300 mixed stroke relaxed
+    4x50 kicking medley resting 15sec
+  es: |-
+    300 variados suave
+    4x50 pies estilos descanso 15seg
+  ca: |-
+    300 variats suau
+    4x50 peus estils descans 15seg
+main_set:
+  en: |-
+    4x100 medley resting 20sec
+    12x50 crawl strong pace resting 10sec
+  es: |-
+    4x100 estilos descanso 20seg
+    12x50 crol ritmo fuerte descanso 10seg
+  ca: |-
+    4x100 estils descans 20seg
+    12x50 crol ritme fort descans 10seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

@@ -1,0 +1,38 @@
+id: 9e1ed2c6-066f-41fb-be95-e22f919cb948
+distance_meters: 1900
+duration_minutes: 46
+difficulty: intermediate
+title:
+  en: "500 and More"
+  es: "Quinientos y Más"
+  ca: "Cinc-cents i Més"
+warm_up:
+  en: |-
+    200 mixed stroke relaxed
+    4x50 technique resting 15sec
+  es: |-
+    200 variados suave
+    4x50 técnica descanso 15seg
+  ca: |-
+    200 variats suau
+    4x50 tècnica descans 15seg
+main_set:
+  en: |-
+    500 crawl breathing every 3 resting 30sec
+    4x100 pullboy strokes paddles resting 20sec
+    8x50 crawl progressive 1-4 resting 15sec
+  es: |-
+    500 crol respirando cada 3 descanso 30seg
+    4x100 brazos palas descanso 20seg
+    8x50 crol progresivo 1-4 descanso 15seg
+  ca: |-
+    500 crol respirant cada 3 descans 30seg
+    4x100 braços PALES descans 20seg
+    8x50 crol progressiu 1-4 descans 15seg
+cool_down:
+  en: |-
+    200 relaxed
+  es: |-
+    200 suave
+  ca: |-
+    200 suau

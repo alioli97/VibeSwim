@@ -1,0 +1,32 @@
+id: 774ce06b-119e-496b-947d-42c1ba945d4c
+distance_meters: 1300
+duration_minutes: 30
+difficulty: intermediate_advanced
+title:
+  en: "Fast 50s and Medley"
+  es: "Series de 50 Rápidas y Estilos"
+  ca: "Sèries de 50 Ràpides i Estils"
+warm_up:
+  en: |-
+    300 mixed stroke relaxed
+  es: |-
+    300 variados suave
+  ca: |-
+    300 variats suau
+main_set:
+  en: |-
+    10x50 crawl strong pace resting 10sec
+    4x100 medley resting 20sec
+  es: |-
+    10x50 crol ritmo fuerte descanso 10seg
+    4x100 estilos descanso 20seg
+  ca: |-
+    10x50 crol ritme fort descans 10seg
+    4x100 estils descans 20seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

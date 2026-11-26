@@ -1,0 +1,32 @@
+id: 530bce9d-b677-4543-bcd2-03cc0849111a
+distance_meters: 1600
+duration_minutes: 33
+difficulty: advanced
+title:
+  en: "Five Negative Split 200s"
+  es: "Cinco de 200 en Negativo"
+  ca: "Cinc de 200 en Negatiu"
+warm_up:
+  en: |-
+    300 mixed stroke relaxed
+    4x50 crawl progressive 1-4 resting 10sec
+  es: |-
+    300 variados suave
+    4x50 crol progresivo 1-4 descanso 10seg
+  ca: |-
+    300 variats suau
+    4x50 crol progressiu 1-4 descans 10seg
+main_set:
+  en: |-
+    5x200 crawl 2nd half faster resting 20sec
+  es: |-
+    5x200 crol 2ª mitad más rápida descanso 20seg
+  ca: |-
+    5x200 crol 2a meitat més ràpida descans 20seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

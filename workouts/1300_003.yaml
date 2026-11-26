@@ -1,0 +1,35 @@
+id: bc670eea-598e-471c-9b88-c0adfd1738e6
+distance_meters: 1300
+duration_minutes: 32
+difficulty: intermediate
+title:
+  en: "Bilateral Breathing"
+  es: "Respiración Bilateral"
+  ca: "Respiració Bilateral"
+warm_up:
+  en: |-
+    200 mixed stroke relaxed
+    4x50 kicking fins resting 15sec
+  es: |-
+    200 variados suave
+    4x50 pies aletas descanso 15seg
+  ca: |-
+    200 variats suau
+    4x50 peus ALETES descans 15seg
+main_set:
+  en: |-
+    2x300 crawl breathing every 3 resting 30sec
+    4x50 crawl progressive 1-4 resting 15sec
+  es: |-
+    2x300 crol respirando cada 3 descanso 30seg
+    4x50 crol progresivo 1-4 descanso 15seg
+  ca: |-
+    2x300 crol respirant cada 3 descans 30seg
+    4x50 crol progressiu 1-4 descans 15seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau
