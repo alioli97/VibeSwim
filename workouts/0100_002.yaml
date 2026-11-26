@@ -1,0 +1,15 @@
+id: 32f26466-6237-43ee-b39b-442357379a2b
+distance_meters: 100
+duration_minutes: 4
+difficulty: beginner
+title:
+  en: "Minimal Technique"
+  es: "Técnica Mínima"
+  ca: "Tècnica Mínima"
+main_set:
+  en: |-
+    4x25 technique resting 20sec
+  es: |-
+    4x25 técnica descanso 20seg
+  ca: |-
+    4x25 tècnica descans 20seg

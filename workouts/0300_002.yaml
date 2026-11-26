@@ -1,0 +1,35 @@
+id: 7e86af53-d9ac-47e7-a63b-763579040c6a
+distance_meters: 300
+duration_minutes: 12
+difficulty: beginner_intermediate
+title:
+  en: "Three Short Strokes"
+  es: "Tres Estilos Cortos"
+  ca: "Tres Estils Curts"
+warm_up:
+  en: |-
+    50 crawl relaxed
+  es: |-
+    50 crol suave
+  ca: |-
+    50 crol suau
+main_set:
+  en: |-
+    2x50 backstroke resting 20sec
+    2x25 breaststroke resting 30sec
+    2x25 kicking resting 20sec
+  es: |-
+    2x50 espalda descanso 20seg
+    2x25 braza descanso 30seg
+    2x25 pies descanso 20seg
+  ca: |-
+    2x50 esquena descans 20seg
+    2x25 braça descans 30seg
+    2x25 peus descans 20seg
+cool_down:
+  en: |-
+    50 relaxed
+  es: |-
+    50 suave
+  ca: |-
+    50 suau

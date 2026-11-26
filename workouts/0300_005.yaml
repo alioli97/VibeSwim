@@ -1,0 +1,22 @@
+id: fe4b95de-093b-414c-9443-607768f5e60e
+distance_meters: 300
+duration_minutes: 11
+difficulty: advanced
+title:
+  en: "Short Sprints"
+  es: "Sprints Cortos"
+  ca: "Esprints Curts"
+warm_up:
+  en: |-
+    4x25 crawl progressive 1-4 resting 10sec
+  es: |-
+    4x25 crol progresivo 1-4 descanso 10seg
+  ca: |-
+    4x25 crol progressiu 1-4 descans 10seg
+main_set:
+  en: |-
+    8x25 crawl MAX resting 30sec
+  es: |-
+    8x25 crol MAX descanso 30seg
+  ca: |-
+    8x25 crol MAX descans 30seg

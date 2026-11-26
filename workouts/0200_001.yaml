@@ -1,0 +1,29 @@
+id: 2c12736c-3812-487d-8d5f-0062688eadf9
+distance_meters: 200
+duration_minutes: 8
+difficulty: beginner
+title:
+  en: "Short Start"
+  es: "Inicio Corto"
+  ca: "Inici Curt"
+warm_up:
+  en: |-
+    50 crawl relaxed
+  es: |-
+    50 crol suave
+  ca: |-
+    50 crol suau
+main_set:
+  en: |-
+    4x25 technique resting 20sec
+  es: |-
+    4x25 técnica descanso 20seg
+  ca: |-
+    4x25 tècnica descans 20seg
+cool_down:
+  en: |-
+    50 relaxed
+  es: |-
+    50 suave
+  ca: |-
+    50 suau

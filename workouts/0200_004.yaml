@@ -1,0 +1,18 @@
+id: f6988238-8849-48b0-873e-495262a0f075
+distance_meters: 200
+duration_minutes: 6
+difficulty: intermediate_advanced
+title:
+  en: "Medley and Butterfly"
+  es: "Estilos y Mariposa"
+  ca: "Estils i Papallona"
+main_set:
+  en: |-
+    100 medley
+    4x25 butterfly resting 20sec
+  es: |-
+    100 estilos
+    4x25 mariposa descanso 20seg
+  ca: |-
+    100 estils
+    4x25 papallona descans 20seg

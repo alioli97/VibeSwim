@@ -1,0 +1,32 @@
+id: 944afdc1-d469-486f-a21b-d2af6800463f
+distance_meters: 300
+duration_minutes: 12
+difficulty: beginner
+title:
+  en: "First 300"
+  es: "Primeros 300"
+  ca: "Primers 300"
+warm_up:
+  en: |-
+    50 crawl relaxed
+  es: |-
+    50 crol suave
+  ca: |-
+    50 crol suau
+main_set:
+  en: |-
+    4x25 technique resting 20sec
+    2x50 crawl resting 30sec
+  es: |-
+    4x25 técnica descanso 20seg
+    2x50 crol descanso 30seg
+  ca: |-
+    4x25 tècnica descans 20seg
+    2x50 crol descans 30seg
+cool_down:
+  en: |-
+    50 relaxed
+  es: |-
+    50 suave
+  ca: |-
+    50 suau

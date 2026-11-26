@@ -1,0 +1,22 @@
+id: 266f28b0-aaa1-4cd9-8c04-995af00a8ae6
+distance_meters: 100
+duration_minutes: 4
+difficulty: intermediate
+title:
+  en: "100 Sprint"
+  es: "Sprint de 100"
+  ca: "Esprint de 100"
+warm_up:
+  en: |-
+    50 mixed stroke relaxed
+  es: |-
+    50 variados suave
+  ca: |-
+    50 variats suau
+main_set:
+  en: |-
+    2x25 crawl MAX resting 30sec
+  es: |-
+    2x25 crol MAX descanso 30seg
+  ca: |-
+    2x25 crol MAX descans 30seg

@@ -1,0 +1,22 @@
+id: 30892dd0-4922-4e2d-ab68-b76276974646
+distance_meters: 100
+duration_minutes: 4
+difficulty: beginner
+title:
+  en: "First Contact"
+  es: "Primer Contacto"
+  ca: "Primer Contacte"
+warm_up:
+  en: |-
+    50 crawl relaxed
+  es: |-
+    50 crol suave
+  ca: |-
+    50 crol suau
+main_set:
+  en: |-
+    2x25 backstroke resting 30sec
+  es: |-
+    2x25 espalda descanso 30seg
+  ca: |-
+    2x25 esquena descans 30seg
