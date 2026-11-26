@@ -1,0 +1,38 @@
+id: 37b542b2-b668-440b-8592-3f8c4b2093cd
+distance_meters: 3800
+duration_minutes: 84
+difficulty: intermediate
+title:
+  en: "Distance and Paddles"
+  es: "Fondo y Palas"
+  ca: "Fons i Pales"
+warm_up:
+  en: |-
+    200 mixed stroke relaxed
+    4x50 technique resting 15sec
+  es: |-
+    200 variados suave
+    4x50 técnica descanso 15seg
+  ca: |-
+    200 variats suau
+    4x50 tècnica descans 15seg
+main_set:
+  en: |-
+    2200 crawl continuous
+    8x100 pullboy strokes paddles resting 20sec
+    4x50 backstroke resting 20sec
+  es: |-
+    2200 crol continuo
+    8x100 brazos palas descanso 20seg
+    4x50 espalda descanso 20seg
+  ca: |-
+    2200 crol continu
+    8x100 braços PALES descans 20seg
+    4x50 esquena descans 20seg
+cool_down:
+  en: |-
+    200 relaxed
+  es: |-
+    200 suave
+  ca: |-
+    200 suau
