@@ -1,0 +1,35 @@
+id: 6d849ec3-488f-4326-a0b9-fe2941abca26
+distance_meters: 600
+duration_minutes: 19
+difficulty: beginner
+title:
+  en: "Introduction to Strokes"
+  es: "Iniciación a los Estilos"
+  ca: "Iniciació als Estils"
+warm_up:
+  en: |-
+    100 crawl relaxed
+    2x50 technique resting 20sec
+  es: |-
+    100 crol suave
+    2x50 técnica descanso 20seg
+  ca: |-
+    100 crol suau
+    2x50 tècnica descans 20seg
+main_set:
+  en: |-
+    4x50 backstroke resting 20sec
+    4x25 breaststroke resting 20sec
+  es: |-
+    4x50 espalda descanso 20seg
+    4x25 braza descanso 20seg
+  ca: |-
+    4x50 esquena descans 20seg
+    4x25 braça descans 20seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

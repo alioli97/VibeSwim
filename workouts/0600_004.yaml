@@ -1,0 +1,32 @@
+id: 6b1af5ee-990d-4fd4-805a-022cbe1fe6e6
+distance_meters: 600
+duration_minutes: 17
+difficulty: intermediate
+title:
+  en: "Short Freestyle Speed"
+  es: "Velocidad Corta de Crol"
+  ca: "Velocitat Curta de Crol"
+warm_up:
+  en: |-
+    200 mixed stroke relaxed
+  es: |-
+    200 variados suave
+  ca: |-
+    200 variats suau
+main_set:
+  en: |-
+    8x25 crawl MAX resting 20sec
+    4x25 kicking MAX resting 20sec
+  es: |-
+    8x25 crol MAX descanso 20seg
+    4x25 pies MAX descanso 20seg
+  ca: |-
+    8x25 crol MAX descans 20seg
+    4x25 peus MAX descans 20seg
+cool_down:
+  en: |-
+    100 backstroke relaxed
+  es: |-
+    100 espalda suave
+  ca: |-
+    100 esquena suau

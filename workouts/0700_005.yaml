@@ -1,0 +1,29 @@
+id: 173a520e-6c21-4fab-88ce-f24b4c59fae8
+distance_meters: 700
+duration_minutes: 15
+difficulty: advanced
+title:
+  en: "Threshold Intervals"
+  es: "Intervalos de Umbral"
+  ca: "Intervals de Llindar"
+warm_up:
+  en: |-
+    200 mixed stroke relaxed
+  es: |-
+    200 variados suave
+  ca: |-
+    200 variats suau
+main_set:
+  en: |-
+    4x100 crawl strong pace resting 15sec
+  es: |-
+    4x100 crol ritmo fuerte descanso 15seg
+  ca: |-
+    4x100 crol ritme fort descans 15seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

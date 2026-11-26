@@ -1,0 +1,41 @@
+id: 8643c65e-b72b-4480-bce9-a8361370bb03
+distance_meters: 2000
+duration_minutes: 50
+difficulty: intermediate
+title:
+  en: "Freestyle Pace Pyramid"
+  es: "Pirámide de Ritmo de Crol"
+  ca: "Piràmide de Ritme de Crol"
+warm_up:
+  en: |-
+    300 mixed stroke relaxed
+    4x50 technique resting 15sec
+  es: |-
+    300 variados suave
+    4x50 técnica descanso 15seg
+  ca: |-
+    300 variats suau
+    4x50 tècnica descans 15seg
+main_set:
+  en: |-
+    4x100 crawl steady pace resting 20sec
+    8x50 crawl progressive 1-4 resting 15sec
+    2x150 pullboy strokes paddles resting 20sec
+    4x50 crawl MAX resting 30sec
+  es: |-
+    4x100 crol ritmo constante descanso 20seg
+    8x50 crol progresivo 1-4 descanso 15seg
+    2x150 brazos palas descanso 20seg
+    4x50 crol MAX descanso 30seg
+  ca: |-
+    4x100 crol ritme constant descans 20seg
+    8x50 crol progressiu 1-4 descans 15seg
+    2x150 braços PALES descans 20seg
+    4x50 crol MAX descans 30seg
+cool_down:
+  en: |-
+    200 backstroke relaxed
+  es: |-
+    200 espalda suave
+  ca: |-
+    200 esquena suau
