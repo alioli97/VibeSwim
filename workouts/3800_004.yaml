@@ -1,0 +1,35 @@
+id: d8332e4b-59b0-4335-9420-6fdf7946841e
+distance_meters: 3800
+duration_minutes: 79
+difficulty: intermediate_advanced
+title:
+  en: "Triathlon Pace"
+  es: "Ritmo de Triatlón"
+  ca: "Ritme de Triatló"
+warm_up:
+  en: |-
+    300 mixed stroke relaxed
+    4x50 technique resting 15sec
+  es: |-
+    300 variados suave
+    4x50 técnica descanso 15seg
+  ca: |-
+    300 variats suau
+    4x50 tècnica descans 15seg
+main_set:
+  en: |-
+    2800 crawl triathlon pace
+    6x50 crawl MAX resting 30sec
+  es: |-
+    2800 crol ritmo triatlón
+    6x50 crol MAX descanso 30seg
+  ca: |-
+    2800 crol ritme triatló
+    6x50 crol MAX descans 30seg
+cool_down:
+  en: |-
+    200 backstroke relaxed
+  es: |-
+    200 espalda suave
+  ca: |-
+    200 esquena suau

@@ -1,0 +1,41 @@
+id: 359b1c47-0af4-49dd-a89c-fc22c020299c
+distance_meters: 3800
+duration_minutes: 86
+difficulty: intermediate
+title:
+  en: "Pace Changes"
+  es: "Cambios de Ritmo"
+  ca: "Canvis de Ritme"
+warm_up:
+  en: |-
+    400 mixed stroke relaxed
+    4x50 kicking resting 15sec
+  es: |-
+    400 variados suave
+    4x50 pies descanso 15seg
+  ca: |-
+    400 variats suau
+    4x50 peus descans 15seg
+main_set:
+  en: |-
+    700 crawl continuous
+    10x200 crawl (100 fast + 100 easy) resting 20sec
+    4x50 breaststroke technique resting 20sec
+    4x50 backstroke progressive resting 20sec
+  es: |-
+    700 crol continuo
+    10x200 crol (100 rápido + 100 suave) descanso 20seg
+    4x50 braza técnica descanso 20seg
+    4x50 espalda progresivo descanso 20seg
+  ca: |-
+    700 crol continu
+    10x200 crol (100 ràpid + 100 suau) descans 20seg
+    4x50 braça tècnica descans 20seg
+    4x50 esquena progressiu descans 20seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau
