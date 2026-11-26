@@ -1,0 +1,32 @@
+id: 9d80fb00-f61b-4f66-9b24-366e1c14435a
+distance_meters: 900
+duration_minutes: 26
+difficulty: intermediate_advanced
+title:
+  en: "Leg Endurance and Backstroke Propulsion"
+  es: "Resistencia de Piernas y Propulsión Dorsal"
+  ca: "Resistència de Cames i Propulsió Dorsal"
+warm_up:
+  en: |-
+    200 mixed stroke
+  es: |-
+    200 variados
+  ca: |-
+    200 variats
+main_set:
+  en: |-
+    4x100 kicking resting 10–15sec
+    4x50 backstroke resting 10–15sec
+  es: |-
+    4x100 pies descanso 10–15seg
+    4x50 espalda descanso 10–15seg
+  ca: |-
+    4x100 peus descans 10–15seg
+    4x50 esquena descans 10–15seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

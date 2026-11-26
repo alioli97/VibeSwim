@@ -1,0 +1,29 @@
+id: c3f1e166-492e-4b20-98de-d9a96069260c
+distance_meters: 400
+duration_minutes: 13
+difficulty: beginner
+title:
+  en: "Medley Micro-session"
+  es: "Micro-sesión de Estilos"
+  ca: "Microsessió d'Estils"
+warm_up:
+  en: |-
+    100 mixed stroke
+  es: |-
+    100 variados
+  ca: |-
+    100 variats
+main_set:
+  en: |-
+    4x50 medley (changing every serie)
+  es: |-
+    4x50 estilos (cambiando cada serie)
+  ca: |-
+    4x50 estils (canviant cada sèrie)
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

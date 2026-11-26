@@ -1,0 +1,29 @@
+id: 441822ea-387b-455e-9e97-80462896c464
+distance_meters: 800
+duration_minutes: 20
+difficulty: intermediate
+title:
+  en: "Consolidated Aerobic Interval Set"
+  es: "Serie de Intervalos Aeróbicos Consolidados"
+  ca: "Sèrie d'Intervals Aeròbics Consolidats"
+warm_up:
+  en: |-
+    100 mixed stroke
+  es: |-
+    100 variados
+  ca: |-
+    100 variats
+main_set:
+  en: |-
+    6x100 crawl resting 10–15sec
+  es: |-
+    6x100 crol descanso 10–15seg
+  ca: |-
+    6x100 crol descans 10–15seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

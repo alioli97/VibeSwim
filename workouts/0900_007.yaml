@@ -1,0 +1,32 @@
+id: 7c33dae5-33b6-419e-a90f-f66fa2317320
+distance_meters: 900
+duration_minutes: 22
+difficulty: intermediate
+title:
+  en: "Interval Endurance and Pace Control"
+  es: "Resistencia de Intervalos y Control de Ritmo"
+  ca: "Resistència d'Intervals i Control de Ritme"
+warm_up:
+  en: |-
+    200 mixed stroke
+  es: |-
+    200 variados
+  ca: |-
+    200 variats
+main_set:
+  en: |-
+    4x50 backstroke resting 10–15sec
+    8x50 crawl resting 10–15sec
+  es: |-
+    4x50 espalda descanso 10–15seg
+    8x50 crol descanso 10–15seg
+  ca: |-
+    4x50 esquena descans 10–15seg
+    8x50 crol descans 10–15seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

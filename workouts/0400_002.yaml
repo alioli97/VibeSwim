@@ -1,0 +1,32 @@
+id: 0f48acce-8b91-4223-8693-7ba5c7c9a9c4
+distance_meters: 400
+duration_minutes: 10
+difficulty: beginner
+title:
+  en: "Gentle Medley Cool-down"
+  es: "Combinado Suave de Estilos"
+  ca: "Combinat Suau d'Estils"
+warm_up:
+  en: |-
+    100 crawl
+  es: |-
+    100 crol
+  ca: |-
+    100 crol
+main_set:
+  en: |-
+    100 backstroke
+    100 breaststroke
+  es: |-
+    100 espalda
+    100 braza
+  ca: |-
+    100 esquena
+    100 braça
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

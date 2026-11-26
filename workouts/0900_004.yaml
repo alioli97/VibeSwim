@@ -1,0 +1,32 @@
+id: 3992e6a0-6f60-45f5-b9c8-0b665c32f46b
+distance_meters: 900
+duration_minutes: 23
+difficulty: intermediate
+title:
+  en: "Crawl Endurance with Medley Transition"
+  es: "Resistencia de Crol con Transición de Estilos"
+  ca: "Resistència de Crol amb Transició d'Estils"
+warm_up:
+  en: |-
+    200 mixed stroke
+  es: |-
+    200 variados
+  ca: |-
+    200 variats
+main_set:
+  en: |-
+    4x50 medley (changing every serie)
+    4x100 crawl resting 15–20sec
+  es: |-
+    4x50 estilos (cambiando cada serie)
+    4x100 crol descanso 15–20seg
+  ca: |-
+    4x50 estils (canviant cada sèrie)
+    4x100 crol descans 15–20seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

@@ -1,0 +1,35 @@
+id: b915fd1a-c807-4ca8-b436-d5b3418c74b0
+distance_meters: 1500
+duration_minutes: 36
+difficulty: advanced
+title:
+  en: "Individual Medley & Kick Power Session"
+  es: "Sesión Completa de Estilos y Potencia de Piernas"
+  ca: "Sessió Completa d'Estils i Potència de Cames"
+warm_up:
+  en: |-
+    400 mixed stroke
+  es: |-
+    400 variados
+  ca: |-
+    400 variats
+main_set:
+  en: |-
+    2x200 medley
+    300 kicking
+    200 backstroke
+  es: |-
+    2x200 estilos
+    300 pies
+    200 espalda
+  ca: |-
+    2x200 estils
+    300 peus
+    200 esquena
+cool_down:
+  en: |-
+    200 relaxed
+  es: |-
+    200 suave
+  ca: |-
+    200 suau

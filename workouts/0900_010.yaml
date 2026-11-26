@@ -1,0 +1,32 @@
+id: ae266967-397f-4eb6-9e67-77847638f666
+distance_meters: 900
+duration_minutes: 23
+difficulty: intermediate
+title:
+  en: "Aerobic Endurance and Technical Reset"
+  es: "Resistencia Aeróbica y Reajuste Técnico"
+  ca: "Resistència Aeròbica i Reajust Tècnic"
+warm_up:
+  en: |-
+    200 mixed stroke
+  es: |-
+    200 variados
+  ca: |-
+    200 variats
+main_set:
+  en: |-
+    4x100 crawl resting 15–20sec
+    4x50 technique
+  es: |-
+    4x100 crol descanso 15–20seg
+    4x50 técnica
+  ca: |-
+    4x100 crol descans 15–20seg
+    4x50 tècnica
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

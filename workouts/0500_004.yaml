@@ -1,0 +1,35 @@
+id: 5a82bd17-7598-440c-99f2-5f66132f0c32
+distance_meters: 500
+duration_minutes: 15
+difficulty: beginner
+title:
+  en: "Fractional Technique Micro-session"
+  es: "Micro-sesión de Técnica Fraccionada"
+  ca: "Microsessió de Tècnica Fraccionada"
+warm_up:
+  en: |-
+    100 mixed stroke
+  es: |-
+    100 variados
+  ca: |-
+    100 variats
+main_set:
+  en: |-
+    2x50 kicking
+    2x50 pullboy strokes
+    2x50 technique
+  es: |-
+    2x50 pies
+    2x50 brazos
+    2x50 técnica
+  ca: |-
+    2x50 peus
+    2x50 braços
+    2x50 tècnica
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

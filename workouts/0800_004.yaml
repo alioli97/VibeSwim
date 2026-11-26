@@ -1,0 +1,32 @@
+id: 12de8b1b-13bd-4239-9256-0b6163dc4b1b
+distance_meters: 800
+duration_minutes: 21
+difficulty: intermediate
+title:
+  en: "Combined Backstroke-Crawl Endurance"
+  es: "Resistencia Combinada Dorsal-Ventral"
+  ca: "Resistència Combinada Dorsal-Ventral"
+warm_up:
+  en: |-
+    200 mixed stroke
+  es: |-
+    200 variados
+  ca: |-
+    200 variats
+main_set:
+  en: |-
+    2x100 backstroke
+    2x100 crawl resting 10–15sec
+  es: |-
+    2x100 espalda
+    2x100 crol descanso 10–15seg
+  ca: |-
+    2x100 esquena
+    2x100 crol descans 10–15seg
+cool_down:
+  en: |-
+    200 relaxed
+  es: |-
+    200 suave
+  ca: |-
+    200 suau

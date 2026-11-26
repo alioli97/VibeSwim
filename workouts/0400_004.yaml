@@ -1,0 +1,22 @@
+id: e0b0c624-8fd6-471b-b74b-e5600a34040c
+distance_meters: 400
+duration_minutes: 9
+difficulty: beginner
+title:
+  en: "Base Endurance Micro-session"
+  es: "Micro-sesión de Resistencia Base"
+  ca: "Microsessió de Resistència Base"
+warm_up:
+  en: |-
+    100 mixed stroke
+  es: |-
+    100 variados
+  ca: |-
+    100 variats
+main_set:
+  en: |-
+    3x100 crawl resting 20–30sec
+  es: |-
+    3x100 crol descanso 20–30seg
+  ca: |-
+    3x100 crol descans 20–30seg

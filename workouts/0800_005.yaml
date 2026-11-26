@@ -1,0 +1,29 @@
+id: 0468c1cd-31a9-4766-a10f-3c2a8f173f86
+distance_meters: 800
+duration_minutes: 23
+difficulty: intermediate
+title:
+  en: "Medley Rotation and Adaptability"
+  es: "Rotación de Estilos y Adaptabilidad"
+  ca: "Rotació d'Estils i Adaptabilitat"
+warm_up:
+  en: |-
+    200 mixed stroke
+  es: |-
+    200 variados
+  ca: |-
+    200 variats
+main_set:
+  en: |-
+    8x50 medley (changing every serie)
+  es: |-
+    8x50 estilos (cambiando cada serie)
+  ca: |-
+    8x50 estils (canviant cada sèrie)
+cool_down:
+  en: |-
+    200 relaxed
+  es: |-
+    200 suave
+  ca: |-
+    200 suau

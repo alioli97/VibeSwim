@@ -1,0 +1,32 @@
+id: 22baab9a-5771-47a4-aa20-08b57eebe499
+distance_meters: 1000
+duration_minutes: 25
+difficulty: intermediate
+title:
+  en: "Aerobic Endurance and Medley Variety"
+  es: "Resistencia Aeróbica y Variedad de Estilos"
+  ca: "Resistència Aeròbica i Varietat d'Estils"
+warm_up:
+  en: |-
+    100 mixed stroke
+  es: |-
+    100 variados
+  ca: |-
+    100 variats
+main_set:
+  en: |-
+    6x100 crawl resting 10–15sec
+    4x50 medley (changing every serie)
+  es: |-
+    6x100 crol descanso 10–15seg
+    4x50 estilos (cambiando cada serie)
+  ca: |-
+    6x100 crol descans 10–15seg
+    4x50 estils (canviant cada sèrie)
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

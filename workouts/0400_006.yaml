@@ -1,0 +1,29 @@
+id: 0277c298-f7e1-4347-a13f-5ba27120b0db
+distance_meters: 400
+duration_minutes: 15
+difficulty: intermediate
+title:
+  en: "Pure Speed Sprint"
+  es: "Sprint de Velocidad Pura"
+  ca: "Sprint de Velocitat Pura"
+warm_up:
+  en: |-
+    100 mixed stroke
+  es: |-
+    100 variados
+  ca: |-
+    100 variats
+main_set:
+  en: |-
+    8x25 crawl MAX
+  es: |-
+    8x25 crol MAX
+  ca: |-
+    8x25 crol MAX
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

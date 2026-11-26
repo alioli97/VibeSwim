@@ -1,0 +1,29 @@
+id: e31794aa-c4ea-42c1-9ea4-74e2bbed54a8
+distance_meters: 800
+duration_minutes: 20
+difficulty: intermediate_advanced
+title:
+  en: "Speed Introduction and Power Set"
+  es: "Introducción a la Velocidad y Potencia"
+  ca: "Introducció a la Velocitat i Potència"
+warm_up:
+  en: |-
+    400 mixed stroke
+  es: |-
+    400 variados
+  ca: |-
+    400 variats
+main_set:
+  en: |-
+    4x50 crawl MAX resting 10–15sec
+  es: |-
+    4x50 crol MAX descanso 10–15seg
+  ca: |-
+    4x50 crol MAX descans 10–15seg
+cool_down:
+  en: |-
+    200 relaxed
+  es: |-
+    200 suave
+  ca: |-
+    200 suau

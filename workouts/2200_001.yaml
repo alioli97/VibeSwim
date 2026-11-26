@@ -1,0 +1,35 @@
+id: c98f3bc2-68c5-428c-8864-b40f290cc805
+distance_meters: 2200
+duration_minutes: 62
+difficulty: advanced_expert
+title:
+  en: "Aerobic Endurance and Leg Propulsion"
+  es: "Resistencia Aeróbica y Propulsión de Piernas"
+  ca: "Resistència Aeròbica i Propulsió de Cames"
+warm_up:
+  en: |-
+    4x200 (50 crawl-100 crawl kicks-50 backstroke butterfly kicks) resting 20sec
+    6x50 technique
+  es: |-
+    4x200 (50 crol-100 pies crol-50 espalda pies mariposa) descanso 20seg
+    6x50 técnica
+  ca: |-
+    4x200 (50 crol-100 peus crol-50 esquena peus papallona) descans 20seg
+    6x50 tècnica
+main_set:
+  en: |-
+    2x200 crawl fins Ae1 resting 10sec
+    500 crawl long turns
+  es: |-
+    2x200 crol aletas Ae1 descanso 10seg
+    500 crol virajes largos
+  ca: |-
+    2x200 crol aletes Ae1 descans 10seg
+    500 crol viratges llargs
+cool_down:
+  en: |-
+    200 relaxed
+  es: |-
+    200 suave
+  ca: |-
+    200 suau

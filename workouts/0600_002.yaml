@@ -1,0 +1,22 @@
+id: 566170bb-ed9f-42e3-bd0f-50efba41a4da
+distance_meters: 600
+duration_minutes: 14
+difficulty: intermediate
+title:
+  en: "Aerobic Threshold Endurance"
+  es: "Resistencia de Umbral Aeróbico"
+  ca: "Resistència de Llindar Aeròbic"
+warm_up:
+  en: |-
+    100 mixed stroke
+  es: |-
+    100 variados
+  ca: |-
+    100 variats
+main_set:
+  en: |-
+    5x100 crawl resting 10–15sec
+  es: |-
+    5x100 crol descanso 10–15seg
+  ca: |-
+    5x100 crol descans 10–15seg

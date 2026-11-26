@@ -1,0 +1,32 @@
+id: 30d08b77-3957-4e8b-985d-088c8702ead6
+distance_meters: 400
+duration_minutes: 12
+difficulty: beginner
+title:
+  en: "Segmented Technique Micro-session"
+  es: "Micro-sesión de Técnica Segmentada"
+  ca: "Microsessió de Tècnica Segmentada"
+warm_up:
+  en: |-
+    100 mixed stroke
+  es: |-
+    100 variados
+  ca: |-
+    100 variats
+main_set:
+  en: |-
+    2x50 kicking
+    2x50 pullboy strokes
+  es: |-
+    2x50 pies
+    2x50 brazos
+  ca: |-
+    2x50 peus
+    2x50 braços
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

@@ -1,0 +1,32 @@
+id: 51ad1f70-f1ae-4b74-a04f-ec2f06b9a0be
+distance_meters: 900
+duration_minutes: 24
+difficulty: intermediate
+title:
+  en: "Aerobic Endurance with Propulsion Activation"
+  es: "Resistencia Aeróbica con Activación de Propulsión"
+  ca: "Resistència Aeròbica amb Activació de Propulsió"
+warm_up:
+  en: |-
+    200 mixed stroke
+  es: |-
+    200 variados
+  ca: |-
+    200 variats
+main_set:
+  en: |-
+    4x50 kicking resting 10–15sec
+    4x100 crawl resting 10–15sec
+  es: |-
+    4x50 pies descanso 10–15seg
+    4x100 crol descanso 10–15seg
+  ca: |-
+    4x50 peus descans 10–15seg
+    4x100 crol descans 10–15seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

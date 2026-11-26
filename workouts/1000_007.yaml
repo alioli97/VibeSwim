@@ -1,0 +1,29 @@
+id: d1b7c019-930d-4db6-999c-2018fcd5c59c
+distance_meters: 1000
+duration_minutes: 23
+difficulty: intermediate
+title:
+  en: "Threshold Endurance and Consolidation Volume"
+  es: "Resistencia de Umbral y Volumen de Consolidación"
+  ca: "Resistència d'Umbral i Volum de Consolidació"
+warm_up:
+  en: |-
+    100 mixed stroke
+  es: |-
+    100 variados
+  ca: |-
+    100 variats
+main_set:
+  en: |-
+    8x100 crawl resting 10–15sec
+  es: |-
+    8x100 crol descanso 10–15seg
+  ca: |-
+    8x100 crol descans 10–15seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

@@ -1,0 +1,32 @@
+id: 2ef3c2aa-3d95-484e-9c91-e8976baaa5d9
+distance_meters: 400
+duration_minutes: 12
+difficulty: beginner
+title:
+  en: "Symmetry and Technical Control Session"
+  es: "Sesión de Simetría y Control Técnico"
+  ca: "Sessió de Simetria i Control Tècnic"
+warm_up:
+  en: |-
+    100 mixed stroke
+  es: |-
+    100 variados
+  ca: |-
+    100 variats
+main_set:
+  en: |-
+    2x50 crawl bilateral breathing
+    2x50 technique
+  es: |-
+    2x50 crol respiración bilateral
+    2x50 técnica
+  ca: |-
+    2x50 crol respiració bilateral
+    2x50 tècnica
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

@@ -1,0 +1,32 @@
+id: 55c8d47a-2cef-41f1-8670-3d2ad28fa459
+distance_meters: 1000
+duration_minutes: 25
+difficulty: intermediate
+title:
+  en: "Progressive Endurance and Postural Stabilization"
+  es: "Resistencia Progresiva y Estabilización Postural"
+  ca: "Resistència Progressiva i Estabilització Postural"
+warm_up:
+  en: |-
+    200 mixed stroke
+  es: |-
+    200 variados
+  ca: |-
+    200 variats
+main_set:
+  en: |-
+    4x50 backstroke resting 10–15sec
+    4x100 crawl resting 10–15sec
+  es: |-
+    4x50 espalda descanso 10–15seg
+    4x100 crol descanso 10–15seg
+  ca: |-
+    4x50 esquena descans 10–15seg
+    4x100 crol descans 10–15seg
+cool_down:
+  en: |-
+    200 relaxed
+  es: |-
+    200 suave
+  ca: |-
+    200 suau

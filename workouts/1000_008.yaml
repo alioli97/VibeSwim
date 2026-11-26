@@ -1,0 +1,32 @@
+id: d763cacc-139f-4c67-abf6-818817c34a63
+distance_meters: 1000
+duration_minutes: 26
+difficulty: intermediate
+title:
+  en: "Combined Endurance and Medley Efficiency"
+  es: "Resistencia Combinada y Eficiencia de Estilos"
+  ca: "Resistència Combinada i Eficiència d'Estils"
+warm_up:
+  en: |-
+    300 mixed stroke
+  es: |-
+    300 variados
+  ca: |-
+    300 variats
+main_set:
+  en: |-
+    4x50 medley resting 10–15sec
+    4x100 crawl resting 15–20sec
+  es: |-
+    4x50 estilos descanso 10–15seg
+    4x100 crol descanso 15–20seg
+  ca: |-
+    4x50 estils descans 10–15seg
+    4x100 crol descans 15–20seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

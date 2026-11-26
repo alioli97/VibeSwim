@@ -1,0 +1,32 @@
+id: a5a3754b-cd0b-4f8b-8053-dde00004cdbd
+distance_meters: 900
+duration_minutes: 24
+difficulty: intermediate
+title:
+  en: "Aerobic Endurance and Technical Refinement"
+  es: "Resistencia Aeróbica y Refinamiento Técnico"
+  ca: "Resistència Aeròbica i Refinament Tècnic"
+warm_up:
+  en: |-
+    100 mixed stroke
+  es: |-
+    100 variados
+  ca: |-
+    100 variats
+main_set:
+  en: |-
+    5x100 crawl resting 10–15sec
+    4x50 technique
+  es: |-
+    5x100 crol descanso 10–15seg
+    4x50 técnica
+  ca: |-
+    5x100 crol descans 10–15seg
+    4x50 tècnica
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau
