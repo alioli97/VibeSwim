@@ -1,0 +1,29 @@
+id: 9d64931e-9413-4a61-abd1-4691e8bd11d6
+distance_meters: 300
+duration_minutes: 8
+difficulty: intermediate_advanced
+title:
+  en: "Mini Medley"
+  es: "Mini Estilos"
+  ca: "Mini Estils"
+warm_up:
+  en: |-
+    50 mixed stroke relaxed
+  es: |-
+    50 variados suave
+  ca: |-
+    50 variats suau
+main_set:
+  en: |-
+    2x100 medley resting 20sec
+  es: |-
+    2x100 estilos descanso 20seg
+  ca: |-
+    2x100 estils descans 20seg
+cool_down:
+  en: |-
+    50 relaxed
+  es: |-
+    50 suave
+  ca: |-
+    50 suau

@@ -1,0 +1,22 @@
+id: 7eef1b30-1313-4119-ae3f-8c700c919140
+distance_meters: 200
+duration_minutes: 6
+difficulty: beginner_intermediate
+title:
+  en: "Short Freestyle and Backstroke"
+  es: "Crol y Espalda Corto"
+  ca: "Crol i Esquena Curt"
+warm_up:
+  en: |-
+    50 crawl relaxed
+  es: |-
+    50 crol suave
+  ca: |-
+    50 crol suau
+main_set:
+  en: |-
+    150 (100 crawl + 50 backstroke)
+  es: |-
+    150 (100 crol + 50 espalda)
+  ca: |-
+    150 (100 crol + 50 esquena)

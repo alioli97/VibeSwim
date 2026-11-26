@@ -1,0 +1,32 @@
+id: bf166fac-3f14-4bfd-a98d-53add768637d
+distance_meters: 300
+duration_minutes: 9
+difficulty: intermediate
+title:
+  en: "Express Breathing"
+  es: "Respiración Exprés"
+  ca: "Respiració Exprés"
+warm_up:
+  en: |-
+    50 mixed stroke relaxed
+  es: |-
+    50 variados suave
+  ca: |-
+    50 variats suau
+main_set:
+  en: |-
+    4x25 crawl breathing every 5 resting 20sec
+    100 crawl breathing every 3
+  es: |-
+    4x25 crol respirando cada 5 descanso 20seg
+    100 crol respirando cada 3
+  ca: |-
+    4x25 crol respirant cada 5 descans 20seg
+    100 crol respirant cada 3
+cool_down:
+  en: |-
+    50 backstroke relaxed
+  es: |-
+    50 espalda suave
+  ca: |-
+    50 esquena suau

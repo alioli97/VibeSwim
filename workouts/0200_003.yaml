@@ -1,0 +1,29 @@
+id: f3e27089-dc2b-4ae5-aa90-6490045d40b3
+distance_meters: 200
+duration_minutes: 6
+difficulty: intermediate
+title:
+  en: "Express Fartlek"
+  es: "Fartlek Exprés"
+  ca: "Fartlek Exprés"
+warm_up:
+  en: |-
+    50 mixed stroke relaxed
+  es: |-
+    50 variados suave
+  ca: |-
+    50 variats suau
+main_set:
+  en: |-
+    100 crawl fartlek (25 fast + 75 easy)
+  es: |-
+    100 crol fartlek (25 rápido + 75 suave)
+  ca: |-
+    100 crol fartlek (25 ràpid + 75 suau)
+cool_down:
+  en: |-
+    50 relaxed
+  es: |-
+    50 suave
+  ca: |-
+    50 suau

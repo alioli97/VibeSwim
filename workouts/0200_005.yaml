@@ -1,0 +1,22 @@
+id: 0dd4b006-6ace-40ab-bb50-e57e2ec3dac7
+distance_meters: 200
+duration_minutes: 8
+difficulty: advanced
+title:
+  en: "25 Speed"
+  es: "Velocidad de 25"
+  ca: "Velocitat de 25"
+warm_up:
+  en: |-
+    50 mixed stroke relaxed
+  es: |-
+    50 variados suave
+  ca: |-
+    50 variats suau
+main_set:
+  en: |-
+    6x25 crawl MAX resting 30sec
+  es: |-
+    6x25 crol MAX descanso 30seg
+  ca: |-
+    6x25 crol MAX descans 30seg
