@@ -1,0 +1,29 @@
+id: b11267b4-74f1-40b5-b000-d806c644d6f3
+distance_meters: 400
+duration_minutes: 10
+difficulty: intermediate
+title:
+  en: "Clock Intervals"
+  es: "Intervalos con Reloj"
+  ca: "Intervals amb Rellotge"
+warm_up:
+  en: |-
+    100 mixed stroke relaxed
+  es: |-
+    100 variados suave
+  ca: |-
+    100 variats suau
+main_set:
+  en: |-
+    2x100 crawl on a 2:00 send-off
+  es: |-
+    2x100 crol salida cada 2:00
+  ca: |-
+    2x100 crol sortida cada 2:00
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

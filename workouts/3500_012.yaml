@@ -1,0 +1,47 @@
+id: e8025f6b-72a7-4c41-a5fe-e5aa08b3c26d
+distance_meters: 3500
+duration_minutes: 85
+difficulty: intermediate
+title:
+  en: "Breaststroke Focus"
+  es: "Braza Protagonista"
+  ca: "Braça Protagonista"
+warm_up:
+  en: |-
+    500 mixed stroke relaxed
+    4x50 technique resting 15sec
+    4x25 crawl progressive 1-4 resting 10sec
+  es: |-
+    500 variados suave
+    4x50 técnica descanso 15seg
+    4x25 crol progresivo 1-4 descanso 10seg
+  ca: |-
+    500 variats suau
+    4x50 tècnica descans 15seg
+    4x25 crol progressiu 1-4 descans 10seg
+main_set:
+  en: |-
+    8x100 breaststroke steady pace resting 20sec
+    6x50 breaststroke kick resting 20sec
+    6x50 breaststroke 2 kicks 1 stroke resting 20sec
+    2x200 crawl steady pace resting 20sec
+    7x100 crawl resting 15sec
+  es: |-
+    8x100 braza ritmo constante descanso 20seg
+    6x50 pies braza descanso 20seg
+    6x50 braza 2 patadas 1 brazada descanso 20seg
+    2x200 crol ritmo constante descanso 20seg
+    7x100 crol descanso 15seg
+  ca: |-
+    8x100 braça ritme constant descans 20seg
+    6x50 peus braça descans 20seg
+    6x50 braça 2 batudes 1 braçada descans 20seg
+    2x200 crol ritme constant descans 20seg
+    7x100 crol descans 15seg
+cool_down:
+  en: |-
+    200 relaxed
+  es: |-
+    200 suave
+  ca: |-
+    200 suau

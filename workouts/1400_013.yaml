@@ -1,0 +1,41 @@
+id: 60e32937-df04-41b0-9a72-9052d442be49
+distance_meters: 1400
+duration_minutes: 35
+difficulty: intermediate
+title:
+  en: "Clock Intervals"
+  es: "Intervalos con Reloj"
+  ca: "Intervals amb Rellotge"
+warm_up:
+  en: |-
+    300 mixed stroke relaxed
+    4x50 technique resting 15sec
+  es: |-
+    300 variados suave
+    4x50 técnica descanso 15seg
+  ca: |-
+    300 variats suau
+    4x50 tècnica descans 15seg
+main_set:
+  en: |-
+    3x100 crawl on a 2:00 send-off
+    4x50 crawl on a 1:00 send-off
+    4x25 crawl MAX resting 30sec
+    2x100 pullboy strokes paddles resting 20sec
+  es: |-
+    3x100 crol salida cada 2:00
+    4x50 crol salida cada 1:00
+    4x25 crol MAX descanso 30seg
+    2x100 brazos palas descanso 20seg
+  ca: |-
+    3x100 crol sortida cada 2:00
+    4x50 crol sortida cada 1:00
+    4x25 crol MAX descans 30seg
+    2x100 braços PALES descans 20seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

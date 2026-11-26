@@ -1,0 +1,29 @@
+id: cab9cac5-6808-4c5d-bfe1-752e0799efc7
+distance_meters: 400
+duration_minutes: 10
+difficulty: intermediate
+title:
+  en: "Backstroke Focus"
+  es: "Espalda Protagonista"
+  ca: "Esquena Protagonista"
+warm_up:
+  en: |-
+    100 mixed stroke relaxed
+  es: |-
+    100 variados suave
+  ca: |-
+    100 variats suau
+main_set:
+  en: |-
+    2x100 backstroke steady pace resting 20sec
+  es: |-
+    2x100 espalda ritmo constante descanso 20seg
+  ca: |-
+    2x100 esquena ritme constant descans 20seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

@@ -1,0 +1,38 @@
+id: ed0205a1-2b30-42a2-86e5-4a8a52c88e8b
+distance_meters: 700
+duration_minutes: 22
+difficulty: beginner_intermediate
+title:
+  en: "Kick Power"
+  es: "Patada Potente"
+  ca: "Patada Potent"
+warm_up:
+  en: |-
+    200 mixed stroke relaxed
+  es: |-
+    200 variados suave
+  ca: |-
+    200 variats suau
+main_set:
+  en: |-
+    2x50 kicking with board resting 15sec
+    2x50 side kick resting 15sec
+    2x50 kicking fins resting 15sec
+    4x25 kicking MAX resting 20sec
+  es: |-
+    2x50 pies con tabla descanso 15seg
+    2x50 pies de lado descanso 15seg
+    2x50 pies aletas descanso 15seg
+    4x25 pies MAX descanso 20seg
+  ca: |-
+    2x50 peus amb taula descans 15seg
+    2x50 peus de costat descans 15seg
+    2x50 peus ALETES descans 15seg
+    4x25 peus MAX descans 20seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

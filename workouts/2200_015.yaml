@@ -1,0 +1,47 @@
+id: 8eb78d0c-82d9-40fa-badb-25123389a274
+distance_meters: 2200
+duration_minutes: 51
+difficulty: advanced
+title:
+  en: "Race Pace"
+  es: "Ritmo de Competición"
+  ca: "Ritme de Competició"
+warm_up:
+  en: |-
+    400 mixed stroke relaxed
+    4x50 technique resting 15sec
+    4x25 crawl progressive 1-4 resting 10sec
+  es: |-
+    400 variados suave
+    4x50 técnica descanso 15seg
+    4x25 crol progresivo 1-4 descanso 10seg
+  ca: |-
+    400 variats suau
+    4x50 tècnica descans 15seg
+    4x25 crol progressiu 1-4 descans 10seg
+main_set:
+  en: |-
+    4x100 crawl on a 1:40 send-off
+    6x50 crawl on a 0:50 send-off
+    8x25 crawl MAX resting 30sec
+    2x50 (25 butterfly + 25 crawl) resting 20sec
+    3x100 medley resting 20sec
+  es: |-
+    4x100 crol salida cada 1:40
+    6x50 crol salida cada 0:50
+    8x25 crol MAX descanso 30seg
+    2x50 (25 mariposa + 25 crol) descanso 20seg
+    3x100 estilos descanso 20seg
+  ca: |-
+    4x100 crol sortida cada 1:40
+    6x50 crol sortida cada 0:50
+    8x25 crol MAX descans 30seg
+    2x50 (25 papallona + 25 crol) descans 20seg
+    3x100 estils descans 20seg
+cool_down:
+  en: |-
+    200 relaxed
+  es: |-
+    200 suave
+  ca: |-
+    200 suau

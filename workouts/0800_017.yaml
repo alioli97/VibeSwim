@@ -1,0 +1,38 @@
+id: e361c29b-10ed-4f33-9baf-1d48d84cbe35
+distance_meters: 800
+duration_minutes: 21
+difficulty: intermediate
+title:
+  en: "Backstroke Focus"
+  es: "Espalda Protagonista"
+  ca: "Esquena Protagonista"
+warm_up:
+  en: |-
+    200 mixed stroke relaxed
+  es: |-
+    200 variados suave
+  ca: |-
+    200 variats suau
+main_set:
+  en: |-
+    2x100 backstroke steady pace resting 20sec
+    2x50 backstroke kick resting 15sec
+    2x50 backstroke one arm resting 15sec
+    2x50 backstroke double arm resting 15sec
+  es: |-
+    2x100 espalda ritmo constante descanso 20seg
+    2x50 pies espalda descanso 15seg
+    2x50 espalda a un brazo descanso 15seg
+    2x50 espalda doble brazada descanso 15seg
+  ca: |-
+    2x100 esquena ritme constant descans 20seg
+    2x50 peus esquena descans 15seg
+    2x50 esquena a un braç descans 15seg
+    2x50 esquena doble braçada descans 15seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

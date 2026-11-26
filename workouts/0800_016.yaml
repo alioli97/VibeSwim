@@ -1,0 +1,41 @@
+id: 1700d81b-2726-4ccc-9e97-b3f0d6554b14
+distance_meters: 800
+duration_minutes: 24
+difficulty: beginner_intermediate
+title:
+  en: "Freestyle Drills"
+  es: "Ejercicios de Crol"
+  ca: "Exercicis de Crol"
+warm_up:
+  en: |-
+    200 mixed stroke relaxed
+  es: |-
+    200 variados suave
+  ca: |-
+    200 variats suau
+main_set:
+  en: |-
+    2x50 crawl closed fist drill resting 15sec
+    2x50 crawl 6 kicks 1 stroke resting 15sec
+    2x50 crawl zipper drill (thumb along the body) resting 15sec
+    2x50 crawl one arm resting 15sec
+    100 crawl resting 20sec
+  es: |-
+    2x50 crol puño cerrado descanso 15seg
+    2x50 crol 6 patadas 1 brazada descanso 15seg
+    2x50 crol cremallera (pulgar por el costado) descanso 15seg
+    2x50 crol a un brazo descanso 15seg
+    100 crol descanso 20seg
+  ca: |-
+    2x50 crol puny tancat descans 15seg
+    2x50 crol 6 batudes 1 braçada descans 15seg
+    2x50 crol cremallera (polze pel costat) descans 15seg
+    2x50 crol a un braç descans 15seg
+    100 crol descans 20seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau
