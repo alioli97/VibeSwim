@@ -1,0 +1,32 @@
+id: 1903e1e9-0e79-4f47-85dc-781c2d0c4ac3
+distance_meters: 700
+duration_minutes: 18
+difficulty: intermediate
+title:
+  en: "Short Fartlek"
+  es: "Fartlek Corto"
+  ca: "Fartlek Curt"
+warm_up:
+  en: |-
+    100 mixed stroke relaxed
+  es: |-
+    100 variados suave
+  ca: |-
+    100 variats suau
+main_set:
+  en: |-
+    400 crawl fartlek (25 fast + 75 easy)
+    4x25 crawl MAX resting 30sec
+  es: |-
+    400 crol fartlek (25 rápido + 75 suave)
+    4x25 crol MAX descanso 30seg
+  ca: |-
+    400 crol fartlek (25 ràpid + 75 suau)
+    4x25 crol MAX descans 30seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

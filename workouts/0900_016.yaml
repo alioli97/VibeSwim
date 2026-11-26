@@ -1,0 +1,35 @@
+id: 29f1337c-e06a-47eb-a3b0-2669d7010c33
+distance_meters: 900
+duration_minutes: 23
+difficulty: intermediate_advanced
+title:
+  en: "Express Medley"
+  es: "Estilos Exprés"
+  ca: "Estils Exprés"
+warm_up:
+  en: |-
+    100 mixed stroke relaxed
+  es: |-
+    100 variados suave
+  ca: |-
+    100 variats suau
+main_set:
+  en: |-
+    4x100 medley resting 20sec
+    4x50 crawl strong pace resting 15sec
+    4x25 butterfly resting 20sec
+  es: |-
+    4x100 estilos descanso 20seg
+    4x50 crol ritmo fuerte descanso 15seg
+    4x25 mariposa descanso 20seg
+  ca: |-
+    4x100 estils descans 20seg
+    4x50 crol ritme fort descans 15seg
+    4x25 papallona descans 20seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

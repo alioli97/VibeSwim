@@ -1,0 +1,35 @@
+id: 86b31034-c996-4420-81d4-5ccca22086f9
+distance_meters: 700
+duration_minutes: 19
+difficulty: intermediate
+title:
+  en: "Short Breathing"
+  es: "Respiración Corta"
+  ca: "Respiració Curta"
+warm_up:
+  en: |-
+    100 crawl relaxed
+    4x25 technique resting 15sec
+  es: |-
+    100 crol suave
+    4x25 técnica descanso 15seg
+  ca: |-
+    100 crol suau
+    4x25 tècnica descans 15seg
+main_set:
+  en: |-
+    4x50 crawl breathing every 5 resting 20sec
+    200 crawl breathing every 3
+  es: |-
+    4x50 crol respirando cada 5 descanso 20seg
+    200 crol respirando cada 3
+  ca: |-
+    4x50 crol respirant cada 5 descans 20seg
+    200 crol respirant cada 3
+cool_down:
+  en: |-
+    100 backstroke relaxed
+  es: |-
+    100 espalda suave
+  ca: |-
+    100 esquena suau

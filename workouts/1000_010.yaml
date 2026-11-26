@@ -1,0 +1,35 @@
+id: d15b1a5a-7e3b-4682-a7e5-edb8acdab0c1
+distance_meters: 1000
+duration_minutes: 36
+difficulty: beginner
+title:
+  en: "First Lengths"
+  es: "Primeros Largos"
+  ca: "Primers Llargs"
+warm_up:
+  en: |-
+    100 crawl relaxed
+  es: |-
+    100 crol suave
+  ca: |-
+    100 crol suau
+main_set:
+  en: |-
+    4x25 technique resting 20sec
+    12x50 crawl resting 30sec
+    4x25 backstroke resting 20sec
+  es: |-
+    4x25 técnica descanso 20seg
+    12x50 crol descanso 30seg
+    4x25 espalda descanso 20seg
+  ca: |-
+    4x25 tècnica descans 20seg
+    12x50 crol descans 30seg
+    4x25 esquena descans 20seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

@@ -1,0 +1,32 @@
+id: 037cf102-f45c-49ce-b18e-570f401060d4
+distance_meters: 500
+duration_minutes: 14
+difficulty: intermediate_advanced
+title:
+  en: "Express Medley"
+  es: "Estilos Exprés"
+  ca: "Estils Exprés"
+warm_up:
+  en: |-
+    100 mixed stroke relaxed
+  es: |-
+    100 variados suave
+  ca: |-
+    100 variats suau
+main_set:
+  en: |-
+    2x100 medley resting 20sec
+    4x25 butterfly resting 20sec
+  es: |-
+    2x100 estilos descanso 20seg
+    4x25 mariposa descanso 20seg
+  ca: |-
+    2x100 estils descans 20seg
+    4x25 papallona descans 20seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau
