@@ -1,0 +1,35 @@
+id: 7e18a8c8-5307-49a6-9c0a-2468b9008c97
+distance_meters: 2400
+duration_minutes: 62
+difficulty: beginner_intermediate
+title:
+  en: "Easy 300s"
+  es: "Series de 300 Tranquilas"
+  ca: "Sèries de 300 Tranquil·les"
+warm_up:
+  en: |-
+    300 mixed stroke relaxed
+    4x50 technique resting 20sec
+  es: |-
+    300 variados suave
+    4x50 técnica descanso 20seg
+  ca: |-
+    300 variats suau
+    4x50 tècnica descans 20seg
+main_set:
+  en: |-
+    5x300 crawl resting 30sec
+    4x50 kicking resting 20sec
+  es: |-
+    5x300 crol descanso 30seg
+    4x50 pies descanso 20seg
+  ca: |-
+    5x300 crol descans 30seg
+    4x50 peus descans 20seg
+cool_down:
+  en: |-
+    200 backstroke relaxed
+  es: |-
+    200 espalda suave
+  ca: |-
+    200 esquena suau

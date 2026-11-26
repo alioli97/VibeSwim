@@ -1,0 +1,35 @@
+id: 339bddff-dc44-40cc-800f-66cd4f1c419a
+distance_meters: 2400
+duration_minutes: 51
+difficulty: advanced
+title:
+  en: "Negative Split 300s"
+  es: "Series de 300 en Negativo"
+  ca: "Sèries de 300 en Negatiu"
+warm_up:
+  en: |-
+    400 mixed stroke relaxed
+    4x50 crawl progressive 1-4 resting 10sec
+  es: |-
+    400 variados suave
+    4x50 crol progresivo 1-4 descanso 10seg
+  ca: |-
+    400 variats suau
+    4x50 crol progressiu 1-4 descans 10seg
+main_set:
+  en: |-
+    5x300 crawl 2nd half faster resting 30sec
+    4x50 crawl MAX resting 30sec
+  es: |-
+    5x300 crol 2ª mitad más rápida descanso 30seg
+    4x50 crol MAX descanso 30seg
+  ca: |-
+    5x300 crol 2a meitat més ràpida descans 30seg
+    4x50 crol MAX descans 30seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

@@ -1,0 +1,35 @@
+id: 1d709305-84a8-443f-a0bb-81f208deec42
+distance_meters: 2900
+duration_minutes: 66
+difficulty: intermediate
+title:
+  en: "Steady 400s"
+  es: "Series de 400 Constantes"
+  ca: "Sèries de 400 Constants"
+warm_up:
+  en: |-
+    400 mixed stroke relaxed
+    4x50 technique resting 15sec
+  es: |-
+    400 variados suave
+    4x50 técnica descanso 15seg
+  ca: |-
+    400 variats suau
+    4x50 tècnica descans 15seg
+main_set:
+  en: |-
+    5x400 crawl steady pace resting 30sec
+    4x50 crawl MAX resting 30sec
+  es: |-
+    5x400 crol ritmo constante descanso 30seg
+    4x50 crol MAX descanso 30seg
+  ca: |-
+    5x400 crol ritme constant descans 30seg
+    4x50 crol MAX descans 30seg
+cool_down:
+  en: |-
+    100 backstroke relaxed
+  es: |-
+    100 espalda suave
+  ca: |-
+    100 esquena suau

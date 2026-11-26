@@ -1,0 +1,38 @@
+id: eb8a507f-070e-46c5-a512-00c28d597df1
+distance_meters: 3000
+duration_minutes: 66
+difficulty: intermediate_advanced
+title:
+  en: "Medley and Negative 400s"
+  es: "Estilos y Negativos de 400"
+  ca: "Estils i Negatius de 400"
+warm_up:
+  en: |-
+    300 mixed stroke relaxed
+    4x50 kicking medley resting 15sec
+  es: |-
+    300 variados suave
+    4x50 pies estilos descanso 15seg
+  ca: |-
+    300 variats suau
+    4x50 peus estils descans 15seg
+main_set:
+  en: |-
+    4x100 medley resting 20sec
+    4x400 crawl 2nd half faster resting 30sec
+    8x50 crawl strong pace resting 10sec
+  es: |-
+    4x100 estilos descanso 20seg
+    4x400 crol 2ª mitad más rápida descanso 30seg
+    8x50 crol ritmo fuerte descanso 10seg
+  ca: |-
+    4x100 estils descans 20seg
+    4x400 crol 2a meitat més ràpida descans 30seg
+    8x50 crol ritme fort descans 10seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

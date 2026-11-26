@@ -1,0 +1,35 @@
+id: 1b04f19d-f4ac-4c6f-ab07-47e3a99469a3
+distance_meters: 2300
+duration_minutes: 48
+difficulty: advanced
+title:
+  en: "Threshold 200s"
+  es: "Series de 200 en Umbral"
+  ca: "Sèries de 200 al Llindar"
+warm_up:
+  en: |-
+    400 mixed stroke relaxed
+    4x50 crawl progressive 1-4 resting 10sec
+  es: |-
+    400 variados suave
+    4x50 crol progresivo 1-4 descanso 10seg
+  ca: |-
+    400 variats suau
+    4x50 crol progressiu 1-4 descans 10seg
+main_set:
+  en: |-
+    7x200 crawl strong pace resting 20sec
+    4x25 butterfly resting 20sec
+  es: |-
+    7x200 crol ritmo fuerte descanso 20seg
+    4x25 mariposa descanso 20seg
+  ca: |-
+    7x200 crol ritme fort descans 20seg
+    4x25 papallona descans 20seg
+cool_down:
+  en: |-
+    200 relaxed
+  es: |-
+    200 suave
+  ca: |-
+    200 suau
