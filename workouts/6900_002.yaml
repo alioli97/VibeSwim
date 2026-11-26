@@ -1,0 +1,62 @@
+id: 88b13bc7-7191-4892-8ed1-00022e6e8877
+distance_meters: 6900
+duration_minutes: 153
+difficulty: intermediate
+title:
+  en: "Descending Ladder from 1000"
+  es: "Escalera Descendente desde 1000"
+  ca: "Escala Descendent des de 1000"
+warm_up:
+  en: |-
+    400 mixed stroke relaxed
+    4x50 technique resting 15sec
+  es: |-
+    400 variados suave
+    4x50 técnica descanso 15seg
+  ca: |-
+    400 variats suau
+    4x50 tècnica descans 15seg
+main_set:
+  en: |-
+    1000 crawl resting 30sec
+    900 crawl resting 30sec
+    800 crawl resting 30sec
+    700 crawl resting 30sec
+    600 crawl resting 30sec
+    500 crawl resting 30sec
+    400 crawl resting 30sec
+    300 crawl resting 30sec
+    200 crawl resting 20sec
+    100 crawl MAX resting 15sec
+    7x100 pullboy strokes paddles resting 20sec
+  es: |-
+    1000 crol descanso 30seg
+    900 crol descanso 30seg
+    800 crol descanso 30seg
+    700 crol descanso 30seg
+    600 crol descanso 30seg
+    500 crol descanso 30seg
+    400 crol descanso 30seg
+    300 crol descanso 30seg
+    200 crol descanso 20seg
+    100 crol MAX descanso 15seg
+    7x100 brazos palas descanso 20seg
+  ca: |-
+    1000 crol descans 30seg
+    900 crol descans 30seg
+    800 crol descans 30seg
+    700 crol descans 30seg
+    600 crol descans 30seg
+    500 crol descans 30seg
+    400 crol descans 30seg
+    300 crol descans 30seg
+    200 crol descans 20seg
+    100 crol MAX descans 15seg
+    7x100 braços PALES descans 20seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

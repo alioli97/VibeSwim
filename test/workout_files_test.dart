@@ -125,6 +125,15 @@ void main() {
     expect(dash.texts['cool_down']!['en'], '');
   });
 
+  test('distances of 10000 m and more use five digits', () {
+    final w = _parse(
+      _valid.replaceFirst('distance_meters: 600', 'distance_meters: 10000'),
+      '10000_001',
+    );
+    expect(w.validate(), isNot(contains(startsWith('the file name'))));
+    expect(w.validate(), isNot(contains(startsWith('the number'))));
+  });
+
   test('the SQL upserts by id and escapes quotes', () {
     final sql = upsertSql([_parse(_valid)]);
     expect(sql, startsWith('insert into workouts (id, number_train_by_meters'));

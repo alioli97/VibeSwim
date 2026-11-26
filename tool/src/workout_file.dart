@@ -47,7 +47,7 @@ final columns = [
     for (final lang in languages) '${section}_text_$lang',
 ];
 
-final _numberPattern = RegExp(r'^(\d{4})_(\d{3})$');
+final _numberPattern = RegExp(r'^(\d{4,5})_(\d{3})$');
 final _uuidPattern = RegExp(
   r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$',
 );
