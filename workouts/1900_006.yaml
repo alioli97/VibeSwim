@@ -1,0 +1,35 @@
+id: fd615800-99ab-480e-9ef6-07e72fe1b762
+distance_meters: 1900
+duration_minutes: 48
+difficulty: beginner_intermediate
+title:
+  en: "Easy Distance"
+  es: "Fondo Tranquilo"
+  ca: "Fons Tranquil"
+warm_up:
+  en: |-
+    200 crawl relaxed
+    4x50 technique resting 20sec
+  es: |-
+    200 crol suave
+    4x50 técnica descanso 20seg
+  ca: |-
+    200 crol suau
+    4x50 tècnica descans 20seg
+main_set:
+  en: |-
+    1200 crawl continuous
+    4x50 backstroke resting 20sec
+  es: |-
+    1200 crol continuo
+    4x50 espalda descanso 20seg
+  ca: |-
+    1200 crol continu
+    4x50 esquena descans 20seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

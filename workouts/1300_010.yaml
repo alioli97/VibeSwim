@@ -1,0 +1,35 @@
+id: 42a149b0-4306-404b-8169-8e7d08cd55fc
+distance_meters: 1300
+duration_minutes: 30
+difficulty: advanced
+title:
+  en: "Descending 200s"
+  es: "Series de 200 Descendentes"
+  ca: "Sèries de 200 Descendents"
+warm_up:
+  en: |-
+    300 mixed stroke relaxed
+  es: |-
+    300 variados suave
+  ca: |-
+    300 variats suau
+main_set:
+  en: |-
+    3x200 crawl descending (each one faster) resting 20sec
+    100 crawl strong pace resting 15sec
+    8x25 crawl MAX resting 20sec
+  es: |-
+    3x200 crol descendente (cada uno más rápido) descanso 20seg
+    100 crol ritmo fuerte descanso 15seg
+    8x25 crol MAX descanso 20seg
+  ca: |-
+    3x200 crol descendent (cada un més ràpid) descans 20seg
+    100 crol ritme fort descans 15seg
+    8x25 crol MAX descans 20seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau
