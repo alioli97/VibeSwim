@@ -1,0 +1,47 @@
+id: 126897b6-5c42-4f31-870e-d3e523d96c1c
+distance_meters: 4300
+duration_minutes: 103
+difficulty: intermediate
+title:
+  en: "Quick Changes"
+  es: "Cambios Cortos"
+  ca: "Canvis Curts"
+warm_up:
+  en: |-
+    500 mixed stroke relaxed
+    4x50 technique resting 15sec
+    4x25 crawl progressive 1-4 resting 10sec
+  es: |-
+    500 variados suave
+    4x50 técnica descanso 15seg
+    4x25 crol progresivo 1-4 descanso 10seg
+  ca: |-
+    500 variats suau
+    4x50 tècnica descans 15seg
+    4x25 crol progressiu 1-4 descans 10seg
+main_set:
+  en: |-
+    16x50 crawl (25 fast + 25 easy) resting 15sec
+    7x100 crawl (50 fast + 50 easy) resting 15sec
+    6x50 kicking with board resting 15sec
+    3x200 crawl breathing every 3 resting 20sec
+    9x100 crawl steady pace resting 15sec
+  es: |-
+    16x50 crol (25 rápido + 25 suave) descanso 15seg
+    7x100 crol (50 rápido + 50 suave) descanso 15seg
+    6x50 pies con tabla descanso 15seg
+    3x200 crol respirando cada 3 descanso 20seg
+    9x100 crol ritmo constante descanso 15seg
+  ca: |-
+    16x50 crol (25 ràpid + 25 suau) descans 15seg
+    7x100 crol (50 ràpid + 50 suau) descans 15seg
+    6x50 peus amb taula descans 15seg
+    3x200 crol respirant cada 3 descans 20seg
+    9x100 crol ritme constant descans 15seg
+cool_down:
+  en: |-
+    200 relaxed
+  es: |-
+    200 suave
+  ca: |-
+    200 suau

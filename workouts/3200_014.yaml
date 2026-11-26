@@ -1,0 +1,50 @@
+id: 3c4d2492-c578-4e3b-bda2-84f803b93ff5
+distance_meters: 3200
+duration_minutes: 77
+difficulty: intermediate_advanced
+title:
+  en: "Butterfly Builder"
+  es: "Mariposa Asequible"
+  ca: "Papallona Assequible"
+warm_up:
+  en: |-
+    400 mixed stroke relaxed
+    4x50 technique resting 15sec
+    4x25 crawl progressive 1-4 resting 10sec
+  es: |-
+    400 variados suave
+    4x50 técnica descanso 15seg
+    4x25 crol progresivo 1-4 descanso 10seg
+  ca: |-
+    400 variats suau
+    4x50 tècnica descans 15seg
+    4x25 crol progressiu 1-4 descans 10seg
+main_set:
+  en: |-
+    6x50 (25 butterfly + 25 crawl) resting 20sec
+    4x50 butterfly kick fins resting 15sec
+    4x50 butterfly one arm resting 20sec
+    4x25 butterfly resting 30sec
+    3x200 pullboy strokes paddles resting 20sec
+    9x100 crawl steady pace resting 15sec
+  es: |-
+    6x50 (25 mariposa + 25 crol) descanso 20seg
+    4x50 pies mariposa aletas descanso 15seg
+    4x50 mariposa a un brazo descanso 20seg
+    4x25 mariposa descanso 30seg
+    3x200 brazos palas descanso 20seg
+    9x100 crol ritmo constante descanso 15seg
+  ca: |-
+    6x50 (25 papallona + 25 crol) descans 20seg
+    4x50 peus papallona ALETES descans 15seg
+    4x50 papallona a un braç descans 20seg
+    4x25 papallona descans 30seg
+    3x200 braços PALES descans 20seg
+    9x100 crol ritme constant descans 15seg
+cool_down:
+  en: |-
+    200 relaxed
+  es: |-
+    200 suave
+  ca: |-
+    200 suau

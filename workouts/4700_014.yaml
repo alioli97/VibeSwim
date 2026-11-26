@@ -1,0 +1,47 @@
+id: da1a0a72-7836-4b51-9895-c2aeaa0f9ec9
+distance_meters: 4700
+duration_minutes: 111
+difficulty: intermediate
+title:
+  en: "Progressive Breathing"
+  es: "Respiración Progresiva"
+  ca: "Respiració Progressiva"
+warm_up:
+  en: |-
+    500 mixed stroke relaxed
+    4x50 technique resting 15sec
+    4x25 crawl progressive 1-4 resting 10sec
+  es: |-
+    500 variados suave
+    4x50 técnica descanso 15seg
+    4x25 crol progresivo 1-4 descanso 10seg
+  ca: |-
+    500 variats suau
+    4x50 tècnica descans 15seg
+    4x25 crol progressiu 1-4 descans 10seg
+main_set:
+  en: |-
+    8x75 crawl breathing every 3, 5 and 7 (one per 25) resting 20sec
+    7x100 crawl breathing every 3 resting 15sec
+    8x50 crawl breathing every 5 resting 20sec
+    5x200 crawl steady pace resting 20sec
+    10x100 crawl steady pace resting 15sec
+  es: |-
+    8x75 crol respirando cada 3, 5 y 7 (uno por 25) descanso 20seg
+    7x100 crol respirando cada 3 descanso 15seg
+    8x50 crol respirando cada 5 descanso 20seg
+    5x200 crol ritmo constante descanso 20seg
+    10x100 crol ritmo constante descanso 15seg
+  ca: |-
+    8x75 crol respirant cada 3, 5 i 7 (un per 25) descans 20seg
+    7x100 crol respirant cada 3 descans 15seg
+    8x50 crol respirant cada 5 descans 20seg
+    5x200 crol ritme constant descans 20seg
+    10x100 crol ritme constant descans 15seg
+cool_down:
+  en: |-
+    200 relaxed
+  es: |-
+    200 suave
+  ca: |-
+    200 suau

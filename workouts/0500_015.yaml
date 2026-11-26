@@ -1,0 +1,32 @@
+id: 59110a6f-cad5-413d-8d5b-60967765b4df
+distance_meters: 500
+duration_minutes: 12
+difficulty: advanced
+title:
+  en: "Broken Swims"
+  es: "Series Rotas"
+  ca: "Sèries Trencades"
+warm_up:
+  en: |-
+    100 mixed stroke relaxed
+  es: |-
+    100 variados suave
+  ca: |-
+    100 variats suau
+main_set:
+  en: |-
+    2x50 crawl at 200 pace resting 5sec
+    2x100 crawl strong pace resting 15sec
+  es: |-
+    2x50 crol a ritmo de 200 descanso 5seg
+    2x100 crol ritmo fuerte descanso 15seg
+  ca: |-
+    2x50 crol a ritme de 200 descans 5seg
+    2x100 crol ritme fort descans 15seg
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau

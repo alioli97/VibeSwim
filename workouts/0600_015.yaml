@@ -1,0 +1,32 @@
+id: a4310a61-365d-4f31-99ab-0578207c3424
+distance_meters: 600
+duration_minutes: 13
+difficulty: advanced
+title:
+  en: "Race Pace"
+  es: "Ritmo de Competición"
+  ca: "Ritme de Competició"
+warm_up:
+  en: |-
+    200 mixed stroke relaxed
+  es: |-
+    200 variados suave
+  ca: |-
+    200 variats suau
+main_set:
+  en: |-
+    2x100 crawl on a 1:40 send-off
+    2x50 crawl on a 0:50 send-off
+  es: |-
+    2x100 crol salida cada 1:40
+    2x50 crol salida cada 0:50
+  ca: |-
+    2x100 crol sortida cada 1:40
+    2x50 crol sortida cada 0:50
+cool_down:
+  en: |-
+    100 relaxed
+  es: |-
+    100 suave
+  ca: |-
+    100 suau
