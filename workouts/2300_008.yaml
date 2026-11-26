@@ -1,0 +1,38 @@
+id: 5f7489a9-b763-4b04-a273-1625982d811e
+distance_meters: 2300
+duration_minutes: 54
+difficulty: intermediate
+title:
+  en: "Breathing and Control"
+  es: "Respiración y Control"
+  ca: "Respiració i Control"
+warm_up:
+  en: |-
+    300 mixed stroke relaxed
+    4x50 technique resting 15sec
+  es: |-
+    300 variados suave
+    4x50 técnica descanso 15seg
+  ca: |-
+    300 variats suau
+    4x50 tècnica descans 15seg
+main_set:
+  en: |-
+    8x50 crawl breathing every 5 resting 20sec
+    4x100 crawl counting strokes resting 20sec
+    800 crawl breathing every 3
+  es: |-
+    8x50 crol respirando cada 5 descanso 20seg
+    4x100 crol contando brazadas descanso 20seg
+    800 crol respirando cada 3
+  ca: |-
+    8x50 crol respirant cada 5 descans 20seg
+    4x100 crol comptant braçades descans 20seg
+    800 crol respirant cada 3
+cool_down:
+  en: |-
+    200 backstroke relaxed
+  es: |-
+    200 espalda suave
+  ca: |-
+    200 esquena suau
